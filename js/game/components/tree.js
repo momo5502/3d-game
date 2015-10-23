@@ -14,9 +14,9 @@
 			shadow: { type: "t", value: shadow },
 			globalTime : { type: "f", value: 0.0 },
 			lightPos : { type: "v2", value: new THREE.Vector2() },
-			fogColor : { type: "c", value: scene.fog.color },
-			fogNear : { type: "f", value: scene.fog.near },
-			fogFar : { type: "f", value: scene.fog.far },
+			fogColor : { type: "c", value: GAME.DATA.scene.fog.color },
+			fogNear : { type: "f", value: GAME.DATA.scene.fog.near },
+			fogFar : { type: "f", value: GAME.DATA.scene.fog.far },
 		};
 
 		var material = new THREE.ShaderMaterial(
@@ -37,8 +37,8 @@
     var geometry = ENGINE.model.load("tree").geometry;
     geometry.computeTangents();
 
-    var texture = THREE.ImageUtils.loadTexture( "SampleLeaves_1.png", undefined, checkLoading );
-    var shadow = THREE.ImageUtils.loadTexture( "9128-ambientocclusion2.jpg", undefined, checkLoading );
+    var texture = ENGINE.material.load("leaves").texture;
+    var shadow = ENGINE.material.load("occlusion").texture;
 
     shadow.wrapS = THREE.MirroredRepeatWrapping;
     shadow.wrapT = THREE.MirroredRepeatWrapping;
@@ -58,8 +58,8 @@
 		uniforms[ "enableReflection" ].value = false;
 		uniforms[ "enableDisplacement" ].value = false;
 
-	  uniforms[ "tDiffuse" ].value = THREE.ImageUtils.loadTexture( "9204-v2_grey.jpg", undefined, checkLoading );
-		uniforms[ "tNormal" ].value = THREE.ImageUtils.loadTexture( "9204-normal.jpg", undefined, checkLoading );
+	  uniforms[ "tDiffuse" ].value = ENGINE.material.load("grey").texture;
+		uniforms[ "tNormal" ].value = ENGINE.material.load("normal").texture;
 		uniforms[ "tAO" ].value = shadow;
 
 		uniforms[ "uDisplacementBias" ].value = - 0.428408;
@@ -76,7 +76,7 @@
 		uniforms[ "uShininess" ].value = shininess;
 
 		var parameters = { fragmentShader: shader.fragmentShader, vertexShader: shader.vertexShader, uniforms: uniforms, lights: true, fog: true, side: THREE.DoubleSide };
-		bark = new THREE.ShaderMaterial( parameters );
+		var bark = new THREE.ShaderMaterial( parameters );
 
 		bark.uniforms.tDiffuse.value.wrapS = THREE.RepeatWrapping;
 		bark.uniforms.tDiffuse.value.wrapT = THREE.RepeatWrapping;
@@ -93,8 +93,8 @@
 
 		*/
 
-		var cap = new THREE.MeshPhongMaterial( {map: THREE.ImageUtils.loadTexture( "Cap_02.jpg", undefined, checkLoading ), color: 0x333333, ambient: 0x333333, side: THREE.DoubleSide} );
-		var branches = new THREE.MeshPhongMaterial( {map: THREE.ImageUtils.loadTexture( "branch.png", undefined, checkLoading ), transparent: true, alphaTest: 0.5, side: THREE.DoubleSide} );
+		var cap = new THREE.MeshPhongMaterial( {map: ENGINE.material.load("cap").texture, color: 0x333333, ambient: 0x333333, side: THREE.DoubleSide} );
+		var branches = new THREE.MeshPhongMaterial( {map: ENGINE.material.load("branch").texture, transparent: true, alphaTest: 0.5, side: THREE.DoubleSide} );
 
 		var c = new THREE.Color().setHSL(0.25,0.01,0.5);
 		bark.uniforms.uDiffuseColor.value = c;
@@ -111,7 +111,7 @@
 		// trees
 		for (var i = 0; i < num; i++)
     {
-		    var material0 = getTreeMaterial(texture, shadow);
+		    var material0 = GAME.getTreeMaterial(texture, shadow);
 
 		    var c = new THREE.Color().setHSL(0.2+Math.random()*0.05,0.3,0.5);
 		    material0.uniforms.color.value = c;
@@ -129,39 +129,13 @@
     		  tree.isCenter = true;
         }
 
-				tree.position.set( f.centroid.x + Math.random()*100-50, Math.random()-5, f.centroid.z + Math.random()*100-50 )
+				tree.position.set( f.centroid.x + Math.random()*100-50, Math.random()-5, f.centroid.z + Math.random()*100+1000 )
 
 				tree.rotation.y = Math.random()*(Math.PI*2);
 				tree.rotation.x = Math.random()*0.4-0.2;
 				tree.rotation.z = Math.random()*0.4-0.2;
 
 			  GAME.DATA.scene.add(tree);
-    }
-
-    // 2 extras
-    for (var i = 0; i < 2; i++)
-    {
-			var material0 = getTreeMaterial(texture, shadow);
-
-			var c = new THREE.Color().setHSL(0.2+Math.random()*0.05,0.3,0.5);
-			material0.uniforms.color.value = c;
-
-			var mf = new THREE.MeshFaceMaterial( [bark, cap, material0, material0, branches] );
-
-			var tree = new THREE.Mesh( geometry, mf );
-			var s = 13+Math.random()*12;
-			tree.scale.set(s,s,s);
-
-			tree.isCenter = true;
-
-			var x = i*500 - 250 + Math.random()*100-50;
-			tree.position.set( x, Math.random()-5, -2200 + Math.random()*100-50 )
-
-			tree.rotation.y = Math.random()*(Math.PI*2);
-			tree.rotation.x = Math.random()*0.4-0.2;
-			tree.rotation.z = Math.random()*0.4-0.2;
-
-      GAME.DATA.scene.add(tree);
     }
   };
 })();

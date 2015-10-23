@@ -8,7 +8,7 @@
     GAME.DATA.renderer	= new THREE.WebGLRenderer();
 
     GAME.DATA.scene	= new THREE.Scene();
-    GAME.DATA.scene.fog = new THREE.Fog(0xabaf99, 0, 2000);
+    GAME.DATA.scene.fog = new THREE.Fog(0xabaf99, 0, 4000);
 
     GAME.DATA.camera = new THREE.PerspectiveCamera(60, ENGINE.NULL, 1, 3000);
     GAME.DATA.camera.position.z = 0;
