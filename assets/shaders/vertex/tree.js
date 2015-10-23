@@ -1,4 +1,6 @@
-uniform float globalTime;
+
+
+			uniform float globalTime;
 
 			varying vec2 vUv;
 			varying float vDarken;
@@ -21,3 +23,7 @@ uniform float globalTime;
 
 				vec2 size = vec2(36.0, 36.0);
 				shadowUv = vec2((position.x+cos(position.z*1.4+globalTime)*2.85)/size.x, (position.z+sin(position.x*1.8+globalTime)*2.85)/size.y)*1.0;
+
+			}
+
+		
