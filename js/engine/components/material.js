@@ -8,12 +8,6 @@
   ENGINE.material.path = "assets/textures/";
   ENGINE.material.extension = ".png";
 
-  ENGINE.material.type =
-  {
-    SKYBOX: "skybox",
-    TERRAIN: "terrain",
-  };
-
 	var dbType = "material";
 
 	ENGINE.material.loadCube = function(name, extension)

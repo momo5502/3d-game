@@ -32,6 +32,10 @@
 				if (shd.x < 0.5) {
 					shadowAdd = shd.x+vDarken;
 				}
+				
+				// Fit the atmosphere
+				// TODO: search better skybox, not cod4's downpour, to fit the environment
+				shadowAdd = 0.5;
 
 				gl_FragColor = vec4( tex.xyz*color*shadowAdd*vDarken, 1.0);
 				vec4 color = mix( gl_FragColor, vec4( fogColor, 1.0 ), fogFactor );
