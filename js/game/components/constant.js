@@ -7,7 +7,7 @@
   GAME.const = {};
 
   // TODO: Initialize constants here
-  GAME.const.cameraSpeed = 10;
+  GAME.const.cameraSpeed = 2;
 	GAME.const.cameraMaxAngle = 70;
 
 	GAME.const.grassWideCount = 3500;

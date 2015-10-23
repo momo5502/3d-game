@@ -15,4 +15,7 @@
 	GAME.var.cameraTargetTheta = 0;
 	GAME.var.cameraTarget = new THREE.Vector3();
 
+	GAME.var.frameOldTime = Date.now();
+	GAME.var.frameNewTime = Date.now();
+	GAME.var.frameDelta = 0;
 })();

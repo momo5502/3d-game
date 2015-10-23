@@ -3,7 +3,9 @@
 	'use strict';
 	window.GAME = window.GAME || {};
 
-  GAME.addGrass = function()
+	GAME.grass = {};
+
+  GAME.grass.add = function()
   {
     var planeGeometry = new THREE.PlaneGeometry(800, 8, 20, 2);
 
@@ -20,77 +22,29 @@
     var shadow = ENGINE.material.load("shadow").texture;
     shadow.wrapS = shadow.wrapT = THREE.RepeatWrapping;
 
-    var attributes =
-    {
-      customColor:
-      {
-        type: 'c',
-        value: []
-      },
-    	time:
-      {
-        type: 'f',
-        value: []
-      },
-    	uvScale:
-      {
-        type: 'v2',
-        value: []
-      },
-    };
+		var attributes =
+		{
+			customColor: { type: 'c', value: [] },
+			time:	{ type: 'f', value: [] },
+			uvScale: { type: 'v2', value: [] },
+		};
 
-    var uniforms =
-    {
-      color:
-      {
-        type: "c",
-        value: new THREE.Color( 0x53544d )
-      },
-    	sunColor:
-      {
-        type: "c",
-        value: new THREE.Color( 0xe2e784 )
-      },
-    	texture:
-      {
-        type: "t",
-        value: map
-      },
-    	shadow:
-      {
-        type: "t",
-        value: shadow
-      },
-      globalTime:
-      {
-        type: "f",
-        value: 0.0
-      },
-      fogColor:
-      {
-        type: "c",
-        value: GAME.DATA.scene.fog.color
-      },
-      fogNear:
-      {
-        type: "f",
-        value: GAME.DATA.scene.fog.near
-      },
-      fogFar:
-      {
-        type: "f",
-        value: GAME.DATA.scene.fog.far * 0.75
-      },
-      size:
-      {
-        type: "v2",
-        value: new THREE.Vector2( 1200.0, 2400.0 )
-      },
-    };
+		GAME.DATA.grassUniforms =
+		{
+			color: { type: "c", value: new THREE.Color( 0x53544d ) },
+			sunColor: { type: "c", value: new THREE.Color( 0xe2e784 ) },
+			texture: { type: "t", value: map },
+			shadow: { type: "t", value: shadow },
+			globalTime:	{ type: "f", value: 0.0 },
+			fogColor: { type: "c", value: GAME.DATA.scene.fog.color },
+			fogNear: { type: "f", value: GAME.DATA.scene.fog.near },
+			fogFar: { type: "f", value: GAME.DATA.scene.fog.far*0.75 },
+			size: { type: "v2", value: new THREE.Vector2( 1200.0, 2400.0 ) },
+		};
 
     var material = new THREE.ShaderMaterial(
     {
-      uniforms: uniforms,
+      uniforms: GAME.DATA.grassUniforms,
     	attributes: attributes,
     	vertexShader: ENGINE.shader.loadVertex("grass").data,
     	fragmentShader: ENGINE.shader.loadFragment("grass").data,
@@ -161,4 +115,12 @@
     planes.material.side = THREE.DoubleSide;
     GAME.DATA.scene.add(planes);
   };
+
+	GAME.grass.update = function()
+  {
+		if (GAME.DATA.grassUniforms)
+		{
+			GAME.DATA.grassUniforms.globalTime.value += GAME.var.frameDelta * 0.0012;
+		}
+	};
 })();

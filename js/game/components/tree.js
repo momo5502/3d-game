@@ -3,7 +3,9 @@
 	'use strict';
 	window.GAME = window.GAME || {};
 
-  GAME.getTreeMaterial = function(texture, shadow)
+	GAME.trees = {};
+
+  GAME.trees.getMaterial = function(texture, shadow)
   {
     var attributes = {};
 
@@ -32,8 +34,10 @@
     return material;
   }
 
-  GAME.addTrees = function()
+  GAME.trees.add = function()
   {
+		GAME.DATA.trees = [];
+
     var geometry = ENGINE.model.load("tree").geometry;
     geometry.computeTangents();
 
@@ -111,7 +115,7 @@
 		// trees
 		for (var i = 0; i < num; i++)
     {
-		    var material0 = GAME.getTreeMaterial(texture, shadow);
+		    var material0 = GAME.trees.getMaterial(texture, shadow);
 
 		    var c = new THREE.Color().setHSL(0.2+Math.random()*0.05,0.3,0.5);
 		    material0.uniforms.color.value = c;
@@ -136,6 +140,15 @@
 				tree.rotation.z = Math.random()*0.4-0.2;
 
 			  GAME.DATA.scene.add(tree);
+				GAME.DATA.trees.push(tree);
     }
+
+		GAME.trees.update = function()
+		{
+			for (var i = 0; i < GAME.DATA.trees.length; i++)
+			{
+				GAME.DATA.trees[i].material.materials[2].uniforms.globalTime.value += GAME.var.frameDelta * 0.001;
+			}
+		};
   };
 })();

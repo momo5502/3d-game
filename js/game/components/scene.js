@@ -62,8 +62,8 @@
     ground.rotation.x = -Math.PI * 0.5;
     GAME.DATA.scene.add(ground);
 
-		GAME.addGrass();
-		GAME.addTrees();
+		GAME.grass.add();
+		GAME.trees.add();
 
     ENGINE.bind(GAME.DATA.renderer, GAME.DATA.camera, '#container');
   };
