@@ -123,12 +123,12 @@
       fog: true,
       side: THREE.DoubleSide
     };
-    var bark = new THREE.ShaderMaterial(parameters);
 
-    bark.uniforms.tDiffuse.value.wrapS = THREE.RepeatWrapping;
-    bark.uniforms.tDiffuse.value.wrapT = THREE.RepeatWrapping;
-    bark.uniforms.tNormal.value.wrapS = THREE.RepeatWrapping;
-    bark.uniforms.tNormal.value.wrapT = THREE.RepeatWrapping;
+    GAME.DATA.treeBark = new THREE.ShaderMaterial(parameters);
+    GAME.DATA.treeBark.uniforms.tDiffuse.value.wrapS = THREE.RepeatWrapping;
+    GAME.DATA.treeBark.uniforms.tDiffuse.value.wrapT = THREE.RepeatWrapping;
+    GAME.DATA.treeBark.uniforms.tNormal.value.wrapS = THREE.RepeatWrapping;
+    GAME.DATA.treeBark.uniforms.tNormal.value.wrapT = THREE.RepeatWrapping;
 
     /*
 
@@ -156,7 +156,7 @@
     });
 
     var c = new THREE.Color().setHSL(0.25, 0.01, 0.5);
-    bark.uniforms.uDiffuseColor.value = c;
+    GAME.DATA.treeBark.uniforms.uDiffuseColor.value = c;
 
     var c = new THREE.Color().setHSL(0.25, 0.3, 0.5);
     branches.color = c;
@@ -175,7 +175,7 @@
       var c = new THREE.Color().setHSL(0.2 + Math.random() * 0.05, 0.3, 0.5);
       material0.uniforms.color.value = c;
 
-      var mf = new THREE.MeshFaceMaterial([bark, cap, material0, material0, branches]);
+      var mf = new THREE.MeshFaceMaterial([GAME.DATA.treeBark, cap, material0, material0, branches]);
 
       var tree = new THREE.Mesh(geometry, mf);
       var s = 13 + Math.random() * 12;
@@ -204,6 +204,8 @@
       {
         GAME.DATA.trees[i].material.materials[2].uniforms.globalTime.value += GAME.var.frameDelta * 0.001;
       }
+
+			GAME.DATA.treeBark.uniforms.uGlobalTime.value += GAME.var.frameDelta * 0.0012;
     };
   };
 })();
