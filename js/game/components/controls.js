@@ -1,7 +1,8 @@
 (function()
 {
-	'use strict';
-	window.GAME = window.GAME || {};
+  'use strict';
+  window.GAME = window.GAME ||
+  {};
 
   GAME.controls = {};
 
@@ -16,22 +17,22 @@
 
   GAME.controls.update = function()
   {
-    if(ENGINE.controls.isKeyDown(ENGINE.controls.key.UP))
+    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.UP))
     {
       GAME.DATA.camera.translateZ(-GAME.const.cameraSpeed);
     }
 
-    if(ENGINE.controls.isKeyDown(ENGINE.controls.key.DOWN))
+    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.DOWN))
     {
       GAME.DATA.camera.translateZ(GAME.const.cameraSpeed);
     }
 
-    if(ENGINE.controls.isKeyDown(ENGINE.controls.key.LEFT))
+    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.LEFT))
     {
       GAME.DATA.camera.translateX(-GAME.const.cameraSpeed);
     }
 
-    if(ENGINE.controls.isKeyDown(ENGINE.controls.key.RIGHT))
+    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.RIGHT))
     {
       GAME.DATA.camera.translateX(GAME.const.cameraSpeed);
     }

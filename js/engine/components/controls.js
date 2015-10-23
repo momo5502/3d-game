@@ -1,13 +1,13 @@
 (function()
 {
-	'use strict';
-	window.ENGINE = window.ENGINE || {};
+  'use strict';
+  window.ENGINE = window.ENGINE ||
+  {};
 
   ENGINE.controls = {};
   ENGINE.controls.pointer = {};
 
-  ENGINE.controls.key =
-  {
+  ENGINE.controls.key = {
     UP: 38,
     DOWN: 40,
     LEFT: 37,
@@ -21,7 +21,7 @@
 
   ENGINE.controls.runKey = function(key)
   {
-    if(actions[key] != undefined)
+    if (actions[key] != undefined)
     {
       actions[key].run();
     }
@@ -43,43 +43,43 @@
   {
     var point = {};
 
-    point.x = event.movementX       ||
-              event.mozMovementX    ||
-              event.webkitMovementX ||
-              0;
+    point.x = event.movementX ||
+      event.mozMovementX ||
+      event.webkitMovementX ||
+      0;
 
-    point.y = event.movementY       ||
-              event.mozMovementY    ||
-              event.webkitMovementY ||
-              0;
+    point.y = event.movementY ||
+      event.mozMovementY ||
+      event.webkitMovementY ||
+      0;
 
     ENGINE.controls.pointer.callbacks.run(event, point);
   };
 
   ENGINE.controls.pointer.locked = function(element)
   {
-    return document.pointerLockElement === element    ||
-           document.mozPointerLockElement === element ||
-           document.webkitPointerLockElement === element;
+    return document.pointerLockElement === element ||
+      document.mozPointerLockElement === element ||
+      document.webkitPointerLockElement === element;
   };
 
   ENGINE.controls.pointer.lock = function(element)
   {
-    element.requestPointerLock = element.requestPointerLock    ||
-                                 element.mozRequestPointerLock ||
-                                 element.webkitRequestPointerLock;
+    element.requestPointerLock = element.requestPointerLock ||
+      element.mozRequestPointerLock ||
+      element.webkitRequestPointerLock;
 
     $(element).click(function()
     {
-      if(!ENGINE.controls.pointer.locked(element))
+      if (!ENGINE.controls.pointer.locked(element))
       {
         element.requestPointerLock();
       }
     });
 
-    $(element).mousemove(function( event )
+    $(element).mousemove(function(event)
     {
-      if(ENGINE.controls.pointer.locked(element))
+      if (ENGINE.controls.pointer.locked(element))
       {
         ENGINE.controls.pointer.dispatchMovement(event.originalEvent);
       }
@@ -87,9 +87,9 @@
 
     ENGINE.controls.pointer.unlock = function()
     {
-      document.exitPointerLock   = document.exitPointerLock      ||
-                                   document.mozExitPointerLock   ||
-                                   document.webkitExitPointerLock;
+      document.exitPointerLock = document.exitPointerLock ||
+        document.mozExitPointerLock ||
+        document.webkitExitPointerLock;
 
       document.exitPointerLock();
     }
@@ -97,7 +97,7 @@
 
   ENGINE.controls.assign = function(key, callback)
   {
-    if(actions[key] == undefined)
+    if (actions[key] == undefined)
     {
       actions[key] = new ENGINE.callbackHandler();
     }
@@ -110,7 +110,7 @@
     event.preventDefault();
     keyDown[event.keyCode] = true;
 
-    if(event.char == undefined)
+    if (event.char == undefined)
     {
       ENGINE.controls.runKey(event.keyCode);
     }

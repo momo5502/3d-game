@@ -1,20 +1,22 @@
 (function()
 {
-	'use strict';
-	window.GAME = window.GAME || {};
+  'use strict';
+  window.GAME = window.GAME ||
+  {};
 
   GAME.frame = function()
   {
-		GAME.var.frameNewTime = Date.now();
-		GAME.var.frameDelta   = GAME.var.frameNewTime - GAME.var.frameOldTime;
-		GAME.var.frameOldTime = GAME.var.frameNewTime;
+    GAME.var.frameNewTime = Date.now();
+    GAME.var.frameDelta = GAME.var.frameNewTime - GAME.var.frameOldTime;
+    GAME.var.frameOldTime = GAME.var.frameNewTime;
 
     GAME.controls.update();
-		GAME.trees.update();
-		GAME.grass.update();
+    GAME.trees.update();
+    GAME.grass.update();
+    GAME.rays.update();
 
-    GAME.var.cameraTargetLat   = Math.max(-GAME.const.cameraMaxAngle, Math.min(GAME.const.cameraMaxAngle, GAME.var.cameraTargetLat));
-    GAME.var.cameraTargetPhi   = THREE.Math.degToRad(90 - GAME.var.cameraTargetLat);
+    GAME.var.cameraTargetLat = Math.max(-GAME.const.cameraMaxAngle, Math.min(GAME.const.cameraMaxAngle, GAME.var.cameraTargetLat));
+    GAME.var.cameraTargetPhi = THREE.Math.degToRad(90 - GAME.var.cameraTargetLat);
     GAME.var.cameraTargetTheta = THREE.Math.degToRad(GAME.var.cameraTargetLon);
 
     GAME.var.cameraTarget.x = GAME.DATA.camera.position.x + 500 * Math.sin(GAME.var.cameraTargetPhi) * Math.cos(GAME.var.cameraTargetTheta);

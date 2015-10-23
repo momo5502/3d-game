@@ -1,19 +1,20 @@
 (function()
 {
-	'use strict';
-	window.ENGINE = window.ENGINE || {};
+  'use strict';
+  window.ENGINE = window.ENGINE ||
+  {};
 
   ENGINE.sound = {};
 
   ENGINE.sound.path = "assets/sounds/";
   ENGINE.sound.extension = ".ogg";
 
-	var dbType = "sound";
+  var dbType = "sound";
 
-	ENGINE.sound.load = function(name)
-	{
+  ENGINE.sound.load = function(name)
+  {
     var loaded = loadFromDB(name);
-    if(loaded != undefined)
+    if (loaded != undefined)
     {
       return loaded;
     }
@@ -31,7 +32,7 @@
 
     storeDB(name, ticket);
     return ticket;
-	};
+  };
 
   ENGINE.sound.play = function(name)
   {
@@ -63,17 +64,17 @@
     return ticket;
   };
 
-	/****************************/
+  /****************************/
   /*      Misc functions      */
-	/****************************/
+  /****************************/
 
-	function loadFromDB(name)
-	{
-		return ENGINE.database.load(dbType, name);
-	}
+  function loadFromDB(name)
+  {
+    return ENGINE.database.load(dbType, name);
+  }
 
-	function storeDB(name, object)
-	{
-		return ENGINE.database.add(dbType, name, object);
-	}
+  function storeDB(name, object)
+  {
+    return ENGINE.database.add(dbType, name, object);
+  }
 })();

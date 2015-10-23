@@ -1,7 +1,8 @@
 (function()
 {
-	'use strict';
-	window.ENGINE = window.ENGINE || {};
+  'use strict';
+  window.ENGINE = window.ENGINE ||
+  {};
 
   ENGINE.components = {};
 
@@ -16,7 +17,7 @@
 
     this.chainload = function()
     {
-      if(this.currentComponent < this.components.length)
+      if (this.currentComponent < this.components.length)
       {
         var file = this.path + this.components[this.currentComponent] + ".js";
 

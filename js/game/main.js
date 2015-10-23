@@ -14,6 +14,8 @@ ENGINE.init(function()
   ENGINE.material.load("normal");
   ENGINE.material.load("occlusion");
 
+  ENGINE.material.load("ray");
+
   ENGINE.shader.loadPair("flower");
   ENGINE.shader.loadPair("grass");
   ENGINE.shader.loadPair("particle");
@@ -38,7 +40,8 @@ ENGINE.init(function()
     "start",
     "scene",
     "grass",
-    "tree"
+    "trees",
+    "rays"
   ];
 
   ENGINE.components.load("js/game/components/", gameComponents);

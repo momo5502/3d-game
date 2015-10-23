@@ -15,7 +15,7 @@ attribute float time;
 
 				pos.x += cos(accTime*60.0)*20.0;
 
-				pos.z += (accTime)*1500.0;
+				//pos.z += (accTime)*1500.0;
 
 				vAlpha = min( 1.0, accTime*10.0 ) * (0.3 + sin(accTime*80.0)*0.25);
 

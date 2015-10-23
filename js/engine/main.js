@@ -1,28 +1,29 @@
 (function()
 {
-	'use strict';
+  'use strict';
 
-  if(!window.jQuery) alert("jQuery not loaded!");
-  if(!window.THREE) alert("three.js not loaded!");
+  if (!window.jQuery) alert("jQuery not loaded!");
+  if (!window.THREE) alert("three.js not loaded!");
 
-	window.ENGINE = window.ENGINE || {};
+  window.ENGINE = window.ENGINE ||
+  {};
 
-	// Order is relevant!
+  // Order is relevant!
   var components = [
-		"callback",
+    "callback",
     "ticketing",
-		"components",
+    "components",
     "database",
     "animate",
     "binding",
     "controls",
     "material",
     "shader",
-		"model",
-		"sound"
+    "model",
+    "sound"
   ];
 
-	var callbacks = [];
+  var callbacks = [];
 
   ENGINE.NULL = null;
   ENGINE.initialized = false;
@@ -30,93 +31,94 @@
 
   ENGINE.init = function(callback)
   {
-		// Enable caching for online use!
-		$.ajaxSetup(
-		{
-		  cache: true
-		});
+    // Enable caching for online use!
+    $.ajaxSetup(
+    {
+      cache: true
+    });
 
-		if(ENGINE.initialized)
-		{
-			if(callback != undefined)
-			{
-				callback();
-			}
-		}
-		else
-		{
-			addCallback(callback);
+    if (ENGINE.initialized)
+    {
+      if (callback != undefined)
+      {
+        callback();
+      }
+    }
+    else
+    {
+      addCallback(callback);
 
-			if(!ENGINE.initializing )
-			{
-				ENGINE.initializing = true;
-				$(document).ready(function()
-				{
-					loadComponents();
-				});
-			}
-		}
+      if (!ENGINE.initializing)
+      {
+        ENGINE.initializing = true;
+        $(document).ready(function()
+        {
+          loadComponents();
+        });
+      }
+    }
   };
 
-	ENGINE.ready = function(callback)
-	{
-		if(!ENGINE.initialized && !ENGINE.initializing)
-		{
-			ENGINE.init(function()
-			{
-				ENGINE.ready(callback);
-			});
-		}
-		else if(ENGINE.initializing)
-		{
-			addCallback(function()
-			{
-				ENGINE.ticketing.ready(callback);
-			});
-		}
-		else
-		{
-			ENGINE.ticketing.ready(callback);
-		}
-	};
+  ENGINE.ready = function(callback)
+  {
+    if (!ENGINE.initialized && !ENGINE.initializing)
+    {
+      ENGINE.init(function()
+      {
+        ENGINE.ready(callback);
+      });
+    }
+    else if (ENGINE.initializing)
+    {
+      addCallback(function()
+      {
+        ENGINE.ticketing.ready(callback);
+      });
+    }
+    else
+    {
+      ENGINE.ticketing.ready(callback);
+    }
+  };
 
   /****************************/
   /*      Misc functions      */
   /****************************/
 
-	function addCallback(callback)
-	{
-		if(callback != undefined)
-		{
-			callbacks.push(callback);
-		}
-	}
+  function addCallback(callback)
+  {
+    if (callback != undefined)
+    {
+      callbacks.push(callback);
+    }
+  }
 
-	function runCallbacks()
-	{
-		var ticket = new ENGINE.ticket("callbacks");
+  function runCallbacks()
+  {
+    var ticket = new ENGINE.ticket("callbacks");
 
-		for(var i = 0; i < callbacks.length; i++)
-		{
-			callbacks[i]();
-		}
+    for (var i = 0; i < callbacks.length; i++)
+    {
+      callbacks[i]();
+    }
 
-		callbacks = [];
+    callbacks = [];
 
-		ticket.close();
-	}
+    ticket.close();
+  }
 
   function resolveComponent(component)
   {
-    if(component >= components.length) return;
+    if (component >= components.length) return;
     component = components[component];
     return "js/engine/components/" + component + ".js";
   }
 
   var currentComponent = 0;
+
   function loadComponents()
   {
-    if(currentComponent < components.length)
+    if (currentComponent < components.length)
     {
       $.getScript(resolveComponent(currentComponent), function(data, textStatus, jqxhr)
       {
@@ -126,9 +128,9 @@
     }
     else
     {
-			ENGINE.initialized = true;
+      ENGINE.initialized = true;
 
-			runCallbacks();
+      runCallbacks();
     }
   }
 })();

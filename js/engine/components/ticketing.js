@@ -1,7 +1,8 @@
 (function()
 {
-	'use strict';
-	window.ENGINE = window.ENGINE || {};
+  'use strict';
+  window.ENGINE = window.ENGINE ||
+  {};
 
   ENGINE.ticketing = {};
 
@@ -11,7 +12,10 @@
   ENGINE.ticket = function(name)
   {
     this.id = tickets.length;
-    this.closed = function(){ return tickets[this.id]; };
+    this.closed = function()
+    {
+      return tickets[this.id];
+    };
     this.close = closeTicket;
     this.name = name || "";
 
@@ -20,37 +24,37 @@
     console.log("Ticket (" + this.id + ", " + this.name + ") issued.");
   }
 
-	ENGINE.ticketing.ready = function(callback)
-	{
-    if(callback != undefined)
+  ENGINE.ticketing.ready = function(callback)
+  {
+    if (callback != undefined)
     {
       callbacks.add(callback);
     }
 
-    if(!hasOpenTickets())
+    if (!hasOpenTickets())
     {
       console.log("All tickets closed. Running queued callbacks...");
       callbacks.run();
       callbacks.clear();
     }
-	};
+  };
 
-	/****************************/
+  /****************************/
   /*      Misc functions      */
-	/****************************/
+  /****************************/
 
-	function closeTicket()
-	{
+  function closeTicket()
+  {
     tickets[this.id] = true;
     console.log("Ticket (" + this.id + ", " + this.name + ") closed.");
     ENGINE.ticketing.ready();
-	}
+  }
 
   function hasOpenTickets()
   {
-    for(var i = 0; i < tickets.length; i++)
+    for (var i = 0; i < tickets.length; i++)
     {
-      if(!tickets[i])
+      if (!tickets[i])
       {
         return true;
       }

@@ -1,14 +1,19 @@
 (function()
 {
-	'use strict';
-	window.GAME = window.GAME || {};
+  'use strict';
+  window.GAME = window.GAME ||
+  {};
 
   GAME.start = function()
   {
     GAME.initScene();
     GAME.controls.initMouse();
 
-		ENGINE.sound.playLoop("loop");
+    GAME.grass.add();
+    GAME.trees.add();
+    GAME.rays.add();
+
+    ENGINE.sound.playLoop("loop");
 
     ENGINE.animate(GAME.frame);
 
