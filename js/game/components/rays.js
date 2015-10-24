@@ -71,11 +71,14 @@
 
       mesh.scale.x = 1 + Math.random() * 2;
 
-      mesh.position.x = Math.random() * 1000 - 500;
-      mesh.position.z = Math.random() * 3000 - 1500;
+      mesh.position.x = Math.random() * 1500 - 750;
+      mesh.position.z = Math.random() * 2000 - 1000;
       mesh.position.y = 300;
 
       mesh.rotation.z = -0.5 + mesh.position.x * 0.0006;
+
+      var rotationVar = 0.8;
+      mesh.rotation.y += Math.random() * (rotationVar * 2) - rotationVar;
 
       THREE.GeometryUtils.merge(geometry, mesh);
     };
