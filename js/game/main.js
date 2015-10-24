@@ -43,6 +43,7 @@ ENGINE.init(function()
   ENGINE.sound.load("leaves", "https://s3.amazonaws.com/noisliaudio/leaves.ogg");
   ENGINE.sound.load("forest", "https://s3.amazonaws.com/noisliaudio/forest.ogg");
 
+  //ENGINE.network.connect("http://127.0.0.1:88");
   ENGINE.network.connect("http://fw.kthx.at:88");
 
   ENGINE.controls.assign(ENGINE.controls.key.F5, function()
