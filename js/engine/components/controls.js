@@ -56,7 +56,7 @@
     ENGINE.controls.pointer.callbacks.run(event, point);
   };
 
-  ENGINE.controls.pointer.locked = function(element)
+  ENGINE.controls.pointer.isLockedTo = function(element)
   {
     return document.pointerLockElement === element ||
       document.mozPointerLockElement === element ||
@@ -65,21 +65,24 @@
 
   ENGINE.controls.pointer.lock = function(element)
   {
+    ENGINE.controls.pointer.element = element;
+
     element.requestPointerLock = element.requestPointerLock ||
       element.mozRequestPointerLock ||
       element.webkitRequestPointerLock;
 
     $(element).click(function()
     {
-      if (!ENGINE.controls.pointer.locked(element))
+      if (!ENGINE.controls.pointer.isLockedTo(element))
       {
+        ENGINE.console.log("Requesting pointer lock...");
         element.requestPointerLock();
       }
     });
 
     $(element).mousemove(function(event)
     {
-      if (ENGINE.controls.pointer.locked(element))
+      if (ENGINE.controls.pointer.isLockedTo(element))
       {
         ENGINE.controls.pointer.dispatchMovement(event.originalEvent);
       }
@@ -92,6 +95,21 @@
         document.webkitExitPointerLock;
 
       document.exitPointerLock();
+    }
+  };
+
+  ENGINE.controls.pointer.lockChanged = function()
+  {
+    if (ENGINE.controls.pointer.element != undefined)
+    {
+      if (ENGINE.controls.pointer.isLockedTo(ENGINE.controls.pointer.element))
+      {
+        ENGINE.console.log("Pointer locked.");
+      }
+      else
+      {
+        ENGINE.console.log("Pointer unlocked.");
+      }
     }
   };
 
@@ -125,4 +143,18 @@
     event.preventDefault();
     keyDown[event.keyCode] = false;
   });
+
+  // Install pointer lock listener
+  if ("onpointerlockchange" in document)
+  {
+    document.addEventListener('pointerlockchange', ENGINE.controls.pointer.lockChanged, false);
+  }
+  else if ("onmozpointerlockchange" in document)
+  {
+    document.addEventListener('mozpointerlockchange', ENGINE.controls.pointer.lockChanged, false);
+  }
+  else if ("onwebkitpointerlockchange" in document)
+  {
+    document.addEventListener('webkitpointerlockchange', ENGINE.controls.pointer.lockChanged, false);
+  }
 })();
