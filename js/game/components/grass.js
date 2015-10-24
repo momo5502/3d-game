@@ -104,7 +104,7 @@
     {
       var mesh = new THREE.Mesh(planeGeometry);
       mesh.rotation.y = Math.random() * 360;
-      mesh.position.set(Math.random() * 4000 - 2300, 0, Math.random() * 4000 - 3000);
+      mesh.position.set(Math.random() * 4000 - 2300, 0, Math.random() * 4000 - 2300);
       mesh.scale.y = 1 + Math.random() * 1.75;
 
       THREE.GeometryUtils.merge(geometry, mesh);
@@ -117,7 +117,7 @@
     {
       var mesh = new THREE.Mesh(planeGeometry2);
       mesh.rotation.y = Math.random() - 0.5;
-      mesh.position.set(Math.random() * 4000 - 2300, 0, Math.random() * 4000 - 3000);
+      mesh.position.set(Math.random() * 4000 - 2300, 0, Math.random() * 4000 - 2300);
       mesh.scale.y = 1 + Math.random() * 0.5;
 
       THREE.GeometryUtils.merge(geometry, mesh);
