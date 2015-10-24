@@ -45,9 +45,12 @@
 
   function closeTicket()
   {
-    tickets[this.id] = true;
-    ENGINE.console.log("Ticket (" + this.id + ", " + this.name + ") closed.");
-    ENGINE.ticketing.ready();
+    if(!this.closed())
+    {
+      tickets[this.id] = true;
+      ENGINE.console.log("Ticket (" + this.id + ", " + this.name + ") closed.");
+      ENGINE.ticketing.ready();
+    }
   }
 
   function hasOpenTickets()

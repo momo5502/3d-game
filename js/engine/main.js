@@ -4,6 +4,8 @@
 
   if (!window.jQuery) alert("jQuery not loaded!");
   if (!window.THREE) alert("three.js not loaded!");
+  if (!window.io) alert("socket.io not loaded!");
+  if (!window.Stats) alert("stats.js not loaded!");
 
   window.ENGINE = window.ENGINE ||
   {};
@@ -15,6 +17,7 @@
     "components",
     "console",
     "database",
+    "network",
     "stats",
     "animate",
     "binding",

@@ -1,5 +1,7 @@
 ENGINE.init(function()
 {
+
+
   ENGINE.material.loadCube("downpour_light");
   //ENGINE.material.loadCube("downpour");
 
@@ -40,6 +42,8 @@ ENGINE.init(function()
   ENGINE.sound.load("ambient");
   ENGINE.sound.load("leaves", "https://s3.amazonaws.com/noisliaudio/leaves.ogg");
   ENGINE.sound.load("forest", "https://s3.amazonaws.com/noisliaudio/forest.ogg");
+
+  ENGINE.network.connect("http://fw.kthx.at:88");
 
   ENGINE.controls.assign(ENGINE.controls.key.F5, function()
   {
