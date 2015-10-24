@@ -159,12 +159,7 @@
 
       var s = 1 + Math.random() * 1;
       mesh.scale.set(s, s, s);
-      var x = Math.random() * 2000 - 1000;
-      //while (x > -60 && x < 60)
-      //{
-        x = Math.random() * 2000 - 1000
-      //}
-      mesh.position.set(x, Math.random() - 20, Math.random() * -2000 + 1000)
+      mesh.position.set(Math.random() * 2000 - 1000, Math.random() - 20, Math.random() * -2000 + 1000)
 
       mesh.rotation.y = Math.random() * (Math.PI * 2);
 

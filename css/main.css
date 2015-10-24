@@ -40,9 +40,8 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
   font-size: 12px;
-
+  outline: 0;
   width: 500px;
   height: 100px;
   overflow: hidden;

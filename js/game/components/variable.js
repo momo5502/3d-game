@@ -3,7 +3,7 @@
   'use strict';
   window.GAME = window.GAME ||
   {};
-	
+
   window.GAME.DATA = window.GAME.DATA ||
   {};
 

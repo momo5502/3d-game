@@ -83,7 +83,7 @@
       values_size[v] = 1.0 + Math.random() * 2;
     }
 
-  GAME.DATA.scene.add(particles);
+    GAME.DATA.scene.add(particles);
   };
 
   GAME.particles.update = function()
