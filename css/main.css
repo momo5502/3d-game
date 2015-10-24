@@ -1,9 +1,12 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
 html, body
 {
   margin: 0;
   height: 100%;
   overflow: hidden;
   background-color: black;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #container
@@ -17,6 +20,8 @@ html, body
 #loader
 {
 	position: fixed;
-	top: calc(50% - 32px);
-	left: calc(50% - 32px);
+	bottom: 30px;
+	left: 30px;
+  color: white;
+  font-size: 20px;
 }
