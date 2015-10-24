@@ -12,6 +12,9 @@ ENGINE.init(function()
 
   ENGINE.material.load("bob2");
 
+  ENGINE.material.load("rock");
+  ENGINE.material.load("rock-normal");
+
   ENGINE.material.load("leaves");
   ENGINE.material.load("branch");
   ENGINE.material.load("cap");
@@ -34,7 +37,9 @@ ENGINE.init(function()
   ENGINE.model.load("tree");
   ENGINE.model.load("butterfly");
 
-  ENGINE.sound.load("loop");
+  ENGINE.sound.load("ambient");
+  ENGINE.sound.load("leaves", "https://s3.amazonaws.com/noisliaudio/leaves.ogg");
+  ENGINE.sound.load("forest", "https://s3.amazonaws.com/noisliaudio/forest.ogg");
 
   ENGINE.controls.assign(ENGINE.controls.key.F5, function()
   {
@@ -49,6 +54,7 @@ ENGINE.init(function()
     "start",
     "scene",
     "particles",
+    "butterfly",
     "grass",
     "trees",
     "rays"

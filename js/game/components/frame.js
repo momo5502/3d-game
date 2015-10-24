@@ -12,6 +12,7 @@
 
     GAME.controls.update();
     GAME.particles.update();
+    GAME.butterfly.update();
     GAME.trees.update();
     GAME.grass.update();
     GAME.rays.update();

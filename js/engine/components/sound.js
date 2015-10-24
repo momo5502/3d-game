@@ -11,7 +11,7 @@
 
   var dbType = "sound";
 
-  ENGINE.sound.load = function(name)
+  ENGINE.sound.load = function(name, url)
   {
     var loaded = loadFromDB(name);
     if (loaded != undefined)
@@ -22,8 +22,16 @@
     var ticket = new ENGINE.ticket(name);
     ticket.type = dbType;
 
-    ticket.audio = new Audio(ENGINE.sound.path + name + ENGINE.sound.extension);
+    url = url || (ENGINE.sound.path + name + ENGINE.sound.extension);
+
+    ticket.audio = new Audio(url);
     ticket.audio.load();
+
+    ticket.setVolume = function(value)
+    {
+      ticket.audio.volume = value;
+      return ticket;
+    }
 
     ticket.audio.addEventListener("loadeddata", function()
     {

@@ -13,7 +13,7 @@
 
     GAME.DATA.camera = new THREE.PerspectiveCamera(60, ENGINE.NULL, 1, 20000);
     GAME.DATA.camera.position.z = 0;
-    GAME.DATA.camera.position.y = 45;
+    GAME.DATA.camera.position.y = 30;
     GAME.DATA.scene.add(GAME.DATA.camera);
 
     GAME.DATA.renderer.setClearColor(GAME.DATA.scene.fog.color);

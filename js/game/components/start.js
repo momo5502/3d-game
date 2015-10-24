@@ -10,16 +10,20 @@
     GAME.controls.initMouse();
 
     GAME.particles.add();
+    GAME.butterfly.add();
     GAME.grass.add();
     GAME.trees.add();
     GAME.rays.add();
-
-    ENGINE.sound.playLoop("loop");
 
     ENGINE.animate(GAME.frame);
 
     // Display the container
     $('#loader').fadeOut();
-    $('#container').fadeTo(1000, 1);
+    $('#container').fadeTo(1000, 1, function()
+    {
+      ENGINE.sound.playLoop("ambient").setVolume(0.5);
+      ENGINE.sound.playLoop("leaves").setVolume(0.3);
+      ENGINE.sound.playLoop("forest").setVolume(0.1);
+    });
   };
 })();

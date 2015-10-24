@@ -153,17 +153,17 @@
     GAME.DATA.treeBark2.uniforms.uDiffuseColor.value = c;
 
 
-    for (var i = 0; i < 30; i++)
+    for (var i = 0; i < GAME.const.treeThinCount; i++)
     {
       var mesh = new THREE.Mesh(cylinderGeometry, GAME.DATA.treeBark2);
 
       var s = 1 + Math.random() * 1;
       mesh.scale.set(s, s, s);
       var x = Math.random() * 2000 - 1000;
-      while (x > -60 && x < 60)
-      {
+      //while (x > -60 && x < 60)
+      //{
         x = Math.random() * 2000 - 1000
-      }
+      //}
       mesh.position.set(x, Math.random() - 20, Math.random() * -2000 + 1000)
 
       mesh.rotation.y = Math.random() * (Math.PI * 2);
@@ -233,22 +233,15 @@
     GAME.DATA.treeBark3.uniforms.tNormal.value.wrapS = THREE.RepeatWrapping;
     GAME.DATA.treeBark3.uniforms.tNormal.value.wrapT = THREE.RepeatWrapping;
 
-    for (var i = 0; i < 20; i++)
+    for (var i = 0; i < GAME.const.treeBirchCount; i++)
     {
-
       var mesh = new THREE.Mesh(cylinderGeometry, GAME.DATA.treeBark3);
 
       var s = 1 + Math.random() * 1;
       mesh.scale.set(s, s, s);
-      var x = Math.random() * 2000 - 1000;
-      while (x > -250 && x < 250)
-      {
-        x = Math.random() * 2000 - 1000
-      }
-      mesh.position.set(x, 0, Math.random() * -2000 + 1000)
+      mesh.position.set(Math.random() * 2000 - 1000, 0, Math.random() * -2000 + 1000)
 
       mesh.rotation.y = Math.random() * (Math.PI * 2);
-
       mesh.rotation.x = Math.random() * 0.1 - 0.05;
       mesh.rotation.z = Math.random() * 0.1 - 0.05;
 
@@ -258,8 +251,6 @@
 
   GAME.trees.addSticks = function()
   {
-    var numSticks = 70;
-
     var plane = new THREE.PlaneGeometry(0.5, 300, 1, 20);
 
     for (var i = 0; i < plane.vertices.length; i++)
@@ -273,7 +264,7 @@
       side: THREE.DoubleSide
     });
 
-    for (var i = 0; i < numSticks; i++)
+    for (var i = 0; i < GAME.const.treeStickCount; i++)
     {
 
       var mesh = new THREE.Mesh(plane, material);
@@ -281,15 +272,8 @@
       mesh.scale.x = 1 + Math.random() * 0.5;
       mesh.scale.z = 1 + Math.random() * 0.5;
 
-      var x = Math.random() * 1400 - 700;
-      while (x > -70 && x < 70)
-      {
-        x = Math.random() * 1400 - 700
-      }
-
-
       mesh.position.y = 150 + Math.random() * 100;
-      mesh.position.x = x
+      mesh.position.x = Math.random() * -2000 + 1000;
       mesh.position.z = Math.random() * -2000 + 1000;
 
       mesh.rotation.y = Math.random() * Math.PI;

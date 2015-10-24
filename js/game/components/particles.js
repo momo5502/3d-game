@@ -65,7 +65,7 @@
 
     var geometry = new THREE.Geometry();
 
-    for (var i = 0; i < GAME.const.particeCount; i++)
+    for (var i = 0; i < GAME.const.particleCount; i++)
     {
       var vertex = new THREE.Vector3(Math.random() * 4000 - 2000, Math.random() * 100, Math.random() * 4000 - 2000);
       geometry.vertices.push(vertex);

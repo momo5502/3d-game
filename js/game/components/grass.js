@@ -10,6 +10,7 @@
   {
     GAME.grass.addGrass();
     GAME.grass.addFlowers();
+    GAME.grass.addRocks();
   };
 
   GAME.grass.addFlowers = function()
@@ -259,6 +260,60 @@
 
     var planes = new THREE.Mesh(geometry, material);
     GAME.DATA.scene.add(planes);
+  };
+
+  GAME.grass.addRocks = function()
+  {
+    var map = ENGINE.material.load("rock").texture;
+
+    map.wrapS = THREE.RepeatWrapping;
+    map.wrapT = THREE.RepeatWrapping;
+
+    var normalMap = ENGINE.material.load("rock-normal").texture;
+    normalMap.wrapS = THREE.RepeatWrapping;
+    normalMap.wrapT = THREE.RepeatWrapping;
+
+    var material = new THREE.MeshPhongMaterial(
+    {
+      color: 0xffffff,
+      shininess: 1000,
+      map: map,
+      normalMap: normalMap,
+      specular: 0x111111,
+      ambient: 0xffffff
+    });
+
+    material.normalScale.x = material.normalScale.y = 1.0;
+
+    var c = new THREE.Color().setHSL(0.2, 0.02, 0.7);
+    material.color = c;
+
+    var ico = new THREE.IcosahedronGeometry(1, 2);
+
+    for (var i = 0; i < ico.vertices.length; i++)
+    {
+      ico.vertices[i].multiplyScalar(1 + Math.random() * 0.15);
+    }
+
+    ico.computeVertexNormals();
+    ico.computeFaceNormals();
+
+    for (var i = 0; i < GAME.const.rockCount; i++)
+    {
+      var mesh = new THREE.Mesh(ico, material);
+
+      var s = 10 + Math.random() * 30;
+      mesh.scale.set(s, s, s);
+
+      mesh.position.set(Math.random() * 3000 - 1500, 0, Math.random() * 3000 - 1500)
+
+      mesh.rotation.y = Math.random() * (Math.PI * 2);
+
+      mesh.rotation.x = Math.random() * (Math.PI * 2);
+      mesh.rotation.z = Math.random() * (Math.PI * 2);
+
+      GAME.DATA.scene.add(mesh);
+    }
   };
 
   GAME.grass.update = function()
