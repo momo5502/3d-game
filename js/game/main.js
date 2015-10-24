@@ -54,6 +54,7 @@ ENGINE.init(function()
   var gameComponents = [
     "constant",
     "variable",
+    "network",
     "controls",
     "frame",
     "start",

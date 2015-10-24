@@ -2,10 +2,11 @@
 {
   'use strict';
 
-  if (!window.jQuery) alert("jQuery not loaded!");
-  if (!window.THREE) alert("three.js not loaded!");
-  if (!window.io) alert("socket.io not loaded!");
-  if (!window.Stats) alert("stats.js not loaded!");
+  assert(window.jQuery, "jQuery");
+  assert(window.THREE, "three.js");
+  assert(window.io, "socket.io");
+  assert(window.Stats, "stats.js");
+  assert(window.Cookies, "js-cookie");
 
   window.ENGINE = window.ENGINE ||
   {};
@@ -18,6 +19,7 @@
     "console",
     "database",
     "network",
+    "storage",
     "stats",
     "animate",
     "binding",
@@ -89,6 +91,14 @@
   /****************************/
   /*      Misc functions      */
   /****************************/
+
+  function assert(object, name)
+  {
+    if(object == undefined || !object || object == null)
+    {
+      alert(name + " is not loaded!");
+    }
+  }
 
   function addCallback(callback)
   {

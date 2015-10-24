@@ -6,13 +6,39 @@
 
   ENGINE.network = {};
 
+  var listeners = [];
+
+  ENGINE.network.on = function(event, callback)
+  {
+    var distinctCallback = function(data)
+    {
+      callback(data, ENGINE.network.socket);
+    };
+
+    listeners[event] = distinctCallback;
+
+    if (ENGINE.network.socket != undefined)
+    {
+      ENGINE.network.socket.on(event, distinctCallback);
+    }
+  };
+
+  ENGINE.network.send = function(event, data)
+  {
+    if (ENGINE.network.socket != undefined)
+    {
+      ENGINE.network.socket.emit(event, data);
+    }
+
+    return undefined;
+  }
 
   ENGINE.network.connect = function(server)
   {
     ENGINE.console.log("Connecting to server: " + server);
     var ticket = new ENGINE.ticket("network");
 
-    if(ENGINE.network.socket != undefined)
+    if (ENGINE.network.socket != undefined)
     {
       ENGINE.network.socket.ticket.close();
       ENGINE.network.socket.destroy();
@@ -22,7 +48,8 @@
     ENGINE.network.socket = io.connect(ENGINE.network.server);
     ENGINE.network.socket.ticket = ticket;
     ticket.socket = ENGINE.network.socket;
-    console.log(ENGINE.network.socket);
+
+    registerListeners(ENGINE.network.socket);
 
     ENGINE.network.socket.on('connect', function()
     {
@@ -41,22 +68,11 @@
       ENGINE.console.log("Disconnected from server. Reconnecting...");
     });
 
-    ENGINE.network.socket.on('user_connect', function(data)
-    {
-      ENGINE.console.log("User connected: " + data);
-    });
-
-    ENGINE.network.socket.on('user_disconnect', function(data)
-    {
-      ENGINE.console.log("User diconnected: " + data);
-    });
-
-    /*
     ENGINE.network.socket.on('error', function(data)
     {
       ENGINE.console.log("Error");
+      console.log(data);
     });
-    */
 
     ENGINE.network.socket.on('connect_error', function(err)
     {
@@ -65,5 +81,17 @@
     });
 
     return ticket;
+  };
+
+  /****************************/
+  /*      Misc functions      */
+  /****************************/
+
+  function registerListeners(socket)
+  {
+    for (var key in listeners)
+    {
+      socket.on(key, listeners[key]);
+    }
   }
 })();
