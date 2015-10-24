@@ -14,7 +14,7 @@ attribute float size;
 
 				pos.x += cos(accTime*2.0 + (position.z))*50.0;
 				pos.y += sin(accTime*4.0 + (position.x))*20.0;
-				pos.z += (accTime)*1500.0;
+				//pos.z += (accTime)*1500.0;
 
 				pos.z += sin(accTime*4.0 + (position.y))*50.0;
 

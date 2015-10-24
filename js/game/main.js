@@ -1,12 +1,16 @@
 ENGINE.init(function()
 {
   ENGINE.material.loadCube("downpour_light");
-  ENGINE.material.loadCube("downpour");
+  //ENGINE.material.loadCube("downpour");
 
   ENGINE.material.load("ground");
 
   ENGINE.material.load("fins2");
   ENGINE.material.load("shadow");
+
+  ENGINE.material.load("vitsippa");
+
+  ENGINE.material.load("bob2");
 
   ENGINE.material.load("leaves");
   ENGINE.material.load("branch");
@@ -44,6 +48,7 @@ ENGINE.init(function()
     "frame",
     "start",
     "scene",
+    "particles",
     "grass",
     "trees",
     "rays"

@@ -15,6 +15,8 @@
   GAME.const.grassWideCount = 3500;
   GAME.const.grassTallCount = 2000;
 
-  GAME.const.rayCount = 100;
+  GAME.const.rayCount = 80;
+
+  GAME.const.particeCount = 3000;
 
 })();

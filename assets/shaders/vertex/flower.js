@@ -17,10 +17,11 @@ attribute float time;
 
 				pos.x += cos(globalTime+pos.x*0.01)*pos.y*0.05;
 
-				pos.z += (accTime)*1500.0;
+				//pos.z += (accTime)*1500.0;
 				pos.z += sin(globalTime+pos.x*0.01)*pos.y*0.05;
 
-				vAlpha = min( 1.0, accTime*10.0 );
+				//vAlpha = min( 1.0, accTime*10.0 );
+				vAlpha = 1.0;
 				vDarken = 1.0;
 
 				if (pos.y <= 5.0) {

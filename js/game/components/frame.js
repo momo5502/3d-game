@@ -11,6 +11,7 @@
     GAME.var.frameOldTime = GAME.var.frameNewTime;
 
     GAME.controls.update();
+    GAME.particles.update();
     GAME.trees.update();
     GAME.grass.update();
     GAME.rays.update();

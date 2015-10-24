@@ -8,6 +8,104 @@
 
   GAME.grass.add = function()
   {
+    GAME.grass.addGrass();
+    GAME.grass.addFlowers();
+  };
+
+  GAME.grass.addFlowers = function()
+  {
+    var planeGeometry = new THREE.PlaneGeometry(6, 11, 1, 1);
+    planeGeometry.applyMatrix(new THREE.Matrix4().setPosition(new THREE.Vector3(0, 9, 0)));
+
+    var map = ENGINE.material.load("vitsippa").texture;
+
+    var attributes = {
+      time:
+      {
+        type: 'f',
+        value: []
+      },
+    };
+
+    GAME.DATA.uniformsFlower = {
+      color:
+      {
+        type: "c",
+        value: new THREE.Color(0xffffff)
+      },
+      texture:
+      {
+        type: "t",
+        value: map
+      },
+      globalTime:
+      {
+        type: "f",
+        value: 0.0
+      },
+      darken:
+      {
+        type: "f",
+        value: 0.25
+      },
+      fogColor:
+      {
+        type: "c",
+        value: GAME.DATA.scene.fog.color
+      },
+      fogNear:
+      {
+        type: "f",
+        value: GAME.DATA.scene.fog.near
+      },
+      fogFar:
+      {
+        type: "f",
+        value: GAME.DATA.scene.fog.far
+      },
+    };
+
+    var material = new THREE.ShaderMaterial(
+    {
+      uniforms: GAME.DATA.uniformsFlower,
+      attributes: attributes,
+      vertexShader: ENGINE.shader.loadVertex("flower").data,
+      fragmentShader: ENGINE.shader.loadFragment("flower").data,
+      side: THREE.DoubleSide,
+      transparent: true,
+    });
+
+    var geometry = new THREE.Geometry();
+
+    for (var i = 0; i < 500; i++)
+    {
+      var mesh = new THREE.Mesh(planeGeometry);
+      mesh.rotation.y = Math.random() * 360;
+      mesh.rotation.z = Math.random() * 0.5 - 0.25;
+      mesh.position.set(Math.random() * 3000 - 1500, 0, Math.random() * 3000 - 1500);
+
+      THREE.GeometryUtils.merge(geometry, mesh);
+    };
+
+    var vertices = geometry.vertices;
+    var values_time = attributes.time.value;
+
+    for (var v = 0; v < vertices.length; v += planeGeometry.vertices.length)
+    {
+      var t = Math.random();
+
+      for (var j = v; j < v + planeGeometry.vertices.length; j++)
+      {
+        values_time[j] = t;
+      };
+    }
+
+    var planes = new THREE.Mesh(geometry, material);
+    GAME.DATA.scene.add(planes);
+  };
+
+  GAME.grass.addGrass = function()
+  {
     var planeGeometry = new THREE.PlaneGeometry(800, 8, 20, 2);
 
     for (var i = 0; i < planeGeometry.vertices.length; i++)
@@ -96,6 +194,7 @@
       vertexShader: ENGINE.shader.loadVertex("grass").data,
       fragmentShader: ENGINE.shader.loadFragment("grass").data,
       transparent: true,
+      side: THREE.DoubleSide
     });
 
     var geometry = new THREE.Geometry();
@@ -117,7 +216,7 @@
     {
       var mesh = new THREE.Mesh(planeGeometry2);
       mesh.rotation.y = Math.random() - 0.5;
-      mesh.position.set(Math.random() * 4000 - 2300, 0, Math.random() * 4000 - 2300);
+      mesh.position.set(Math.random() * 4000 - 2000, 0, Math.random() * 4000 - 2000);
       mesh.scale.y = 1 + Math.random() * 0.5;
 
       THREE.GeometryUtils.merge(geometry, mesh);
@@ -159,7 +258,6 @@
     }
 
     var planes = new THREE.Mesh(geometry, material);
-    planes.material.side = THREE.DoubleSide;
     GAME.DATA.scene.add(planes);
   };
 
@@ -168,6 +266,11 @@
     if (GAME.DATA.uniformsGrass)
     {
       GAME.DATA.uniformsGrass.globalTime.value += GAME.var.frameDelta * 0.0012;
+    }
+
+    if (GAME.DATA.uniformsFlower)
+    {
+      GAME.DATA.uniformsFlower.globalTime.value += GAME.var.frameDelta * 0.0012;
     }
   };
 })();

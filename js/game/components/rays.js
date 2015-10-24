@@ -54,7 +54,7 @@
       attributes: attributes,
       vertexShader: ENGINE.shader.loadVertex("ray").data,
       fragmentShader: ENGINE.shader.loadFragment("ray").data,
-
+      side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
       transparent: true,
@@ -72,7 +72,7 @@
       mesh.scale.x = 1 + Math.random() * 2;
 
       mesh.position.x = Math.random() * 1000 - 500;
-      mesh.position.z = Math.random() * 4000 - 3000;
+      mesh.position.z = Math.random() * 3000 - 1500;
       mesh.position.y = 300;
 
       mesh.rotation.z = -0.5 + mesh.position.x * 0.0006;
@@ -97,7 +97,6 @@
 
 
     var planes = new THREE.Mesh(geometry, material);
-    planes.material.side = THREE.DoubleSide;
     GAME.DATA.scene.add(planes);
   };
 

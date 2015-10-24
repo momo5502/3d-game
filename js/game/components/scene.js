@@ -17,7 +17,7 @@
     GAME.DATA.scene.add(GAME.DATA.camera);
 
     GAME.DATA.renderer.setClearColor(GAME.DATA.scene.fog.color);
-    GAME.DATA.renderer.sortObjects = false;
+    GAME.DATA.renderer.sortObjects = true;
 
     var shader = THREE.ShaderLib["cube"];
     var uniforms = THREE.UniformsUtils.clone(shader.uniforms);

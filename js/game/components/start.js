@@ -9,6 +9,7 @@
     GAME.initScene();
     GAME.controls.initMouse();
 
+    GAME.particles.add();
     GAME.grass.add();
     GAME.trees.add();
     GAME.rays.add();
