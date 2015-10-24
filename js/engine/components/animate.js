@@ -30,6 +30,7 @@
       ENGINE.animate(callback);
     });
 
+    ENGINE.stats.update();
     callback();
   };
 

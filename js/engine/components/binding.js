@@ -25,6 +25,8 @@
     element.append(renderer.domElement);
     element.resize();
 
+    ENGINE.stats.bind(element);
+
     ENGINE.controls.pointer.lock(renderer.domElement);
   };
 

@@ -14,13 +14,14 @@
     "ticketing",
     "components",
     "database",
+    "stats",
     "animate",
     "binding",
     "controls",
     "material",
     "shader",
     "model",
-    "sound"
+    "sound",
   ];
 
   var callbacks = [];

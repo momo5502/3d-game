@@ -17,6 +17,8 @@
 
     ENGINE.animate(GAME.frame);
 
+    ENGINE.stats.display();
+
     // Display the container
     $('#loader').fadeOut();
     $('#container').fadeTo(1000, 1, function()
