@@ -18,6 +18,7 @@
     ENGINE.animate(GAME.frame);
 
     // Display the container
+    $('#loader').fadeOut();
     $('#container').fadeTo(1000, 1);
   };
 })();
