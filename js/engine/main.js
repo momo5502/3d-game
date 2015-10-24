@@ -13,6 +13,7 @@
     "callback",
     "ticketing",
     "components",
+    "console",
     "database",
     "stats",
     "animate",
@@ -62,22 +63,22 @@
 
   ENGINE.ready = function(callback)
   {
+    var selfCallback = function()
+    {
+      ENGINE.ready(callback);
+    };
+
     if (!ENGINE.initialized && !ENGINE.initializing)
     {
-      ENGINE.init(function()
-      {
-        ENGINE.ready(callback);
-      });
+      ENGINE.init(selfCallback);
     }
     else if (ENGINE.initializing)
     {
-      addCallback(function()
-      {
-        ENGINE.ticketing.ready(callback);
-      });
+      addCallback(selfCallback);
     }
     else
     {
+      ENGINE.console.log("Engine ready.");
       ENGINE.ticketing.ready(callback);
     }
   };
@@ -129,8 +130,9 @@
     }
     else
     {
+      ENGINE.initializing = false;
       ENGINE.initialized = true;
-
+      ENGINE.console.log("Engine initialized.");
       runCallbacks();
     }
   }

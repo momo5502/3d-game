@@ -20,12 +20,16 @@
     ENGINE.stats.display();
 
     // Display the container
+    ENGINE.console.log("Game initialized.");
+    ENGINE.console.log("Fading in...");
+
     $('#loader').fadeOut();
     $('#container').fadeTo(1000, 1, function()
     {
       ENGINE.sound.playLoop("ambient").setVolume(0.5);
       ENGINE.sound.playLoop("leaves").setVolume(0.3);
       ENGINE.sound.playLoop("forest").setVolume(0.1);
+      ENGINE.console.log("Ambient started.");
     });
   };
 })();

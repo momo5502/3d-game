@@ -8,9 +8,13 @@
   window.ENGINE = window.ENGINE ||
   {};
 
+  ENGINE.binding = {};
+
   ENGINE.bind = function(renderer, camera, element)
   {
     element = $(element);
+
+    ENGINE.binding.element = element;
 
     element.resize(function()
     {

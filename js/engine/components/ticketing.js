@@ -21,7 +21,7 @@
 
     tickets[this.id] = false;
 
-    console.log("Ticket (" + this.id + ", " + this.name + ") issued.");
+    ENGINE.console.log("Ticket (" + this.id + ", " + this.name + ") issued.");
   }
 
   ENGINE.ticketing.ready = function(callback)
@@ -33,7 +33,7 @@
 
     if (!hasOpenTickets())
     {
-      console.log("All tickets closed. Running queued callbacks...");
+      ENGINE.console.log("All tickets closed. Running queued callbacks...");
       callbacks.run();
       callbacks.clear();
     }
@@ -46,7 +46,7 @@
   function closeTicket()
   {
     tickets[this.id] = true;
-    console.log("Ticket (" + this.id + ", " + this.name + ") closed.");
+    ENGINE.console.log("Ticket (" + this.id + ", " + this.name + ") closed.");
     ENGINE.ticketing.ready();
   }
 
