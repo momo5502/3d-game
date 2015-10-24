@@ -9,9 +9,9 @@
     GAME.DATA.renderer = new THREE.WebGLRenderer();
 
     GAME.DATA.scene = new THREE.Scene();
-    GAME.DATA.scene.fog = new THREE.Fog(0xabaf99, 0, 4000);
+    GAME.DATA.scene.fog = new THREE.Fog(0xabaf99, 0, 3000);
 
-    GAME.DATA.camera = new THREE.PerspectiveCamera(60, ENGINE.NULL, 1, 3000);
+    GAME.DATA.camera = new THREE.PerspectiveCamera(60, ENGINE.NULL, 1, 20000);
     GAME.DATA.camera.position.z = 0;
     GAME.DATA.camera.position.y = 45;
     GAME.DATA.scene.add(GAME.DATA.camera);
@@ -21,8 +21,7 @@
 
     var shader = THREE.ShaderLib["cube"];
     var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
-
-    uniforms['tCube'].value = ENGINE.material.loadCube("downpour").texture;
+    uniforms['tCube'].value = ENGINE.material.loadCube("downpour_light").texture;
 
     var _material = new THREE.ShaderMaterial(
     {

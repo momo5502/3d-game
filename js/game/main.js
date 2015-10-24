@@ -1,6 +1,8 @@
 ENGINE.init(function()
 {
+  ENGINE.material.loadCube("downpour_light");
   ENGINE.material.loadCube("downpour");
+
   ENGINE.material.load("ground");
 
   ENGINE.material.load("fins2");
@@ -9,6 +11,9 @@ ENGINE.init(function()
   ENGINE.material.load("leaves");
   ENGINE.material.load("branch");
   ENGINE.material.load("cap");
+
+  ENGINE.material.load("diffuse-birch");
+  ENGINE.material.load("normal-birch");
 
   ENGINE.material.load("grey");
   ENGINE.material.load("normal");
