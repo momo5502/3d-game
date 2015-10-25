@@ -374,7 +374,7 @@
     branches.color = c;
 
     var grid = new THREE.PlaneGeometry(2000, 2000, 4, 5);
-    grid.applyMatrix(new THREE.Matrix4().makeRotationFromEuler(new THREE.Vector3(-Math.PI / 2, 0, 0)));
+    grid.applyMatrix(new THREE.Matrix4().makeRotationFromEuler(new THREE.Euler(-Math.PI / 2, 0, 0, 'XYZ')));
     grid.applyMatrix(new THREE.Matrix4().setPosition(new THREE.Vector3(0, 0, -1000)));
 
     var num = grid.faces.length;

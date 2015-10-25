@@ -9,7 +9,7 @@
   GAME.rays.add = function()
   {
     var planeGeometry = new THREE.PlaneGeometry(40, 1000);
-    planeGeometry.applyMatrix(new THREE.Matrix4().makeRotationFromEuler(new THREE.Vector3(0, 0, -Math.PI)));
+    planeGeometry.applyMatrix(new THREE.Matrix4().makeRotationFromEuler(new THREE.Euler(0, 0, -Math.PI, 'XYZ')));
 
     var rayTexture = ENGINE.material.load("ray").texture;
     rayTexture.wrapS = THREE.RepeatWrapping;
