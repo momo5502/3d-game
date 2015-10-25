@@ -13,9 +13,9 @@
     GAME.DATA.scene = new Physijs.Scene;
     GAME.DATA.scene.fog = new THREE.Fog(0xabaf99, 0, 3000);
 
-    GAME.DATA.camera = new THREE.PerspectiveCamera(60, ENGINE.NULL, 1, 20000);
+    GAME.DATA.camera = new THREE.PerspectiveCamera(GAME.const.cameraFov, ENGINE.NULL, 1, 20000);
     GAME.DATA.camera.position.z = 0;
-    GAME.DATA.camera.position.y = 30;
+    GAME.DATA.camera.position.y = GAME.const.cameraHeightOffset;
     GAME.DATA.scene.add(GAME.DATA.camera);
 
     GAME.DATA.renderer.setClearColor(GAME.DATA.scene.fog.color);

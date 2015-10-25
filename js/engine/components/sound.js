@@ -1,3 +1,5 @@
+// TODO: Allow doing more complex things using audio data, e.g. sound effects in a 3 dimensional space with volume based on the distance to the object.
+
 (function()
 {
   'use strict';
