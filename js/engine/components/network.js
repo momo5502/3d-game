@@ -10,16 +10,25 @@
 
   ENGINE.network.on = function(event, callback)
   {
-    var distinctCallback = function(data)
-    {
-      callback(data, ENGINE.network.socket);
-    };
+    var handler = listeners[event];
 
-    listeners[event] = distinctCallback;
-
-    if (ENGINE.network.socket != undefined)
+    if (handler == undefined)
     {
-      ENGINE.network.socket.on(event, distinctCallback);
+      handler = new ENGINE.callbackHandler();
+
+      handler.distinctCallback = function(data)
+      {
+        handler.run(data, ENGINE.network.socket);
+      };
+
+      listeners[event] = handler;
+    }
+
+    handler.add(callback);
+
+    if (ENGINE.network.socket != undefined && !isExceptionedEvent(event))
+    {
+      ENGINE.network.socket.on(event, handler.distinctCallback);
     }
   };
 
@@ -51,33 +60,34 @@
 
     registerListeners(ENGINE.network.socket);
 
-    ENGINE.network.socket.on('connect', function()
+    ENGINE.network.socket.on('connect', function(data)
     {
       ENGINE.console.log("Connected to server.");
       ticket.close();
+
+      runCallbacks('connect', data);
     });
 
-    ENGINE.network.socket.on('reconnect', function()
+    ENGINE.network.socket.on('reconnect', function(data)
     {
       ENGINE.console.log("Reconnected to server.");
       ticket.close();
+
+      runCallbacks('reconnect', data);
     });
 
-    ENGINE.network.socket.on('disconnect', function()
+    ENGINE.network.socket.on('disconnect', function(data)
     {
       ENGINE.console.log("Disconnected from server. Reconnecting...");
-    });
-
-    ENGINE.network.socket.on('error', function(data)
-    {
-      ENGINE.console.log("Error");
-      console.log(data);
+      runCallbacks('disconnect', data);
     });
 
     ENGINE.network.socket.on('connect_error', function(err)
     {
       ENGINE.console.log("Server connection timed out.");
       ticket.close();
+
+      runCallbacks('connect_error', err);
     });
 
     return ticket;
@@ -87,11 +97,24 @@
   /*      Misc functions      */
   /****************************/
 
+  function isExceptionedEvent(event)
+  {
+    return (event == 'connect' || event == 'reconnect' || event == 'disconnect' || event == 'connect_error');
+  }
+
+  function runCallbacks(event, object)
+  {
+    if(listeners[event] != undefined)
+    {
+      listeners[event].distinctCallback(object);
+    }
+  }
+
   function registerListeners(socket)
   {
     for (var key in listeners)
     {
-      socket.on(key, listeners[key]);
+      socket.on(key, listeners[key].distinctCallback);
     }
   }
 })();

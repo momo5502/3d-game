@@ -17,6 +17,11 @@
     {
       ENGINE.console.log("User disconnected: " + data);
     });
+
+    ENGINE.network.on('reconnect', function(data)
+    {
+      GAME.network.authenticate(GAME.DATA.username);
+    });
   };
 
   GAME.network.authenticate = function(username)
