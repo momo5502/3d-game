@@ -1,7 +1,5 @@
 ENGINE.init(function()
 {
-
-
   ENGINE.material.loadCube("downpour_light");
   //ENGINE.material.loadCube("downpour");
 
@@ -61,6 +59,7 @@ ENGINE.init(function()
     "scene",
     "particles",
     "butterfly",
+    "physics",
     "grass",
     "trees",
     "rays"

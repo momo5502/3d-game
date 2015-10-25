@@ -155,7 +155,7 @@
 
     for (var i = 0; i < GAME.const.treeThinCount; i++)
     {
-      var mesh = new THREE.Mesh(cylinderGeometry, GAME.DATA.treeBark2);
+      var mesh = new Physijs.BoxMesh(cylinderGeometry, GAME.DATA.treeBark2, 0);
 
       var s = 1 + Math.random() * 1;
       mesh.scale.set(s, s, s);
@@ -230,7 +230,7 @@
 
     for (var i = 0; i < GAME.const.treeBirchCount; i++)
     {
-      var mesh = new THREE.Mesh(cylinderGeometry, GAME.DATA.treeBark3);
+      var mesh = new Physijs.BoxMesh(cylinderGeometry, GAME.DATA.treeBark3, 0);
 
       var s = 1 + Math.random() * 1;
       mesh.scale.set(s, s, s);
@@ -262,7 +262,7 @@
     for (var i = 0; i < GAME.const.treeStickCount; i++)
     {
 
-      var mesh = new THREE.Mesh(plane, material);
+      var mesh = new Physijs.BoxMesh(plane, material, 0);
 
       mesh.scale.x = 1 + Math.random() * 0.5;
       mesh.scale.z = 1 + Math.random() * 0.5;
@@ -389,7 +389,7 @@
 
       var mf = new THREE.MeshFaceMaterial([GAME.DATA.treeBark, cap, material0, material0, branches]);
 
-      var tree = new THREE.Mesh(geometry, mf);
+      var tree = new Physijs.BoxMesh(geometry, mf, 0);
       var s = 13 + Math.random() * 12;
       tree.scale.set(s, s, s);
 

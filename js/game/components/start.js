@@ -7,8 +7,8 @@
   GAME.start = function()
   {
     GAME.network.init();
-
-    GAME.initScene();
+    GAME.scene.init();
+    GAME.physics.init();
     GAME.controls.initMouse();
 
     GAME.particles.add();

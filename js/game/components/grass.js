@@ -80,7 +80,7 @@
 
     for (var i = 0; i < 500; i++)
     {
-      var mesh = new THREE.Mesh(planeGeometry);
+      var mesh = new Physijs.BoxMesh(planeGeometry, undefined, 0);
       mesh.rotation.y = Math.random() * 360;
       mesh.rotation.z = Math.random() * 0.5 - 0.25;
       mesh.position.set(Math.random() * 3000 - 1500, 0, Math.random() * 3000 - 1500);
@@ -101,7 +101,7 @@
       };
     }
 
-    var planes = new THREE.Mesh(geometry, material);
+    var planes = new Physijs.BoxMesh(geometry, material, 0);
     GAME.DATA.scene.add(planes);
   };
 
@@ -202,7 +202,7 @@
 
     for (var i = 0; i < GAME.const.grassWideCount; i++)
     {
-      var mesh = new THREE.Mesh(planeGeometry);
+      var mesh = new Physijs.BoxMesh(planeGeometry, undefined, 0);
       mesh.rotation.y = Math.random() * 360;
       mesh.position.set(Math.random() * 4000 - 2300, 0, Math.random() * 4000 - 2300);
       mesh.scale.y = 1 + Math.random() * 1.75;
@@ -215,7 +215,7 @@
 
     for (var i = 0; i < GAME.const.grassTallCount; i++)
     {
-      var mesh = new THREE.Mesh(planeGeometry2);
+      var mesh = new Physijs.BoxMesh(planeGeometry2, undefined, 0);
       mesh.rotation.y = Math.random() - 0.5;
       mesh.position.set(Math.random() * 4000 - 2000, 0, Math.random() * 4000 - 2000);
       mesh.scale.y = 1 + Math.random() * 0.5;
@@ -258,7 +258,7 @@
       };
     }
 
-    var planes = new THREE.Mesh(geometry, material);
+    var planes = new Physijs.BoxMesh(geometry, material, 0);
     GAME.DATA.scene.add(planes);
   };
 
@@ -300,7 +300,7 @@
 
     for (var i = 0; i < GAME.const.rockCount; i++)
     {
-      var mesh = new THREE.Mesh(ico, material);
+      var mesh = new Physijs.BoxMesh(ico, material, 0);
 
       var s = 10 + Math.random() * 30;
       mesh.scale.set(s, s, s);

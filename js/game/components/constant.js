@@ -26,4 +26,6 @@
   GAME.const.treeThinCount = 30;
 
   GAME.const.butterflyCount = 20;
+
+  GAME.const.gravityVector = new THREE.Vector3( 0, -30, 0 );
 })();

@@ -7,6 +7,7 @@
   assert(window.io, "socket.io");
   assert(window.Stats, "stats.js");
   assert(window.Cookies, "js-cookie");
+  assert(window.Physijs, "Physijs");
 
   window.ENGINE = window.ENGINE ||
   {};
@@ -41,8 +42,12 @@
     // Enable caching for online use!
     $.ajaxSetup(
     {
-      cache: true
+      cache: false
     });
+
+    // Set physi.js worker
+    Physijs.scripts.worker = '/js/physijs_worker.js';
+    Physijs.scripts.ammo = '/js/ammo.js';
 
     if (ENGINE.initialized)
     {
@@ -94,7 +99,7 @@
 
   function assert(object, name)
   {
-    if(object == undefined || !object || object == null)
+    if(object === undefined || !object || object === null)
     {
       alert(name + " is not loaded!");
     }

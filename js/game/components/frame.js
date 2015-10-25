@@ -27,6 +27,7 @@
 
     GAME.DATA.camera.lookAt(GAME.var.cameraTarget);
 
+    GAME.DATA.scene.simulate();
     GAME.DATA.renderer.render(GAME.DATA.scene, GAME.DATA.camera);
   };
 })();
