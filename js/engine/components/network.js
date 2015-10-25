@@ -104,7 +104,7 @@
 
   function runCallbacks(event, object)
   {
-    if(listeners[event] != undefined)
+    if (listeners[event] != undefined)
     {
       listeners[event].distinctCallback(object);
     }
