@@ -111,19 +111,19 @@
     menu.hide();
     menu.element.addClass("menu");
     menu.element.appendTo(ENGINE.binding.element);
-    menu.styles = menu.select("style[scoped]");
 
     menu.detachStyles = function()
     {
       menu.styles = menu.select("style[scoped]");
       menu.styles.detach();
-    }
+    };
 
     menu.attachStyles = function()
     {
       menu.styles.appendTo(menu.element);
-    }
+    };
 
+    // Detach styles until the menu is displayed
     menu.detachStyles();
 
     // Reset self object

@@ -5,12 +5,48 @@
     text-align: center;
     color: white;
   }
+  /* Menu is a reserved class for the container this menu runs in */
+
+  .menu {
+    background-color: rgba(0, 0, 0, 0.7);
+    perspective: 800px;
+    perspective-origin: 0 50%;
+  }
+
+  .menu_container {
+    position: absolute;
+    top: 33%;
+    margin-left: 30px;
+    transform-origin: 0px 50% 0px;
+    transition: all 0.5s ease 0s;
+    transform: rotateY(20deg);
+  }
+
+  .menu_container button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 250px;
+    transition: all 0.5s ease 0s;
+    background-color: rgba(255,255,255,0.7);
+    border: 1px solid black;
+  }
+
+  .menu_container button:hover {
+    background-color: rgba(0,0,0,0.6);
+    background-color: white;
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
 </style>
 
-<h1>Main menu</h1>
-<center>
-  <button id="closeButton">Close</button>
-</center>
+<div class="menu_container">
+  <button id="b_play">Play</button>
+  <br>
+  <button id="b_options">Options</button>
+  <br>
+  <button id="b_credits">Credits</button>
+</div>
 
 <!-- Menu script -->
 <script>
@@ -29,7 +65,7 @@
       ENGINE.console.log("I got closed");
     };
 
-    self.select("#closeButton").click(function() {
+    self.select("#b_play").click(function() {
       ENGINE.menu.close(self);
     });
   })();
