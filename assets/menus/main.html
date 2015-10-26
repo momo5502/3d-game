@@ -9,7 +9,7 @@
   /* Menu is a reserved class for the container this menu runs in */
 
   .menu {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     perspective: 800px;
     perspective-origin: 0 50%;
   }
@@ -19,25 +19,31 @@
     top: 33%;
     margin-left: 30px;
     transform-origin: 0px 50% 0px;
-    transition: all 0.5s ease 0s;
+    transition: all 0.3s ease 0s;
     transform: rotateY(20deg);
+    border: 1px solid white;
+    background-color: rgba(0,0,0,0.3);
+    box-shadow: -5px 7px 5px 1px rgba(0, 0, 0, 0.75);
   }
 
   .menu_container button {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
     width: 250px;
     transition: all 0.5s ease 0s;
-    background-color: rgba(255,255,255,0.7);
-    border: 1px solid black;
+    border: 1px solid white;
+    background-color: rgba(0,0,0,0.3);
+    margin-right: 7px;
+    margin-left: 10px;
+    outline: 0;
+    color: white;
   }
 
   .menu_container button:hover {
-    background-color: rgba(0,0,0,0.6);
-    background-color: white;
-    transform: scale3d(1.05, 1.05, 1.05);
+    background-color: rgba(0, 0, 0, 0.6);
+    transform: scale3d(1.02, 1.02, 1.02);
   }
 </style>
 
@@ -49,6 +55,8 @@
   <button id="b_options">Options</button>
   <br>
   <button id="b_credits">Credits</button>
+  <br>
+  <button id="b_quit">Exit</button>
 </div>
 
 <!-- Menu script -->
