@@ -61,6 +61,6 @@
     ground.receiveShadow = true;
     GAME.DATA.scene.add(ground);
 
-    ENGINE.bind(GAME.DATA.renderer, GAME.DATA.camera, '#container');
+    ENGINE.binding.bindRenderer(GAME.DATA.renderer, GAME.DATA.camera);
   };
 })();

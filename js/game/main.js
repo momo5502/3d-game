@@ -1,5 +1,12 @@
 ENGINE.init(function()
 {
+  // Bind to element
+  ENGINE.binding.bind("#container");
+
+  // Load menus
+  ENGINE.menu.load("main");
+
+  // Load materials
   ENGINE.material.loadCube("downpour_light");
   //ENGINE.material.loadCube("downpour");
 
@@ -28,22 +35,27 @@ ENGINE.init(function()
 
   ENGINE.material.load("ray");
 
+  // Load shaders
   ENGINE.shader.loadPair("flower");
   ENGINE.shader.loadPair("grass");
   ENGINE.shader.loadPair("particle");
   ENGINE.shader.loadPair("ray");
   ENGINE.shader.loadPair("tree");
 
+  // Load models
   ENGINE.model.load("tree");
   ENGINE.model.load("butterfly");
 
+  // Load sounds
   ENGINE.sound.load("ambient");
   ENGINE.sound.load("leaves", "https://s3.amazonaws.com/noisliaudio/leaves.ogg");
   ENGINE.sound.load("forest", "https://s3.amazonaws.com/noisliaudio/forest.ogg");
 
+  // Connect to backend
   //ENGINE.network.connect("http://127.0.0.1:88");
   ENGINE.network.connect("http://fw.kthx.at:88");
 
+  // Assign controls
   ENGINE.controls.assign(ENGINE.controls.key.F5, function()
   {
     window.location.reload();

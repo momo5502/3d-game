@@ -21,6 +21,7 @@
     "database",
     "network",
     "storage",
+    "menu",
     "stats",
     "animate",
     "binding",

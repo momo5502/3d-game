@@ -46,3 +46,8 @@ body {
   height: 150px;
   overflow: hidden;
 }
+
+.menu
+{
+  position: absolute;
+}

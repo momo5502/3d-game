@@ -10,26 +10,27 @@
 
   ENGINE.binding = {};
 
-  ENGINE.bind = function(renderer, camera, element)
+  ENGINE.binding.bind = function(element)
   {
-    element = $(element);
+    ENGINE.binding.element = $(element);
+  };
 
-    ENGINE.binding.element = element;
-
-    element.resize(function()
+  ENGINE.binding.bindRenderer = function(renderer, camera)
+  {
+    ENGINE.binding.element.resize(function()
     {
-      adjust(renderer, camera, element);
+      adjust(renderer, camera, ENGINE.binding.element);
     });
 
     $(window).resize(function()
     {
-      adjust(renderer, camera, element);
+      adjust(renderer, camera, ENGINE.binding.element);
     });
 
-    element.append(renderer.domElement);
-    element.resize();
+    ENGINE.binding.element.append(renderer.domElement);
+    ENGINE.binding.element.resize();
 
-    ENGINE.stats.bind(element);
+    ENGINE.stats.bind(ENGINE.binding.element);
 
     ENGINE.controls.pointer.lock(renderer.domElement);
   };
