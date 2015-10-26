@@ -19,30 +19,22 @@
   {
     if (ENGINE.controls.isKeyDown(ENGINE.controls.key.UP))
     {
-      GAME.DATA.camera.lookAt(new THREE.Vector3().copy(GAME.var.cameraTarget).setY(GAME.DATA.camera.position.y));
-
-      GAME.DATA.camera.translateZ(-GAME.const.cameraSpeed);
-
-      GAME.DATA.camera.lookAt(GAME.var.cameraTarget);
+      GAME.camera.moveForward();
     }
 
     if (ENGINE.controls.isKeyDown(ENGINE.controls.key.DOWN))
     {
-        GAME.DATA.camera.lookAt(new THREE.Vector3().copy(GAME.var.cameraTarget).setY(GAME.DATA.camera.position.y));
-
-      GAME.DATA.camera.translateZ(GAME.const.cameraSpeed);
-
-      GAME.DATA.camera.lookAt(GAME.var.cameraTarget);
+      GAME.camera.moveBackward();
     }
 
     if (ENGINE.controls.isKeyDown(ENGINE.controls.key.LEFT))
     {
-      GAME.DATA.camera.translateX(-GAME.const.cameraSpeed);
+      GAME.camera.moveLeft();
     }
 
     if (ENGINE.controls.isKeyDown(ENGINE.controls.key.RIGHT))
     {
-      GAME.DATA.camera.translateX(GAME.const.cameraSpeed);
+      GAME.camera.moveRight();
     }
   };
 })();

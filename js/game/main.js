@@ -57,6 +57,7 @@ ENGINE.init(function()
     "frame",
     "start",
     "scene",
+    "camera",
     "particles",
     "butterfly",
     "physics",

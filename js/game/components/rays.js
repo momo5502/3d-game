@@ -67,7 +67,7 @@
     for (var i = 0; i < GAME.const.rayCount; i++)
     {
 
-      var mesh = new Physijs.BoxMesh(planeGeometry, undefined, 0);
+      var mesh = new THREE.Mesh(planeGeometry, undefined, 0);
 
       mesh.scale.x = 1 + Math.random() * 2;
 
@@ -88,18 +88,15 @@
 
     for (var v = 0; v < vertices.length; v += planeGeometry.vertices.length)
     {
-
       var t = Math.random();
 
       for (var j = v; j < v + planeGeometry.vertices.length; j++)
       {
         values_time[j] = t;
       };
-
     }
 
-
-    var planes = new Physijs.BoxMesh(geometry, material, 0);
+    var planes = new THREE.Mesh(geometry, material, 0);
     GAME.DATA.scene.add(planes);
   };
 
