@@ -46,12 +46,28 @@
 
   ENGINE.menu.open = function(name)
   {
-    ENGINE.menu.load(name).show();
+    var menu = name;
+    if(typeof menu == 'string')
+    {
+      menu = ENGINE.menu.load(name);
+      if(!menu.closed()) return; // Ensure it's loaded
+    }
+
+    menu.onOpen();
+    menu.show();
   };
 
   ENGINE.menu.close = function(name)
   {
-    ENGINE.menu.load(name).hide();
+    var menu = name;
+    if(typeof menu == 'string')
+    {
+      menu = ENGINE.menu.load(name);
+      if(!menu.closed()) return; // Ensure it's loaded
+    }
+
+    menu.onClose();
+    menu.hide();
   };
 
   /****************************/
@@ -60,11 +76,20 @@
 
   function embedMenu(menu)
   {
+    // menu.id is reserved for the ticket
+    menu.domID = dbType + "_" + menu.name;
+
     menu.element = $("<div/>",
     {
-      id: dbType + "_" + menu.name,
+      id: menu.domID,
       html: menu.data
     });
+
+    // Custom selector for child elements
+    menu.select = function(value)
+    {
+      return $("#" + this.domID + " " + value);
+    };
 
     menu.hide = function()
     {
@@ -76,9 +101,17 @@
       this.element.show();
     };
 
+    menu.onOpen = function(){};
+    menu.onClose = function(){};
+
+    // Provide self to underlying scripts
+    ENGINE.menu.self = menu;
     menu.hide();
     menu.element.addClass("menu");
     menu.element.appendTo(ENGINE.binding.element);
+
+    // Reset self object
+    ENGINE.menu.self = {};
   }
 
   function resolveMenu(name)

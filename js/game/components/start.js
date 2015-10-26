@@ -6,7 +6,7 @@
 
   GAME.start = function()
   {
-    //ENGINE.menu.open("main");
+    ENGINE.menu.open("main");
 
     GAME.network.init();
     GAME.scene.init();
