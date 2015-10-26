@@ -1,17 +1,13 @@
 <!-- Menu style -->
-<!-- Scoped styles do not natively work in chrome! -->
-<!-- https://www.chromestatus.com/feature/5374137958662144 -->
-<!-- So be sure to take unique class names and ids to not interfere with other menus, until the scope attribute is supported by modern browsers. Or just use firefox ;) -->
+<!-- Add scoped attribute if it should only apply to this menu -->
 <style scoped>
-  h1,
-  h2 {
+  h1 {
     text-align: center;
     color: white;
   }
 </style>
 
 <h1>Main menu</h1>
-<h2>If your browser supports scoped styles, the title above should be white, if not, it is red.</h2>
 <center>
   <button id="closeButton">Close</button>
 </center>
@@ -36,8 +32,5 @@
     self.select("#closeButton").click(function() {
       ENGINE.menu.close(self);
     });
-
-    // Load test menu to check soped styles
-    ENGINE.menu.load("test");
   })();
 </script>

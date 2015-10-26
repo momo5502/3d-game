@@ -53,6 +53,7 @@
       if(!menu.closed()) return; // Ensure it's loaded
     }
 
+    menu.attachStyles();
     menu.onOpen();
     menu.show();
   };
@@ -68,6 +69,7 @@
 
     menu.onClose();
     menu.hide();
+    menu.detachStyles();
   };
 
   /****************************/
@@ -109,6 +111,20 @@
     menu.hide();
     menu.element.addClass("menu");
     menu.element.appendTo(ENGINE.binding.element);
+    menu.styles = menu.select("style[scoped]");
+
+    menu.detachStyles = function()
+    {
+      menu.styles = menu.select("style[scoped]");
+      menu.styles.detach();
+    }
+
+    menu.attachStyles = function()
+    {
+      menu.styles.appendTo(menu.element);
+    }
+
+    menu.detachStyles();
 
     // Reset self object
     ENGINE.menu.self = {};
