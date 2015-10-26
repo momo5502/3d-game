@@ -1,12 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
-
-*
-{
+* {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  cursor: url("../assets/textures/2d/cursor.png"), pointer !important;
 }
 
 html,
@@ -52,8 +52,7 @@ body {
   overflow: hidden;
 }
 
-.menu
-{
+.menu {
   position: absolute;
   width: 100%;
   height: 100%;

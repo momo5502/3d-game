@@ -12,6 +12,7 @@
   ENGINE.stats.object.domElement.style.right = '0px';
   ENGINE.stats.object.domElement.style.top = '0px';
   ENGINE.stats.object.domElement.style.display = 'none';
+  ENGINE.stats.object.domElement.style.zIndex = '5';
 
   ENGINE.stats.update = function()
   {

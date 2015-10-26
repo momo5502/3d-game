@@ -17,22 +17,22 @@
 
   GAME.controls.update = function()
   {
-    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.UP))
+    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.UP) || ENGINE.controls.isKeyDown(ENGINE.controls.key.W))
     {
       GAME.camera.moveForward();
     }
 
-    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.DOWN))
+    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.DOWN) || ENGINE.controls.isKeyDown(ENGINE.controls.key.S))
     {
       GAME.camera.moveBackward();
     }
 
-    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.LEFT))
+    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.LEFT) || ENGINE.controls.isKeyDown(ENGINE.controls.key.A))
     {
       GAME.camera.moveLeft();
     }
 
-    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.RIGHT))
+    if (ENGINE.controls.isKeyDown(ENGINE.controls.key.RIGHT) || ENGINE.controls.isKeyDown(ENGINE.controls.key.D))
     {
       GAME.camera.moveRight();
     }
