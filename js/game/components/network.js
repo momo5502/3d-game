@@ -26,6 +26,7 @@
 
   GAME.network.authenticate = function(username)
   {
+    ENGINE.network.authenticationName = username;
     ENGINE.console.log("Authenticating as " + username);
     ENGINE.network.send("authenticate", username);
   };

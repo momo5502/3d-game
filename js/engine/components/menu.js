@@ -10,6 +10,7 @@
   ENGINE.menu.extension = ".html";
 
   var dbType = "menu";
+  var stack = [];
 
   ENGINE.menu.load = function(name)
   {
@@ -53,6 +54,7 @@
       if (!menu.closed()) return; // Ensure it's loaded
     }
 
+    stackPush(menu);
     menu.attachStyles();
     menu.onOpen();
     menu.show(time, callback);
@@ -72,12 +74,43 @@
     {
       if (callback !== undefined) callback();
       menu.detachStyles();
+      stackPop(menu);
     });
   };
 
   /****************************/
   /*      Misc functions      */
   /****************************/
+
+  function stackPush(menu)
+  {
+    menu = stack.indexOf(menu);
+    if (menu != -1)
+    {
+      stack.splice(menu, 1);
+    }
+
+    if (stack.length)
+    {
+      stack[stack.length].hide();
+    }
+
+    stack.push(menu);
+  }
+
+  function stackPop(menu)
+  {
+    menu = stack.indexOf(menu);
+    if (menu != -1)
+    {
+      stack.splice(menu, 1);
+    }
+
+    if (stack.length)
+    {
+      stack[stack.length].show();
+    }
+  }
 
   function embedMenu(menu)
   {
@@ -133,14 +166,21 @@
 
     menu.detachStyles = function()
     {
-      menu.styles = menu.select("style[scoped]");
-      menu.styles.detach();
+      if (menu.styles === undefined)
+      {
+        menu.styles = menu.select("style[scoped]");
+        menu.styles.detach();
+      }
     };
 
     menu.attachStyles = function()
     {
       // Attaching fucks up transitions
-      menu.styles.appendTo(menu.element);
+      if (menu.styles !== undefined)
+      {
+        menu.styles.appendTo(menu.element);
+        menu.styles = undefined;
+      }
     };
 
     // Detach styles until the menu is displayed

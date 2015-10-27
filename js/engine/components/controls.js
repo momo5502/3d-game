@@ -18,6 +18,8 @@
     S: 83,
     D: 68,
 
+    T: 84,
+
     F5: 116
   };
 
@@ -133,14 +135,8 @@
     event.preventDefault();
     keyDown[event.keyCode] = true;
 
-    if (event.char == undefined)
-    {
-      ENGINE.controls.runKey(event.keyCode);
-    }
-    else
-    {
-      ENGINE.controls.runKey(event.charCode);
-    }
+    console.log(event);
+    ENGINE.controls.runKey(event.keyCode);
   });
 
   $(window).keyup(function(event)

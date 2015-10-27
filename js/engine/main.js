@@ -30,6 +30,7 @@
     "shader",
     "model",
     "sound",
+    "chat",
   ];
 
   var callbacks = [];

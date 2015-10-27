@@ -37,4 +37,9 @@
       GAME.camera.moveRight();
     }
   };
+
+  ENGINE.controls.assign(ENGINE.controls.key.T, function()
+  {
+    ENGINE.chat.sendMessage(GAME.DATA.username, prompt("Enter a message"));
+  });
 })();
