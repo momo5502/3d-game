@@ -44,32 +44,35 @@
     return ticket;
   };
 
-  ENGINE.menu.open = function(name)
+  ENGINE.menu.open = function(name, time, callback)
   {
     var menu = name;
-    if(typeof menu == 'string')
+    if (typeof menu == 'string')
     {
       menu = ENGINE.menu.load(name);
-      if(!menu.closed()) return; // Ensure it's loaded
+      if (!menu.closed()) return; // Ensure it's loaded
     }
 
     menu.attachStyles();
     menu.onOpen();
-    menu.show();
+    menu.show(time, callback);
   };
 
-  ENGINE.menu.close = function(name)
+  ENGINE.menu.close = function(name, time, callback)
   {
     var menu = name;
-    if(typeof menu == 'string')
+    if (typeof menu == 'string')
     {
       menu = ENGINE.menu.load(name);
-      if(!menu.closed()) return; // Ensure it's loaded
+      if (!menu.closed()) return; // Ensure it's loaded
     }
 
     menu.onClose();
-    menu.hide();
-    menu.detachStyles();
+    menu.hide(time, function()
+    {
+      if (callback !== undefined) callback();
+      menu.detachStyles();
+    });
   };
 
   /****************************/
@@ -93,18 +96,34 @@
       return $("#" + this.domID + " " + value);
     };
 
-    menu.hide = function()
+    menu.hide = function(time, callback)
     {
-      this.element.hide();
+      if (time === undefined)
+      {
+        this.element.hide();
+        if (callback !== undefined) callback();
+      }
+      else
+      {
+        this.element.fadeOut(time, callback);
+      }
     };
 
-    menu.show = function()
+    menu.show = function(time, callback)
     {
-      this.element.show();
+      if (time === undefined)
+      {
+        this.element.show();
+        if (callback !== undefined) callback();
+      }
+      else
+      {
+        this.element.fadeIn(time, callback);
+      }
     };
 
-    menu.onOpen = function(){};
-    menu.onClose = function(){};
+    menu.onOpen = function() {};
+    menu.onClose = function() {};
 
     // Provide self to underlying scripts
     ENGINE.menu.self = menu;
@@ -120,6 +139,7 @@
 
     menu.attachStyles = function()
     {
+      // Attaching fucks up transitions
       menu.styles.appendTo(menu.element);
     };
 

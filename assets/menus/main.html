@@ -6,7 +6,6 @@
     color: white;
     font-weight: 300;
   }
-  /* Menu is a reserved class for the container this menu runs in */
 
   .menu {
     background-color: rgba(0, 0, 0, 0.5);
@@ -35,10 +34,10 @@
     top: calc(5% - 200px);
     left: 100px;
     width: 500px;
-    transition: 0.3s;
+    transition: top 0.3s;
   }
-
   /* TODO: Rather find a correct relative value, than applying one for each height */
+
   @media (min-height: 550px) {
     .menu_container {
       top: calc(5% - 100px);
@@ -171,7 +170,7 @@
     };
 
     self.select("#b_play").click(function() {
-      ENGINE.menu.close(self);
+      ENGINE.menu.close(self, 300);
     });
   })();
 </script>
