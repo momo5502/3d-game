@@ -46,7 +46,6 @@
   function evalCodColorCode(message)
   {
     var parsed = message.split("^");
-    console.log(parsed);
 
     var elem = $("<span />",
     {
