@@ -23,8 +23,19 @@
     F5: 116
   };
 
+  var activated = false;
   var actions = [];
   var keyDown = [];
+
+  ENGINE.controls.activate = function()
+  {
+    activated = true;
+  };
+
+  ENGINE.controls.deactivate = function()
+  {
+    activated = false;
+  };
 
   ENGINE.controls.runKey = function(key)
   {
@@ -132,6 +143,7 @@
 
   $(window).keydown(function(event)
   {
+    if(!activated) return;
     event.preventDefault();
     keyDown[event.keyCode] = true;
 
@@ -140,6 +152,7 @@
 
   $(window).keyup(function(event)
   {
+    if(!activated) return; 
     event.preventDefault();
     keyDown[event.keyCode] = false;
   });

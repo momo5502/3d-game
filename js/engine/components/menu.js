@@ -84,15 +84,16 @@
 
   function stackPush(menu)
   {
-    menu = stack.indexOf(menu);
-    if (menu != -1)
+    ENGINE.controls.deactivate();
+    var menuindex = stack.indexOf(menu);
+    if (menuindex != -1)
     {
-      stack.splice(menu, 1);
+      stack.splice(menuindex, 1);
     }
 
     if (stack.length)
     {
-      stack[stack.length].hide();
+      stack[stack.length - 1].hide();
     }
 
     stack.push(menu);
@@ -100,15 +101,19 @@
 
   function stackPop(menu)
   {
-    menu = stack.indexOf(menu);
-    if (menu != -1)
+    var menuindex = stack.indexOf(menu);
+    if (menuindex != -1)
     {
-      stack.splice(menu, 1);
+      stack.splice(menuindex, 1);
     }
 
     if (stack.length)
     {
-      stack[stack.length].show();
+      stack[stack.length - 1].show();
+    }
+    else
+    {
+      ENGINE.controls.activate();
     }
   }
 
