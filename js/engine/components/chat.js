@@ -16,7 +16,7 @@
 
   ENGINE.network.on("chatmessage", function(data, socket)
   {
-    pushMessage(data.user, data.message);
+    pushMessage(data.name, data.message);
   });
 
   function pushMessage(user, message)
@@ -55,7 +55,7 @@
 
     var lastElem = getNeutralColorElement(parsed[0])
     lastElem.appendTo(elem);
-    
+
     for (var i = 1; i < parsed.length; i++)
     {
       var string = parsed[i];

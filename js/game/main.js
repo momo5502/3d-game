@@ -61,7 +61,8 @@ ENGINE.init(function()
     window.location.reload();
   });
 
-  var gameComponents = [
+  // Load game components
+  ENGINE.components.load("js/game/components/", [
     "constant",
     "variable",
     "network",
@@ -76,9 +77,7 @@ ENGINE.init(function()
     "grass",
     "trees",
     "rays"
-  ];
-
-  ENGINE.components.load("js/game/components/", gameComponents);
+  ]);
 });
 
 ENGINE.ready(function()

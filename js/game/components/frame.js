@@ -17,6 +17,8 @@
     GAME.grass.update();
     GAME.rays.update();
 
+    ENGINE.players.update();
+
     GAME.camera.update();
 
     GAME.DATA.renderer.render(GAME.DATA.scene, GAME.DATA.camera);

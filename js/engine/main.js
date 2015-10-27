@@ -21,6 +21,7 @@
     "database",
     "network",
     "storage",
+    "players",
     "menu",
     "stats",
     "animate",
