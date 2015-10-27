@@ -6,7 +6,7 @@ Live preview: http://momo5502.github.io/3d-game/
 
 
 
-Credits:  
+### [Credits](#credits)
 
   Spring: http://oos.moxiecode.com/js_webgl/spring/  
   three.js: http://threejs.org/  
