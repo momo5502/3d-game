@@ -135,7 +135,6 @@
     event.preventDefault();
     keyDown[event.keyCode] = true;
 
-    console.log(event);
     ENGINE.controls.runKey(event.keyCode);
   });
 

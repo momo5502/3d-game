@@ -8,7 +8,7 @@
 
   ENGINE.chat.sendMessage = function(username, message)
   {
-    if(message === undefined || message == null) return;
+    if (message === undefined || message == null) return;
 
     ENGINE.network.send("chatmessage", message);
     pushMessage(username, message);
@@ -31,11 +31,7 @@
       class: "user",
       text: user
     });
-    var dataContainer = $("<span />",
-    {
-      class: "content",
-      text: message
-    });
+    var dataContainer = evalCodColorCode(message);
 
     messageContainer.hide();
 
@@ -44,7 +40,58 @@
     messageContainer.appendTo("#chatlog");
     messageContainer.fadeIn(200);
 
-    hideOverTime(messageContainer, 10000);
+    hideOverTime(messageContainer, 15000);
+  }
+
+  function evalCodColorCode(message)
+  {
+    var parsed = message.split("^");
+    console.log(parsed);
+
+    var elem = $("<span />",
+    {
+      class: "content"
+    });
+
+    var lastElem = getNeutralColorElement(parsed[0])
+    lastElem.appendTo(elem);
+    
+    for (var i = 1; i < parsed.length; i++)
+    {
+      var string = parsed[i];
+      var color = string[0];
+
+      if (isNaN(color))
+      {
+        string = "^" + string;
+        getNeutralColorElement(string).appendTo(lastElem);
+      }
+      else
+      {
+        string = string.substring(1);
+        lastElem = getColorElement(string, color);
+        lastElem.appendTo(elem);
+      }
+    }
+
+    return elem;
+  }
+
+  function getNeutralColorElement(message)
+  {
+    return $("<span />",
+    {
+      text: message
+    });
+  }
+
+  function getColorElement(message, color)
+  {
+    return $("<span />",
+    {
+      text: message,
+      class: "color_" + color
+    });
   }
 
   function hideOverTime(object, time)
@@ -64,7 +111,7 @@
   function hideExceedingMessages()
   {
     var objects = $("#chatlog .message");
-    if(objects.length >= 7)
+    if (objects.length >= 7)
     {
       hideOverTime(objects.slice(0, objects.length - 6), 0);
     }

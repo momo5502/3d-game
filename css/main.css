@@ -64,8 +64,8 @@ body {
 
 #chatlog {
   position: fixed;
-  height: 150px;
-  top: calc(40% - 75px);
+  height: 154px;
+  top: calc(40% - 72px);
   left: 10px;
   z-index: 4;
   width: calc(90% - 31px);
@@ -76,10 +76,14 @@ body {
 
 #chatlog > .message {
   display: block;
+  overflow: hidden;
+  white-space:nowrap;
+  width: 100%;
+  height: 20px;
 }
 
 #chatlog > .message > .user {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 #chatlog > .message > .user::after {
@@ -87,5 +91,16 @@ body {
 }
 
 #chatlog > .message > .content {
-  font-weight: 300;
+  font-weight: 400;
 }
+
+#chatlog > .message > .content > .color_0 { color: rgb(000, 000, 000); }
+#chatlog > .message > .content > .color_1 { color: rgb(255, 049, 049); }
+#chatlog > .message > .content > .color_2 { color: rgb(134, 192, 000); }
+#chatlog > .message > .content > .color_3 { color: rgb(255, 173, 034); }
+#chatlog > .message > .content > .color_4 { color: rgb(000, 135, 193); }
+#chatlog > .message > .content > .color_5 { color: rgb(032, 197, 255); }
+#chatlog > .message > .content > .color_6 { color: rgb(151, 080, 221); }
+#chatlog > .message > .content > .color_7 { color: rgb(255, 255, 255); }
+#chatlog > .message > .content > .color_8 { color: rgb(153, 163, 176); }
+#chatlog > .message > .content > .color_9 { color: rgb(166, 145, 105); }
