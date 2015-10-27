@@ -50,6 +50,7 @@ body {
   width: 500px;
   height: 150px;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .menu {

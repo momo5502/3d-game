@@ -11,52 +11,146 @@
   .menu {
     background-color: rgba(0, 0, 0, 0.5);
     perspective: 800px;
-    perspective-origin: 0 50%;
+  }
+
+  .trim {
+    background: transparent;
+    position: absolute;
+    height: 82%;
+    width: 100%;
+    top: 5%;
+    left: 0;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    opacity: 0.0;
   }
 
   .menu_container {
-    position: absolute;
-    top: 33%;
-    margin-left: 30px;
-    transform-origin: 0px 50% 0px;
-    transition: all 0.3s ease 0s;
-    transform: rotateY(20deg);
-    border: 1px solid white;
-    background-color: rgba(0,0,0,0.3);
-    box-shadow: -5px 7px 5px 1px rgba(0, 0, 0, 0.75);
+    -webkit-transform: translateX(150px) translateY(150px) rotateY(20deg) rotateX(-2deg)rotateX(-15deg);
+    -ms-transform: translateX(150px) translateY(150px) rotateY(20deg) rotateX(-2deg) rotateX(-15deg);
+    transform: translateX(150px) translateY(150px) rotateY(20deg) rotateZ(-2deg) rotateX(-15deg);
+    position: relative;
+    top: calc(5% - 200px);
+    left: 100px;
+    width: 500px;
+    transition: 0.3s;
   }
 
-  .menu_container button {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    width: 250px;
-    transition: all 0.5s ease 0s;
-    border: 1px solid white;
-    background-color: rgba(0,0,0,0.3);
-    margin-right: 7px;
-    margin-left: 10px;
-    outline: 0;
+  /* TODO: Rather find a correct relative value, than applying one for each height */
+  @media (min-height: 550px) {
+    .menu_container {
+      top: calc(5% - 100px);
+    }
+  }
+
+  @media (min-height: 700px) {
+    .menu_container {
+      top: calc(20% - 100px);
+    }
+  }
+
+  @media (min-height: 800px) {
+    .menu_container {
+      top: calc(25% - 100px);
+    }
+  }
+
+  @media (min-height: 900px) {
+    .menu_container {
+      top: 25%;
+    }
+  }
+
+  .menu_container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: 10px;
+  }
+
+  .menu_container li {
+    overflow: hidden;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    font-size: 56px;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    line-height: 60px;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    padding-left: 0px;
+    padding-right: 0px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .menu_container li:hover {
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 20px;
     color: white;
   }
 
-  .menu_container button:hover {
-    background-color: rgba(0, 0, 0, 0.6);
-    transform: scale3d(1.02, 1.02, 1.02);
+  .menu_container li:hover .trim {
+    left: 0px;
+    opacity: 1.0;
+  }
+
+  .buffer {
+    position: absolute;
+    -ms-transform: rotate(90deg);
+    -ms-transform-origin: 0% 0%;
+    -webkit-transform: rotate(90deg);
+    -webkit-transform-origin: 0% 0%;
+    transform: rotate(90deg);
+    transform-origin: 0% 0%;
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    width: 340px;
+    height: 29px;
+    left: -12px;
+    top: 12px;
+    border-left: 2px solid #5e5453;
+    border-right: 2px solid #5e5453;
+    background: rgba(0, 0, 0, 0.8);
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(23, 23, 23, 0.8) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.8)), color-stop(50%, rgba(23, 23, 23, 0.8)), color-stop(100%, rgba(0, 0, 0, 0.8)));
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(23, 23, 23, 0.8) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(23, 23, 23, 0.8) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.8) 0%, rgba(23, 23, 23, 0.8) 50%, rgba(0, 0, 0, 0.8) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(23, 23, 23, 0.8) 50%, rgba(0, 0, 0, 0.8) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0);
   }
 </style>
 
 <h1>Game without name!</h1>
 
 <div class="menu_container">
-  <button id="b_play">Play</button>
-  <br>
-  <button id="b_options">Options</button>
-  <br>
-  <button id="b_credits">Credits</button>
-  <br>
-  <button id="b_quit">Exit</button>
+  <div class="buffer"></div>
+  <ul>
+    <li id="b_play">
+      <span class="trim"></span>Play</li>
+    <br>
+    <li>
+      <span class="trim"></span>Options</li>
+    <br>
+    <li>
+      <span class="trim"></span>Extras</li>
+    <br>
+    <li>
+      <span class="trim"></span>Credits</li>
+    <br>
+    <li>
+      <span class="trim"></span>Exit</li>
+  </ul>
+
 </div>
 
 <!-- Menu script -->
