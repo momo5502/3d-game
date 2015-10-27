@@ -149,17 +149,17 @@
     <li id="b_play">
       <span class="trim"></span>Play</li>
     <br>
-    <li>
+    <li id="b_options">
       <span class="trim"></span>Options</li>
     <br>
-    <li>
+    <li id="b_extras">
       <span class="trim"></span>Extras</li>
     <br>
-    <li>
+    <li id="b_credits">
       <span class="trim"></span>Credits</li>
     <br>
-    <li>
-      <span class="trim"></span>Exit</li>
+    <li id="b_source">
+      <span class="trim"></span>Source</li>
   </ul>
 
 </div>
@@ -183,6 +183,22 @@
 
     self.select("#b_play").click(function() {
       ENGINE.menu.close(self, 300);
+    });
+
+    self.select("#b_options").click(function() {
+      alert("Nothing yet!");
+    });
+
+    self.select("#b_extras").click(function() {
+      alert("Nothing yet!");
+    });
+
+    self.select("#b_credits").click(function() {
+      window.open('https://github.com/momo5502/3d-game/blob/gh-pages/README.md#credits','_blank');
+    });
+
+    self.select("#b_source").click(function() {
+      window.open('https://github.com/momo5502/3d-game','_blank');
     });
   })();
 </script>
