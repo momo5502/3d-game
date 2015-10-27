@@ -8,19 +8,17 @@
 
   ENGINE.player = function(name, id)
   {
+    var player = ENGINE.players.find(id);
+    if (player !== undefined)
+    {
+      return player;
+    }
+
     this.id = id;
     this.name = name;
     this.origin = new THREE.Vector3(0, 0, 0);
     this.angles = new THREE.Vector3(0, 0, 0);
     this.object = generatePlayerBox();
-
-    var player = ENGINE.players.find(id);
-    if (player !== undefined)
-    {
-      this.origin = player.origin;
-      this.angles = player.angles;
-      player.remove();
-    }
 
     this.remove = function()
     {

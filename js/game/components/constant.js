@@ -32,5 +32,5 @@
   GAME.const.cameraHeightOffset = 45;
   GAME.const.cameraFov = 65;
 
-  GAME.const.snaps = 20;
+  GAME.const.snaps = 60;
 })();
