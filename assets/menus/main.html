@@ -32,9 +32,21 @@
     transform: translateX(150px) translateY(150px) rotateY(20deg) rotateZ(-2deg) rotateX(-15deg);
     position: relative;
     top: calc(5% - 200px);
-    left: 100px;
+    left: 0px;
     width: 500px;
-    transition: top 0.3s;
+    transition: top 0.3s, left 0.3s;
+  }
+
+  @media (min-width: 1000px) {
+    .menu_container {
+      left: 100px;
+    }
+  }
+
+  @media (min-width: 1350px) {
+    .menu_container {
+      left: 200px;
+    }
   }
   /* TODO: Rather find a correct relative value, than applying one for each height */
 
