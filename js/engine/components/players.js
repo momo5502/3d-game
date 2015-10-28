@@ -11,6 +11,9 @@
     var player = ENGINE.players.find(id);
     if (player !== undefined)
     {
+      GAME.DATA.scene.remove(player.overheadText);
+      player.name = name;
+      player.overheadText = generateOverheadBox(player.name);
       return player;
     }
 
@@ -19,6 +22,7 @@
     this.origin = new THREE.Vector3(0, 0, 0);
     this.angles = new THREE.Vector3(0, 0, 0);
     this.object = generatePlayerBox();
+    this.overheadText = generateOverheadBox(this.name);
 
     this.remove = function()
     {
@@ -66,6 +70,7 @@
     var player = this.find(id);
     if (player !== undefined)
     {
+      GAME.DATA.scene.remove(player.overheadText);
       GAME.DATA.scene.remove(player.object);
       this.splice(this.indexOf(player), 1);
     }
@@ -73,7 +78,7 @@
 
   ENGINE.players.update = function()
   {
-    for(var i = 0; i < this.length; i++)
+    for (var i = 0; i < this.length; i++)
     {
       var player = this[i];
       player.object.position.x = player.origin.x;
@@ -83,13 +88,45 @@
       player.object.rotation.x = player.angles.x;
       player.object.rotation.y = player.angles.y;
       player.object.rotation.z = player.angles.z;
+
+      player.overheadText.position.x = player.origin.x;
+      player.overheadText.position.y = player.origin.y + (GAME.const.cameraHeightOffset / 2) + 5;
+      player.overheadText.position.z = player.origin.z;
+
+      player.overheadText.rotation.x = GAME.DATA.camera.rotation.x;
+      player.overheadText.rotation.y = GAME.DATA.camera.rotation.y;
+      player.overheadText.rotation.z = GAME.DATA.camera.rotation.z;
     }
   };
 
   function generatePlayerBox()
   {
-     var mesh = new THREE.Mesh(new THREE.BoxGeometry(15, GAME.const.cameraHeightOffset, 15));
-     GAME.DATA.scene.add(mesh);
-     return mesh;
+    var mesh = new THREE.Mesh(new THREE.BoxGeometry(15, GAME.const.cameraHeightOffset, 15), new THREE.MeshNormalMaterial());
+    GAME.DATA.scene.add(mesh);
+    return mesh;
+  }
+
+  function generateOverheadBox(name)
+  {
+    var geometry = new THREE.TextGeometry(name,
+    {
+      size: 3,
+      height: 0,
+      font: "helvetiker",
+      weight: "normal",
+      style: "normal",
+      curveSegments : 12,
+    });
+
+    THREE.GeometryUtils.center(geometry);
+
+    var text = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial(
+    {
+      color: "white",
+      overdraw: true
+    }));
+
+    GAME.DATA.scene.add(text);
+    return text;
   }
 })();

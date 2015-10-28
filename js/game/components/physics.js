@@ -23,6 +23,4 @@
 
     GAME.physics.compute();
   }
-
-
 })();
