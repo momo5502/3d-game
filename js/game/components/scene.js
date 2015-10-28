@@ -8,7 +8,10 @@
 
   GAME.scene.init = function()
   {
-    GAME.DATA.renderer = new THREE.WebGLRenderer();
+    GAME.DATA.renderer = new THREE.WebGLRenderer(
+    {
+      antialias: true
+    });
 
     GAME.DATA.scene = new Physijs.Scene;
     GAME.DATA.scene.fog = new THREE.Fog(0xabaf99, 0, 3000);
