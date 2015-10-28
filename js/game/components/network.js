@@ -11,13 +11,13 @@
     ENGINE.network.on('user_connect', function(data)
     {
       ENGINE.console.log("User connected: " + data.name);
-      ENGINE.players.add(data.name, data.id);
+      GAME.players.add(data.name, data.id);
     });
 
     ENGINE.network.on('user_disconnect', function(data)
     {
       ENGINE.console.log("User disconnected: " + data.name);
-      ENGINE.players.remove(data.id);
+      GAME.players.remove(data.id);
     });
 
     ENGINE.network.on('reconnect', function(data)
@@ -27,7 +27,7 @@
 
     ENGINE.network.on("playerstates", function(data)
     {
-      ENGINE.players.parseStates(data);
+      GAME.players.parseStates(data);
     });
 
     GAME.DATA.networkLoop = setInterval(GAME.network.loop, 1000 / GAME.const.snaps);
@@ -35,7 +35,7 @@
 
   GAME.network.loop = function()
   {
-    GAME.network.transmitPlayerState(GAME.camera.collider.position, GAME.camera.collider.rotation/*GAME.DATA.camera.rotation*/);
+    GAME.network.transmitPlayerState(GAME.camera.collider.matrix);
   };
 
   GAME.network.authenticate = function(username)
@@ -45,23 +45,8 @@
     ENGINE.network.send("authenticate", username);
   };
 
-  GAME.network.transmitPlayerState = function(position, rotation)
+  GAME.network.transmitPlayerState = function(matrix)
   {
-    var data = {
-      origin:
-      {
-        x: position.x,
-        y: position.y,
-        z: position.z
-      },
-      angles:
-      {
-        x: rotation.x,
-        y: rotation.y,
-        z: rotation.z
-      }
-    };
-
-    ENGINE.network.send("playerstate", data);
+    ENGINE.network.send("playerstate", matrix.toArray());
   };
 })();

@@ -19,7 +19,7 @@
 
     GAME.camera.update();
 
-    ENGINE.players.update();
+    GAME.players.update();
 
     GAME.DATA.renderer.render(GAME.DATA.scene, GAME.DATA.camera);
   };

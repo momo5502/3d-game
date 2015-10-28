@@ -67,6 +67,7 @@ ENGINE.init(function()
     "variable",
     "network",
     "controls",
+    "players",
     "frame",
     "start",
     "scene",

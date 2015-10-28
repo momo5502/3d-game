@@ -21,7 +21,6 @@
     "database",
     "network",
     "storage",
-    "players",
     "menu",
     "stats",
     "animate",
@@ -102,7 +101,7 @@
 
   function assert(object, name)
   {
-    if(object === undefined || !object || object === null)
+    if (object === undefined || !object || object === null)
     {
       alert(name + " is not loaded!");
     }

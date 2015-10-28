@@ -152,7 +152,7 @@
 
   $(window).keyup(function(event)
   {
-    if(!activated) return; 
+    if(!activated) return;
     event.preventDefault();
     keyDown[event.keyCode] = false;
   });

@@ -17,4 +17,3 @@ Live preview: http://momo5502.github.io/3d-game/
   js-cookie: https://github.com/js-cookie/js-cookie  
   stats.js: https://github.com/mrdoob/stats.js/  
   Martin Whitaker: http://codepen.io/sirnightowl/pen/dPgXrP  
-  

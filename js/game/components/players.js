@@ -1,14 +1,14 @@
 (function()
 {
   'use strict';
-  window.ENGINE = window.ENGINE ||
+  window.GAME = window.GAME ||
   {};
 
-  ENGINE.players = new Array();
+  GAME.players = new Array();
 
-  ENGINE.player = function(name, id)
+  GAME.player = function(name, id)
   {
-    var player = ENGINE.players.find(id);
+    var player = GAME.players.find(id);
     if (player !== undefined)
     {
       GAME.DATA.scene.remove(player.overheadText);
@@ -26,18 +26,18 @@
 
     this.remove = function()
     {
-      return ENGINE.players.remove(this.id);
+      return GAME.players.remove(this.id);
     };
 
-    ENGINE.players.push(this);
+    GAME.players.push(this);
   };
 
-  ENGINE.players.add = function(name, id)
+  GAME.players.add = function(name, id)
   {
-    return new ENGINE.player(name, id);
+    return new GAME.player(name, id);
   }
 
-  ENGINE.players.find = function(id)
+  GAME.players.find = function(id)
   {
     for (var i = 0; i < this.length; i++)
     {
@@ -50,7 +50,7 @@
     return undefined;
   };
 
-  ENGINE.players.parseStates = function(states)
+  GAME.players.parseStates = function(states)
   {
     for (var i = 0; i < states.length; i++)
     {
@@ -60,12 +60,11 @@
         player = this.add(states[i].name, states[i].id)
       }
 
-      player.origin = states[i].origin;
-      player.angles = states[i].angles;
+      player.matrix = states[i].matrix;
     }
   };
 
-  ENGINE.players.remove = function(id)
+  GAME.players.remove = function(id)
   {
     var player = this.find(id);
     if (player !== undefined)
@@ -76,22 +75,17 @@
     }
   };
 
-  ENGINE.players.update = function()
+  GAME.players.update = function()
   {
     for (var i = 0; i < this.length; i++)
     {
       var player = this[i];
-      player.object.position.x = player.origin.x;
-      player.object.position.y = player.origin.y;
-      player.object.position.z = player.origin.z;
+      player.object.matrix.fromArray(player.matrix);
+      player.object.matrix.decompose(player.object.position, player.object.quaternion, player.object.scale); 
 
-      player.object.rotation.x = player.angles.x;
-      player.object.rotation.y = player.angles.y;
-      player.object.rotation.z = player.angles.z;
-
-      player.overheadText.position.x = player.origin.x;
-      player.overheadText.position.y = player.origin.y + (GAME.const.cameraHeightOffset / 2) + 5;
-      player.overheadText.position.z = player.origin.z;
+      player.overheadText.position.x = player.object.position.x;
+      player.overheadText.position.y = player.object.position.y + (GAME.const.cameraHeightOffset / 2) + 5;
+      player.overheadText.position.z = player.object.position.z;
 
       player.overheadText.rotation.x = GAME.DATA.camera.rotation.x;
       player.overheadText.rotation.y = GAME.DATA.camera.rotation.y;
@@ -110,12 +104,12 @@
   {
     var geometry = new THREE.TextGeometry(name,
     {
-      size: 3,
+      size: 1.5,
       height: 0,
       font: "helvetiker",
       weight: "normal",
       style: "normal",
-      curveSegments : 12,
+      curveSegments: 12,
     });
 
     THREE.GeometryUtils.center(geometry);
