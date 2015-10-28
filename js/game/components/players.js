@@ -32,10 +32,18 @@
     GAME.players.push(this);
   };
 
+  GAME.players.clear = function()
+  {
+    for(var i = 0; i < this.length; i++)
+    {
+      this[i].remove();
+    }
+  };
+
   GAME.players.add = function(name, id)
   {
     return new GAME.player(name, id);
-  }
+  };
 
   GAME.players.find = function(id)
   {
@@ -81,7 +89,7 @@
     {
       var player = this[i];
       player.object.matrix.fromArray(player.matrix);
-      player.object.matrix.decompose(player.object.position, player.object.quaternion, player.object.scale); 
+      player.object.matrix.decompose(player.object.position, player.object.quaternion, player.object.scale);
 
       player.overheadText.position.x = player.object.position.x;
       player.overheadText.position.y = player.object.position.y + (GAME.const.cameraHeightOffset / 2) + 5;

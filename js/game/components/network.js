@@ -22,6 +22,7 @@
 
     ENGINE.network.on('reconnect', function(data)
     {
+      GAME.players.clear(); // Maybe do that on disconnect?
       GAME.network.authenticate(GAME.DATA.username);
     });
 
