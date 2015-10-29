@@ -16,7 +16,7 @@
     GAME.DATA.scene.add(GAME.DATA.camera);
     GAME.camera.camera = GAME.DATA.camera;
 
-    GAME.camera.collider = new THREE.Mesh/*Physijs.BoxMesh*/(new THREE.BoxGeometry(15, GAME.const.cameraHeightOffset, 15));
+    GAME.camera.collider = new THREE.Mesh /*Physijs.BoxMesh*/ (new THREE.BoxGeometry(15, GAME.const.cameraHeightOffset, 15));
     GAME.camera.collider.visible = false;
     //GAME.camera.collider.setCcdMotionThreshold(1);
     GAME.camera.moveColliderToCamera();
@@ -60,25 +60,25 @@
   // Movement
   GAME.camera.moveForward = function()
   {
-    GAME.camera.collider.translateZ(-GAME.const.cameraSpeed);
+    GAME.camera.collider.translateZ(translateMovementToFrame(-GAME.const.cameraSpeed));
     GAME.camera.collider.__dirtyPosition = true;
   };
 
   GAME.camera.moveBackward = function()
   {
-    GAME.camera.collider.translateZ(GAME.const.cameraSpeed);
+    GAME.camera.collider.translateZ(translateMovementToFrame(GAME.const.cameraSpeed));
     GAME.camera.collider.__dirtyPosition = true;
   };
 
   GAME.camera.moveLeft = function()
   {
-    GAME.camera.collider.translateX(-GAME.const.cameraSpeed);
+    GAME.camera.collider.translateX(translateMovementToFrame(-GAME.const.cameraSpeed));
     GAME.camera.collider.__dirtyPosition = true;
   };
 
   GAME.camera.moveRight = function()
   {
-    GAME.camera.collider.translateX(GAME.const.cameraSpeed);
+    GAME.camera.collider.translateX(translateMovementToFrame(GAME.const.cameraSpeed));
     GAME.camera.collider.__dirtyPosition = true;
   };
 
@@ -101,6 +101,15 @@
   GAME.camera.collides = function(other_object, relative_velocity, relative_rotation, contact_normal)
   {
     ENGINE.console.log("Colliding!");
+  }
+
+  function translateMovementToFrame(value)
+  {
+    var speed = value; // this should be the speed at 60fps
+    speed /= 1000 / 60;
+    speed *= GAME.var.frameDelta;
+
+    return speed;
   }
 
   function normalizeTarget(target, targetObject)
