@@ -48,8 +48,8 @@
     });
 
     // Set physi.js worker
-    Physijs.scripts.worker = '/js/physijs_worker.js';
-    Physijs.scripts.ammo = '/js/ammo.js';
+    Physijs.scripts.worker = '/3d-game/js/physijs_worker.js';
+    Physijs.scripts.ammo = '/3d-game/js/ammo.js';
 
     if (ENGINE.initialized)
     {
