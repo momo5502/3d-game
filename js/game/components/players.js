@@ -19,8 +19,7 @@
 
     this.id = id;
     this.name = name;
-    this.origin = new THREE.Vector3(0, 0, 0);
-    this.angles = new THREE.Vector3(0, 0, 0);
+    this.matrix = null;
     this.object = generatePlayerBox();
     this.overheadText = generateOverheadBox(this.name);
 
@@ -88,6 +87,7 @@
     for (var i = 0; i < this.length; i++)
     {
       var player = this[i];
+      if(player.matrix === undefined || player.matrix == null) return;
       player.object.matrix.fromArray(player.matrix);
       player.object.matrix.decompose(player.object.position, player.object.quaternion, player.object.scale);
 

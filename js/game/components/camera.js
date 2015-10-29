@@ -16,7 +16,7 @@
     GAME.DATA.scene.add(GAME.DATA.camera);
     GAME.camera.camera = GAME.DATA.camera;
 
-    GAME.camera.collider = new THREE.Mesh /*Physijs.BoxMesh*/ (new THREE.BoxGeometry(15, GAME.const.cameraHeightOffset, 15));
+    GAME.camera.collider = new Physijs.BoxMesh(new THREE.BoxGeometry(15, GAME.const.cameraHeightOffset, 15));
     GAME.camera.collider.visible = false;
     //GAME.camera.collider.setCcdMotionThreshold(1);
     GAME.camera.moveColliderToCamera();
@@ -102,6 +102,18 @@
   {
     ENGINE.console.log("Colliding!");
   }
+
+  GAME.camera.jump = function()
+  {
+    var vel = GAME.camera.collider.getLinearVelocity();
+    console.log(vel);
+
+    if (vel.y < 0.1 && vel.y > -0.1)
+    {
+      vel.y = 60;
+      GAME.camera.collider.setLinearVelocity(vel);
+    }
+  };
 
   function translateMovementToFrame(value)
   {

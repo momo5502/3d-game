@@ -13,7 +13,7 @@
 
   GAME.physics.compute = function()
   {
-    GAME.DATA.scene.simulate(undefined, 1);
+    GAME.DATA.scene.simulate(undefined, 2);
   };
 
   GAME.physics.init = function()
@@ -23,4 +23,10 @@
 
     GAME.physics.compute();
   }
+
+  GAME.physics.objectMoveTo = function(object, target) {
+
+  };
+
+  GAME.physics.jump = function(object, yVelo) {};
 })();

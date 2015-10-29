@@ -38,8 +38,17 @@
     }
   };
 
-  ENGINE.controls.assign(ENGINE.controls.key.T, function()
+  GAME.controls.init = function()
   {
-    ENGINE.chat.sendMessage(GAME.DATA.username, prompt("Enter a message"));
-  });
+    GAME.controls.initMouse();
+
+    ENGINE.controls.assign(ENGINE.controls.key.T, function()
+    {
+      ENGINE.chat.sendMessage(GAME.DATA.username, prompt("Enter a message"));
+    });
+
+    // Player jump
+    ENGINE.controls.assignSingle(ENGINE.controls.key.Space, GAME.camera.jump);
+    ENGINE.controls.assignSingle(ENGINE.controls.key.Num5, GAME.camera.jump);
+  };
 })();

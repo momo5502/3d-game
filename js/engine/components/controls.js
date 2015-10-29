@@ -20,11 +20,15 @@
 
     T: 84,
 
-    F5: 116
+    F5: 116,
+
+    Space: 32,
+    Num5: 12,
   };
 
   var activated = false;
   var actions = [];
+  var actionsSingle = [];
   var keyDown = [];
 
   ENGINE.controls.activate = function()
@@ -42,6 +46,14 @@
     if (actions[key] != undefined)
     {
       actions[key].run();
+    }
+  }
+
+  ENGINE.controls.runKeySingle = function(key)
+  {
+    if (actionsSingle[key] != undefined)
+    {
+      actionsSingle[key].run();
     }
   }
 
@@ -141,13 +153,30 @@
     actions[key].add(callback);
   };
 
+  ENGINE.controls.assignSingle = function(key, callback)
+  {
+    if (actionsSingle[key] == undefined)
+    {
+      actionsSingle[key] = new ENGINE.callbackHandler();
+    }
+
+    actionsSingle[key].add(callback);
+  };
+
   $(window).keydown(function(event)
   {
     if(!activated) return;
     event.preventDefault();
-    keyDown[event.keyCode] = true;
 
+    if(!keyDown[event.keyCode])
+    {
+      ENGINE.controls.runKeySingle(event.keyCode)
+    }
+
+    //console.log(event);
     ENGINE.controls.runKey(event.keyCode);
+
+    keyDown[event.keyCode] = true;
   });
 
   $(window).keyup(function(event)

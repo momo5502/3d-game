@@ -33,7 +33,7 @@
     });
 
     var geometry = new THREE.CubeGeometry(15000, 15000, 15000, 7, 7, 7);
-    var mesh = new Physijs.BoxMesh(geometry, _material, 0);
+    var mesh = new THREE.Mesh(geometry, _material, 0);
     mesh.scale.x = -1;
     GAME.DATA.scene.add(mesh);
 

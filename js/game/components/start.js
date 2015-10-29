@@ -11,7 +11,7 @@
     GAME.network.init();
     GAME.scene.init();
     GAME.physics.init();
-    GAME.controls.initMouse();
+    GAME.controls.init();
 
     GAME.particles.add();
     GAME.butterfly.add();

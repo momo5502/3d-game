@@ -29,7 +29,7 @@
 
   GAME.const.gravityVector = new THREE.Vector3( 0, -100, 0 );
 
-  GAME.const.cameraHeightOffset = 45;
+  GAME.const.cameraHeightOffset = 60;
   GAME.const.cameraFov = 65;
 
   GAME.const.snaps = 60;
