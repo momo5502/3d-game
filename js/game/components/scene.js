@@ -23,7 +23,7 @@
 
     var shader = THREE.ShaderLib["cube"];
     var uniforms = THREE.UniformsUtils.clone(shader.uniforms);
-    uniforms['tCube'].value = ENGINE.material.loadCube("downpour_light").texture;
+    uniforms['tCube'].value = ENGINE.material.loadCube("plains").texture;
 
     var _material = new THREE.ShaderMaterial(
     {
@@ -32,7 +32,7 @@
       uniforms: uniforms
     });
 
-    var geometry = new THREE.CubeGeometry(2500, 2500, 2500, 7, 7, 7);
+    var geometry = new THREE.CubeGeometry(15000, 15000, 15000, 7, 7, 7);
     var mesh = new Physijs.BoxMesh(geometry, _material, 0);
     mesh.scale.x = -1;
     GAME.DATA.scene.add(mesh);

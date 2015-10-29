@@ -28,7 +28,7 @@
     var urls = [];
     for (var i = 0; i < 6; i++)
     {
-      urls[i] = ENGINE.material.path + type + "/" + name + "_" + (i + 1) + extension;
+      urls[i] = ENGINE.material.path + type + "/" + name + "/" + (i + 1) + extension;
     }
 
     ticket.texture = THREE.ImageUtils.loadTextureCube(urls, undefined, function()

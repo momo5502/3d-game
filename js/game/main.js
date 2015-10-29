@@ -7,8 +7,7 @@ ENGINE.init(function()
   ENGINE.menu.load("main");
 
   // Load materials
-  ENGINE.material.loadCube("downpour_light");
-  //ENGINE.material.loadCube("downpour");
+  ENGINE.material.loadCube("plains");
 
   ENGINE.material.load("ground");
 
