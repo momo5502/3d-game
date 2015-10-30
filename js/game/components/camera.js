@@ -3,6 +3,7 @@
   'use strict';
   window.GAME = window.GAME ||
   {};
+
   window.GAME.DATA = window.GAME.DATA ||
   {};
 
@@ -33,11 +34,11 @@
   };
 
   GAME.camera.syncCollider = function()
-{
-  GAME.camera.collider.position.copy(GAME.camera.pCollider.position);
-  GAME.camera.pCollider.quaternion.copy(GAME.camera.collider.quaternion);
-  //GAME.camera.collider.quaternion.copy(GAME.camera.pCollider.quaternion);
-};
+  {
+    GAME.camera.collider.position.copy(GAME.camera.pCollider.position);
+    GAME.camera.pCollider.quaternion.copy(GAME.camera.collider.quaternion);
+    //GAME.camera.collider.quaternion.copy(GAME.camera.pCollider.quaternion);
+  };
 
   GAME.camera.syncBody = function()
   {
@@ -76,54 +77,22 @@
   // Movement
   GAME.camera.moveForward = function()
   {
-    var pos = GAME.camera.collider.position.clone();
-    GAME.camera.collider.translateZ(translateMovementToFrame(-GAME.const.cameraSpeed));
-
-    if(GAME.physics.collides(pos, GAME.camera.collider.position))
-    {
-      GAME.camera.collider.position = pos;
-    }
-
-    GAME.camera.syncBody();
+    translateCamera("Z", -1);
   };
 
   GAME.camera.moveBackward = function()
   {
-    var pos = GAME.camera.collider.position.clone();
-    GAME.camera.collider.translateZ(translateMovementToFrame(GAME.const.cameraSpeed));
-
-    if(GAME.physics.collides(pos, GAME.camera.collider.position))
-    {
-      GAME.camera.collider.position = pos;
-    }
-
-    GAME.camera.syncBody();
+    translateCamera("Z", 1);
   };
 
   GAME.camera.moveLeft = function()
   {
-    var pos = GAME.camera.collider.position.clone();
-    GAME.camera.collider.translateX(translateMovementToFrame(-GAME.const.cameraSpeed));
-
-    if(GAME.physics.collides(pos, GAME.camera.collider.position))
-    {
-      GAME.camera.collider.position = pos;
-    }
-
-    GAME.camera.syncBody();
+    translateCamera("X", -1);
   };
 
   GAME.camera.moveRight = function()
   {
-    var pos = GAME.camera.collider.position.clone();
-    GAME.camera.collider.translateX(translateMovementToFrame(GAME.const.cameraSpeed));
-
-    if(GAME.physics.collides(pos, GAME.camera.collider.position))
-    {
-      GAME.camera.collider.position = pos;
-    }
-
-    GAME.camera.syncBody();
+    translateCamera("X", 1);
   };
 
   GAME.camera.update = function()
@@ -159,6 +128,37 @@
     speed *= GAME.var.frameDelta;
 
     return speed;
+  }
+
+  function translateCamera(direction, scale)
+  {
+    var pos = GAME.camera.collider.position.clone();
+
+    var value = translateMovementToFrame(scale * GAME.const.cameraSpeed);
+
+    switch (direction)
+    {
+      case "X":
+        GAME.camera.collider.translateX(value);
+        break;
+
+      case "Y":
+        GAME.camera.collider.translateY(value);
+        break;
+
+      case "Z":
+        GAME.camera.collider.translateZ(value);
+        break;
+    }
+
+    if (GAME.physics.collides(pos, GAME.camera.collider.position)/* ||
+      GAME.physics.collides(pos.clone().setY(pos.y - (GAME.const.cameraHeightOffset / 2)), GAME.camera.collider.position) ||
+      GAME.physics.collides(pos.clone().setY(pos.y + (GAME.const.cameraHeightOffset / 2)), GAME.camera.collider.position)*/)
+    {
+      GAME.camera.collider.position = pos;
+    }
+
+    GAME.camera.syncBody();
   }
 
   function normalizeTarget(target, targetObject)

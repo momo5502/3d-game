@@ -9,7 +9,7 @@
   var collisionMeshes = [];
   GAME.physics.addCollisionMesh = function(mesh)
   {
-    if(collisionMeshes.indexOf(mesh) == -1)
+    if (collisionMeshes.indexOf(mesh) == -1)
     {
       collisionMeshes.push(mesh);
     }
@@ -32,15 +32,32 @@
   // TODO: Check for each vertex in the camera collider
   GAME.physics.collides = function(objectOrigin, target)
   {
+    // First filter the objects that are not worth being checked cause of being to far away
+    var meshes = [];
+
     var direction = new THREE.Vector3(target.x, target.y, target.z);
     direction.sub(objectOrigin);
+    var length = (direction.length() + 10);
 
-    var ray = new THREE.Raycaster(objectOrigin, direction.clone().normalize());
-    var collisionResults = ray.intersectObjects(collisionMeshes);
-
-    for(var i = 0;i<collisionResults.length;i++)
+    for (var i = 0; i < collisionMeshes.length; i++)
     {
-      if(collisionResults[i].distance <= (direction.length() + 10))
+      var checkVector = collisionMeshes[i].position.clone();
+      checkVector.sub(objectOrigin);
+
+      // Direction is ommitted for now
+      if (/*angleTo2d(direction, checkVector) < 90 &&*/ checkVector.length() <= (length * 10)) // Maybe 10 is too low or high?
+      {
+        meshes.push(collisionMeshes[i]);
+      }
+    }
+
+    // Then actually compare the faces to the vector
+    var ray = new THREE.Raycaster(objectOrigin, direction.clone().normalize());
+    var collisionResults = ray.intersectObjects(meshes);
+
+    for (var i = 0; i < collisionResults.length; i++)
+    {
+      if (collisionResults[i].distance <= length)
       {
         return true;
       }
@@ -48,4 +65,9 @@
 
     return false;
   };
+
+  function angleTo2d(vector1, vector2)
+  {
+    return vector1.clone().setY(0).angleTo(vector2.clone().setY(0)) * (180 / Math.PI);
+  }
 })();
