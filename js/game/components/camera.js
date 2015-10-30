@@ -116,9 +116,9 @@
 
   GAME.camera.jump = function()
   {
-    var vel = GAME.camera.pCollider.velocity;//GAME.camera.collider.getLinearVelocity();
+    var vel = GAME.camera.pCollider.velocity;
 
-    if (vel.y < 0.1 && vel.y > -0.1)
+    if (vel.y < 1 && vel.y > -1)
     {
       vel.y += 60;
     }
