@@ -167,6 +167,8 @@
       mesh.rotation.z = Math.random() * 0.2 - 0.1;
 
       GAME.DATA.scene.add(mesh);
+
+      GAME.physics.addCollisionMesh(mesh);
     }
   };
 
@@ -241,6 +243,8 @@
       mesh.rotation.z = Math.random() * 0.1 - 0.05;
 
       GAME.DATA.scene.add(mesh);
+
+      GAME.physics.addCollisionMesh(mesh);
     }
   };
 
@@ -408,6 +412,8 @@
 
       GAME.DATA.scene.add(tree);
       GAME.DATA.trees.push(tree);
+
+      GAME.physics.addCollisionMesh(tree);
     }
 
     GAME.trees.update = function()

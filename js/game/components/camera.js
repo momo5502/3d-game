@@ -76,25 +76,53 @@
   // Movement
   GAME.camera.moveForward = function()
   {
+    var pos = GAME.camera.collider.position.clone();
     GAME.camera.collider.translateZ(translateMovementToFrame(-GAME.const.cameraSpeed));
-  GAME.camera.syncBody();
+
+    if(GAME.physics.collides(pos, GAME.camera.collider.position))
+    {
+      GAME.camera.collider.position = pos;
+    }
+
+    GAME.camera.syncBody();
   };
 
   GAME.camera.moveBackward = function()
   {
+    var pos = GAME.camera.collider.position.clone();
     GAME.camera.collider.translateZ(translateMovementToFrame(GAME.const.cameraSpeed));
+
+    if(GAME.physics.collides(pos, GAME.camera.collider.position))
+    {
+      GAME.camera.collider.position = pos;
+    }
+
     GAME.camera.syncBody();
   };
 
   GAME.camera.moveLeft = function()
   {
+    var pos = GAME.camera.collider.position.clone();
     GAME.camera.collider.translateX(translateMovementToFrame(-GAME.const.cameraSpeed));
+
+    if(GAME.physics.collides(pos, GAME.camera.collider.position))
+    {
+      GAME.camera.collider.position = pos;
+    }
+
     GAME.camera.syncBody();
   };
 
   GAME.camera.moveRight = function()
   {
+    var pos = GAME.camera.collider.position.clone();
     GAME.camera.collider.translateX(translateMovementToFrame(GAME.const.cameraSpeed));
+
+    if(GAME.physics.collides(pos, GAME.camera.collider.position))
+    {
+      GAME.camera.collider.position = pos;
+    }
+
     GAME.camera.syncBody();
   };
 

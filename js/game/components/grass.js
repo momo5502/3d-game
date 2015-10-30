@@ -313,6 +313,8 @@
       mesh.rotation.z = Math.random() * (Math.PI * 2);
 
       GAME.DATA.scene.add(mesh);
+      
+      GAME.physics.addCollisionMesh(mesh);
     }
   };
 
