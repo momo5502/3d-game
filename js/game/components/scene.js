@@ -13,7 +13,7 @@
       antialias: true
     });
 
-    GAME.DATA.scene = new Physijs.Scene;
+    GAME.DATA.scene = new THREE.Scene();
     GAME.DATA.scene.fog = new THREE.Fog(0xabaf99, 0, 3000);
 
     GAME.camera.init();
@@ -59,7 +59,7 @@
     material.map.repeat.x = 20;
     material.map.repeat.y = 20;
 
-    var ground = new Physijs.BoxMesh(plane, material, 0);
+    var ground = new THREE.Mesh(plane, material, 0);
     ground.rotation.x = -Math.PI * 0.5;
     ground.receiveShadow = true;
     GAME.DATA.scene.add(ground);

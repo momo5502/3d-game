@@ -16,12 +16,17 @@
     GAME.DATA.scene.add(GAME.DATA.camera);
     GAME.camera.camera = GAME.DATA.camera;
 
-    GAME.camera.collider = new Physijs.BoxMesh(new THREE.BoxGeometry(15, GAME.const.cameraHeightOffset, 15));
+    GAME.camera.collider = new THREE.Mesh(new THREE.BoxGeometry(15, GAME.const.cameraHeightOffset, 15), GAME.const.playerMass);
     GAME.camera.collider.visible = false;
-    //GAME.camera.collider.setCcdMotionThreshold(1);
-    GAME.camera.moveColliderToCamera();
 
-    GAME.camera.collider.addEventListener('collision', GAME.camera.collides);
+    GAME.camera.pCollider = new CANNON.Body(
+    {
+      mass: GAME.const.playerMass
+    });
+
+    GAME.camera.pCollider.addShape(new CANNON.Box(new CANNON.Vec3(7.5, GAME.const.cameraHeightOffset / 2, 7.5)));
+
+    GAME.camera.moveColliderToCamera();
 
     GAME.DATA.scene.add(GAME.camera.collider);
   };
@@ -31,8 +36,6 @@
     GAME.camera.collider.position.x = GAME.DATA.camera.position.x;
     GAME.camera.collider.position.y = GAME.DATA.camera.position.y - (GAME.const.cameraHeightOffset / 2 - 10); // Camera is the head
     GAME.camera.collider.position.z = GAME.DATA.camera.position.z;
-
-    GAME.camera.collider.__dirtyPosition = true;
   };
 
   GAME.camera.moveCameraToCollider = function()
@@ -51,7 +54,6 @@
 
     // Then copy the rotation to the collider
     GAME.camera.collider.rotation = GAME.DATA.camera.rotation;
-    GAME.camera.collider.__dirtyRotation = true;
 
     // Then rotate the camera
     GAME.DATA.camera.lookAt(target);
@@ -61,25 +63,21 @@
   GAME.camera.moveForward = function()
   {
     GAME.camera.collider.translateZ(translateMovementToFrame(-GAME.const.cameraSpeed));
-    GAME.camera.collider.__dirtyPosition = true;
   };
 
   GAME.camera.moveBackward = function()
   {
     GAME.camera.collider.translateZ(translateMovementToFrame(GAME.const.cameraSpeed));
-    GAME.camera.collider.__dirtyPosition = true;
   };
 
   GAME.camera.moveLeft = function()
   {
     GAME.camera.collider.translateX(translateMovementToFrame(-GAME.const.cameraSpeed));
-    GAME.camera.collider.__dirtyPosition = true;
   };
 
   GAME.camera.moveRight = function()
   {
     GAME.camera.collider.translateX(translateMovementToFrame(GAME.const.cameraSpeed));
-    GAME.camera.collider.__dirtyPosition = true;
   };
 
   GAME.camera.update = function()
@@ -98,20 +96,14 @@
     GAME.camera.moveCameraToCollider();
   };
 
-  GAME.camera.collides = function(other_object, relative_velocity, relative_rotation, contact_normal)
-  {
-    ENGINE.console.log("Colliding!");
-  }
-
   GAME.camera.jump = function()
   {
-    var vel = GAME.camera.collider.getLinearVelocity();
-    console.log(vel);
+    var vel = new THREE.Vector3(0,0,0);//GAME.camera.collider.getLinearVelocity();
 
     if (vel.y < 0.1 && vel.y > -0.1)
     {
-      vel.y = 60;
-      GAME.camera.collider.setLinearVelocity(vel);
+      vel.y = 60 *1000;
+      //GAME.camera.collider.applyCentralImpulse(vel);
     }
   };
 

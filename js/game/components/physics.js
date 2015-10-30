@@ -6,27 +6,18 @@
 
   GAME.physics = {};
 
-  GAME.physics.computationWorker = function()
-  {
-    GAME.physics.compute();
-  };
-
-  GAME.physics.compute = function()
-  {
-    GAME.DATA.scene.simulate(undefined, 2);
-  };
-
   GAME.physics.init = function()
   {
-    GAME.DATA.scene.setGravity(GAME.const.gravityVector);
-    GAME.DATA.scene.addEventListener('update', GAME.physics.computationWorker);
+    GAME.DATA.world = new CANNON.World();
+    GAME.DATA.world.gravity.set(0, GAME.const.gravity, 0);
+    GAME.DATA.world.broadphase = new CANNON.NaiveBroadphase();
+    GAME.DATA.world.solver.iterations = 10;
 
-    GAME.physics.compute();
+    GAME.physics.update();
   }
 
-  GAME.physics.objectMoveTo = function(object, target) {
-
+  GAME.physics.update = function()
+  {
+    GAME.DATA.world.step(1 / 60);
   };
-
-  GAME.physics.jump = function(object, yVelo) {};
 })();

@@ -7,7 +7,6 @@
   assert(window.io, "socket.io");
   assert(window.Stats, "stats.js");
   assert(window.Cookies, "js-cookie");
-  assert(window.Physijs, "Physijs");
 
   window.ENGINE = window.ENGINE ||
   {};
@@ -46,10 +45,6 @@
     {
       cache: false
     });
-
-    // Set physi.js worker
-    Physijs.scripts.worker = window.location.pathname + 'js/physijs_worker.js';
-    Physijs.scripts.ammo = window.location.pathname + 'js/ammo.js';
 
     if (ENGINE.initialized)
     {
