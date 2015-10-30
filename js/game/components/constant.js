@@ -27,7 +27,7 @@
 
   GAME.const.butterflyCount = 20;
 
-  GAME.const.gravityVector = new THREE.Vector3( 0, -100, 0 );
+  GAME.const.gravity = -100;
 
   GAME.const.cameraHeightOffset = 60;
   GAME.const.cameraFov = 65;
