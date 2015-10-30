@@ -9,8 +9,8 @@
     ENGINE.menu.open("main");
 
     GAME.network.init();
-    GAME.scene.init();
     GAME.physics.init();
+    GAME.scene.init();
     GAME.controls.init();
 
     GAME.particles.add();

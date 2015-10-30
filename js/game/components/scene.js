@@ -64,6 +64,16 @@
     ground.receiveShadow = true;
     GAME.DATA.scene.add(ground);
 
+    var groundShape = new CANNON.Box(new CANNON.Vec3(2500, 0.1, 2500));
+    GAME.DATA.groundBody = new CANNON.Body(
+    {
+      mass: 0
+    });
+    GAME.DATA.groundBody.position.set(0, 0, 0);
+
+    GAME.DATA.groundBody.addShape(groundShape);
+    GAME.DATA.world.add(GAME.DATA.groundBody);
+
     ENGINE.binding.bindRenderer(GAME.DATA.renderer, GAME.DATA.camera);
   };
 })();

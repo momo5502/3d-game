@@ -25,17 +25,31 @@
     });
 
     GAME.camera.pCollider.addShape(new CANNON.Box(new CANNON.Vec3(7.5, GAME.const.cameraHeightOffset / 2, 7.5)));
+    GAME.DATA.world.add(GAME.camera.pCollider);
 
     GAME.camera.moveColliderToCamera();
 
     GAME.DATA.scene.add(GAME.camera.collider);
   };
 
+  GAME.camera.syncCollider = function()
+{
+  GAME.camera.collider.position.copy(GAME.camera.pCollider.position);
+  GAME.camera.pCollider.quaternion.copy(GAME.camera.collider.quaternion);
+  //GAME.camera.collider.quaternion.copy(GAME.camera.pCollider.quaternion);
+};
+
+  GAME.camera.syncBody = function()
+  {
+    GAME.camera.pCollider.position.copy(GAME.camera.collider.position);
+    GAME.camera.pCollider.quaternion.copy(GAME.camera.collider.quaternion);
+  };
+
   GAME.camera.moveColliderToCamera = function()
   {
-    GAME.camera.collider.position.x = GAME.DATA.camera.position.x;
-    GAME.camera.collider.position.y = GAME.DATA.camera.position.y - (GAME.const.cameraHeightOffset / 2 - 10); // Camera is the head
-    GAME.camera.collider.position.z = GAME.DATA.camera.position.z;
+    GAME.camera.pCollider.position.x = GAME.DATA.camera.position.x;
+    GAME.camera.pCollider.position.y = GAME.DATA.camera.position.y - (GAME.const.cameraHeightOffset / 2 - 10); // Camera is the head
+    GAME.camera.pCollider.position.z = GAME.DATA.camera.position.z;
   };
 
   GAME.camera.moveCameraToCollider = function()
@@ -63,21 +77,25 @@
   GAME.camera.moveForward = function()
   {
     GAME.camera.collider.translateZ(translateMovementToFrame(-GAME.const.cameraSpeed));
+  GAME.camera.syncBody();
   };
 
   GAME.camera.moveBackward = function()
   {
     GAME.camera.collider.translateZ(translateMovementToFrame(GAME.const.cameraSpeed));
+    GAME.camera.syncBody();
   };
 
   GAME.camera.moveLeft = function()
   {
     GAME.camera.collider.translateX(translateMovementToFrame(-GAME.const.cameraSpeed));
+    GAME.camera.syncBody();
   };
 
   GAME.camera.moveRight = function()
   {
     GAME.camera.collider.translateX(translateMovementToFrame(GAME.const.cameraSpeed));
+    GAME.camera.syncBody();
   };
 
   GAME.camera.update = function()
@@ -98,12 +116,11 @@
 
   GAME.camera.jump = function()
   {
-    var vel = new THREE.Vector3(0,0,0);//GAME.camera.collider.getLinearVelocity();
+    var vel = GAME.camera.pCollider.velocity;//GAME.camera.collider.getLinearVelocity();
 
     if (vel.y < 0.1 && vel.y > -0.1)
     {
-      vel.y = 60 *1000;
-      //GAME.camera.collider.applyCentralImpulse(vel);
+      vel.y += 60;
     }
   };
 

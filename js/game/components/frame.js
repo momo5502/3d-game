@@ -17,10 +17,11 @@
     GAME.grass.update();
     GAME.rays.update();
 
-    GAME.physics.update();
     GAME.camera.update();
 
     GAME.players.update();
+
+    GAME.physics.update();
 
     GAME.DATA.renderer.render(GAME.DATA.scene, GAME.DATA.camera);
   };

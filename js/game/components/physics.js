@@ -12,12 +12,11 @@
     GAME.DATA.world.gravity.set(0, GAME.const.gravity, 0);
     GAME.DATA.world.broadphase = new CANNON.NaiveBroadphase();
     GAME.DATA.world.solver.iterations = 10;
-
-    GAME.physics.update();
   }
 
   GAME.physics.update = function()
   {
     GAME.DATA.world.step(1 / 60);
+    GAME.camera.syncCollider();
   };
 })();
