@@ -28,5 +28,4 @@
   {
     ENGINE.stats.object.domElement.style.display = 'inline';
   };
-
 })();

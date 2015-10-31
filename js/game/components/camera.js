@@ -151,9 +151,11 @@
         break;
     }
 
-    if (GAME.physics.collides(pos, GAME.camera.collider.position)/* ||
-      GAME.physics.collides(pos.clone().setY(pos.y - (GAME.const.cameraHeightOffset / 2)), GAME.camera.collider.position) ||
-      GAME.physics.collides(pos.clone().setY(pos.y + (GAME.const.cameraHeightOffset / 2)), GAME.camera.collider.position)*/)
+    if (GAME.physics.collides(pos, GAME.camera.collider.position)
+      /* ||
+            GAME.physics.collides(pos.clone().setY(pos.y - (GAME.const.cameraHeightOffset / 2)), GAME.camera.collider.position) ||
+            GAME.physics.collides(pos.clone().setY(pos.y + (GAME.const.cameraHeightOffset / 2)), GAME.camera.collider.position)*/
+    )
     {
       GAME.camera.collider.position = pos;
     }

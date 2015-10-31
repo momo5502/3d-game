@@ -33,6 +33,4 @@
     ENGINE.stats.update();
     callback();
   };
-
-
 })();

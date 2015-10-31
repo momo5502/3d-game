@@ -30,6 +30,7 @@
     "model",
     "sound",
     "chat",
+    "maps",
   ];
 
   var callbacks = [];

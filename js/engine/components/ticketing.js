@@ -45,7 +45,7 @@
 
   function closeTicket()
   {
-    if(!this.closed())
+    if (!this.closed())
     {
       tickets[this.id] = true;
       ENGINE.console.log("Ticket (" + this.id + ", " + this.name + ") closed.");

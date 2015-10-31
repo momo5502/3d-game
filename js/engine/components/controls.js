@@ -165,10 +165,10 @@
 
   $(window).keydown(function(event)
   {
-    if(!activated) return;
+    if (!activated) return;
     event.preventDefault();
 
-    if(!keyDown[event.keyCode])
+    if (!keyDown[event.keyCode])
     {
       ENGINE.controls.runKeySingle(event.keyCode)
     }
@@ -181,7 +181,7 @@
 
   $(window).keyup(function(event)
   {
-    if(!activated) return;
+    if (!activated) return;
     event.preventDefault();
     keyDown[event.keyCode] = false;
   });

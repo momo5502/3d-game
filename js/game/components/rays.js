@@ -18,17 +18,14 @@
     rayTexture.repeat.y = 1;
 
     var attributes = {
-
       time:
       {
         type: 'f',
         value: []
       },
-
     };
 
     GAME.DATA.uniformsRays = {
-
       color:
       {
         type: "c",
@@ -44,7 +41,6 @@
         type: "f",
         value: 0.0
       },
-
     };
 
     var material = new THREE.ShaderMaterial(

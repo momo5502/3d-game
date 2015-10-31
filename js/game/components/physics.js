@@ -45,7 +45,7 @@
       checkVector.sub(objectOrigin);
 
       // Direction is ommitted for now
-      if (/*angleTo2d(direction, checkVector) < 90 &&*/ checkVector.length() <= (length * 10)) // Maybe 10 is too low or high?
+      if ( /*angleTo2d(direction, checkVector) < 90 &&*/ checkVector.length() <= (length * 10)) // Maybe 10 is too low or high?
       {
         meshes.push(collisionMeshes[i]);
       }

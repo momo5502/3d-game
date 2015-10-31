@@ -33,7 +33,7 @@
 
   GAME.players.clear = function()
   {
-    for(var i = 0; i < this.length; i++)
+    for (var i = 0; i < this.length; i++)
     {
       this[i].remove();
     }
@@ -87,7 +87,7 @@
     for (var i = 0; i < this.length; i++)
     {
       var player = this[i];
-      if(player.matrix === undefined || player.matrix == null) return;
+      if (player.matrix === undefined || player.matrix == null) return;
       player.object.matrix.fromArray(player.matrix);
       player.object.matrix.decompose(player.object.position, player.object.quaternion, player.object.scale);
 
