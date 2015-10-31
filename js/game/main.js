@@ -5,6 +5,7 @@ ENGINE.init(function()
 
   // Load menus
   ENGINE.menu.load("main");
+  ENGINE.menu.load("console");
 
   // Load materials
   ENGINE.material.loadCube("plains");
