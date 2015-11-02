@@ -9,9 +9,28 @@
   ENGINE.components.loader = function(path, components, done)
   {
     this.path = path;
+    this.callback = done;
     this.components = components;
+    this.componentTickets = [];
     this.currentComponent = 0;
-    this.loadingDone = done;
+    this.loadingDone = function()
+    {
+      for (var i = 0; i < this.componentTickets.length; i++)
+      {
+        var ticket = this.componentTickets[i];
+        if (!ticket.closed())
+        {
+          ticket.close();
+        }
+      }
+
+      this.callback();
+    };
+
+    for (var i = 0; i < this.components.length; i++)
+    {
+      this.componentTickets[i] = new ENGINE.ticket(this.components[i]);
+    }
 
     var self = this;
 
@@ -23,6 +42,7 @@
 
         $.getScript(file, function(data, textStatus, jqxhr)
         {
+          self.componentTickets[self.currentComponent].close();
           self.currentComponent++;
           self.chainload();
         });
