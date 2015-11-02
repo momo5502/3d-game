@@ -56,9 +56,9 @@
   {
     var count = 0;
 
-    for(var i = 0; i < tickets.length;i++)
+    for (var i = 0; i < tickets.length; i++)
     {
-      if(tickets[i]) count++;
+      if (tickets[i]) count++;
     }
 
     return count;

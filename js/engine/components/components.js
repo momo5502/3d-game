@@ -12,15 +12,13 @@
     this.callback = done;
     this.components = components;
     this.componentTickets = [];
-    this.currentComponent = 0;
     this.loadingDone = function()
     {
       for (var i = 0; i < this.componentTickets.length; i++)
       {
-        var ticket = this.componentTickets[i];
-        if (!ticket.closed())
+        if (!this.componentTickets[i].closed())
         {
-          ticket.close();
+          return;
         }
       }
 
@@ -34,22 +32,20 @@
 
     var self = this;
 
-    this.chainload = function()
+    this.loadScript = function(num)
     {
-      if (this.currentComponent < this.components.length)
+      $.getScript(this.path + this.components[num] + ".js", function(data, textStatus, jqxhr)
       {
-        var file = this.path + this.components[this.currentComponent] + ".js";
+        self.componentTickets[num].close();
+        self.loadingDone();
+      });
+    };
 
-        $.getScript(file, function(data, textStatus, jqxhr)
-        {
-          self.componentTickets[self.currentComponent].close();
-          self.currentComponent++;
-          self.chainload();
-        });
-      }
-      else
+    this.load = function()
+    {
+      for (var i = 0; i < this.components.length; i++)
       {
-        this.loadingDone();
+        this.loadScript(i);
       }
     };
   };
@@ -61,6 +57,6 @@
     new ENGINE.components.loader(path, components, function()
     {
       ticket.close();
-    }).chainload();
+    }).load();
   };
 })();
