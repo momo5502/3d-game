@@ -1,6 +1,7 @@
 ENGINE.init(function()
 {
-  ENGINE.ticketing.onClose(function(min, max) {
+  ENGINE.ticketing.onClose(function(min, max)
+  {
     $("#progress").width(((100.0 / max) * min) + "%");
   });
 
