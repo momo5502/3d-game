@@ -8,6 +8,7 @@
 
   var tickets = [];
   var callbacks = new ENGINE.callbackHandler();
+  var closeCallbacks = new ENGINE.callbackHandler();
 
   ENGINE.ticket = function(name)
   {
@@ -26,7 +27,7 @@
 
   ENGINE.ticketing.ready = function(callback)
   {
-    if (callback != undefined)
+    if (callback !== undefined)
     {
       callbacks.add(callback);
     }
@@ -39,16 +40,39 @@
     }
   };
 
+  ENGINE.ticketing.onClose = function(callback)
+  {
+    if (callback !== undefined)
+    {
+      closeCallbacks.add(callback);
+    }
+  }
+
   /****************************/
   /*      Misc functions      */
   /****************************/
+
+  function getClosedTicketCount()
+  {
+    var count = 0;
+
+    for(var i = 0; i < tickets.length;i++)
+    {
+      if(tickets[i]) count++;
+    }
+
+    return count;
+  }
 
   function closeTicket()
   {
     if (!this.closed())
     {
       tickets[this.id] = true;
-      ENGINE.console.log("Ticket (" + this.id + ", " + this.name + ") closed.");
+
+      closeCallbacks.run(getClosedTicketCount(), tickets.length);
+
+      ENGINE.console.log("Ticket " + this.id + " '" + this.name + "' closed (" + getClosedTicketCount() + "/" + tickets.length + ").");
       ENGINE.ticketing.ready();
     }
   }

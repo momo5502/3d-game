@@ -1,5 +1,9 @@
 ENGINE.init(function()
 {
+  ENGINE.ticketing.onClose(function(min, max) {
+    $("#progress").width(((100.0 / max) * min) + "%");
+  });
+
   // Bind to element
   ENGINE.binding.bind("#container");
 
