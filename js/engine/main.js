@@ -44,7 +44,7 @@
     // Enable caching for online use!
     $.ajaxSetup(
     {
-      cache: false
+      cache: true
     });
 
     if (ENGINE.initialized)
