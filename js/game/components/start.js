@@ -45,8 +45,6 @@
     $('#container').fadeTo(1000, 1, function()
     {
       ENGINE.sound.playLoop("ambient").setVolume(0.5);
-      ENGINE.sound.playLoop("leaves").setVolume(0.3);
-      ENGINE.sound.playLoop("forest").setVolume(0.03);
       ENGINE.console.log("Ambient started.");
     });
   };

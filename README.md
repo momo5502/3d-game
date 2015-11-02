@@ -12,7 +12,7 @@ Live preview: http://momo5502.github.io/3d-game/
   three.js: http://threejs.org/  
   threex.windowresize: https://github.com/jeromeetienne/threex.windowresize  
   requestAnimationFrame: https://gist.github.com/mrdoob/838785  
-  physi.js: http://chandlerprall.github.io/Physijs/  
+  cannon.js: http://www.cannonjs.org/  
   socket.io: http://socket.io/  
   js-cookie: https://github.com/js-cookie/js-cookie  
   stats.js: https://github.com/mrdoob/stats.js/  

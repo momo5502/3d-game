@@ -53,8 +53,6 @@ ENGINE.init(function()
 
   // Load sounds
   ENGINE.sound.load("ambient");
-  ENGINE.sound.load("leaves", "https://s3.amazonaws.com/noisliaudio/leaves.ogg");
-  ENGINE.sound.load("forest", "https://s3.amazonaws.com/noisliaudio/forest.ogg");
 
   // Connect to backend
   //ENGINE.network.connect("http://127.0.0.1:88");
