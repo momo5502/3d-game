@@ -25,7 +25,7 @@
 
   GAME.physics.update = function()
   {
-    GAME.DATA.world.step(GAME.var.frameDelta / 1000);
+    GAME.DATA.world.step(/*GAME.var.frameDelta / 1000*/ 1 / 60);
     GAME.camera.syncCollider();
   };
 
