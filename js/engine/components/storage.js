@@ -11,20 +11,28 @@
   // Local storage
   ENGINE.storage.storeLocal = function(name, object)
   {
-    return Cookies.set(storageCookiePrefix + name, object,
-    {
-      expires: 365
-    });
+    var data = JSON.stringify(object);
+    data = LZString.compress(data);
+
+    return store.set(storageCookiePrefix + name, data);
   };
 
   ENGINE.storage.loadLocal = function(name)
   {
-    return Cookies.get(storageCookiePrefix + name);
+    var data = store.get(storageCookiePrefix + name);
+
+    if (data !== undefined)
+    {
+      data = LZString.decompress(data);
+      data = JSON.parse(data);
+    }
+
+    return data;
   };
 
   ENGINE.storage.hasLocal = function(name)
   {
-    return (ENGINE.storage.loadLocal(name) != undefined);
+    return (ENGINE.storage.loadLocal(name) !== undefined);
   };
 
   // Remote storage

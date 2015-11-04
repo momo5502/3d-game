@@ -14,6 +14,7 @@ Live preview: http://momo5502.github.io/3d-game/
   requestAnimationFrame: https://gist.github.com/mrdoob/838785  
   cannon.js: http://www.cannonjs.org/  
   socket.io: http://socket.io/  
-  js-cookie: https://github.com/js-cookie/js-cookie  
   stats.js: https://github.com/mrdoob/stats.js/  
   Martin Whitaker: http://codepen.io/sirnightowl/pen/dPgXrP  
+  lz-string: http://pieroxy.net/blog/pages/lz-string/index.html  
+  store.js: https://github.com/marcuswestin/store.js/  
