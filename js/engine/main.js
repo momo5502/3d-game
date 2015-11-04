@@ -20,6 +20,7 @@
     "database",
     "network",
     "storage",
+    "dvar",
     "menu",
     "stats",
     "animate",
