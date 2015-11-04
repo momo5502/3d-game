@@ -58,7 +58,11 @@
     stackPush(menu);
     menu.attachStyles();
     menu.onOpen();
-    menu.show(time, callback);
+    menu.show(time, function()
+    {
+      menu.onOpened();
+      if(callback !== undefined) callback();
+    });
   };
 
   ENGINE.menu.close = function(name, time, callback)
@@ -73,6 +77,7 @@
     menu.onClose();
     menu.hide(time, function()
     {
+      menu.onClosed();
       if (callback !== undefined) callback();
       menu.detachStyles();
       stackPop(menu);
@@ -189,7 +194,9 @@
     };
 
     menu.onOpen = function() {};
+    menu.onOpened = function() {};
     menu.onClose = function() {};
+    menu.onClosed = function() {};
 
     // Provide self to underlying scripts
     ENGINE.menu.self = menu;

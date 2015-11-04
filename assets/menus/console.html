@@ -3,7 +3,9 @@
 		border: 2px solid rgb(32, 32, 26);
 		background-color: rgb(64, 64, 51);
 		width: calc(100% - 18px);
-		height: 24px;
+		height: 25px;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 
 	.console-title {
@@ -11,13 +13,12 @@
 		font-size: 10pt;
 		font-family: 'Courier New';
 		color: rgb(255, 255, 0);
-		padding-left: 3px;
-		padding-right: 7px;
+		padding-left: 7px;
+		padding-right: 3px;
 		max-width: 0;
-		white-space: nowrap;
 	}
 
-	.console-field {
+	#console-field {
 		font-family: 'Courier New';
 		font-size: 10pt;
 		text-align: left;
@@ -26,6 +27,7 @@
 		border: 0;
 		width: 100%;
 		outline: none;
+		display: inline;
 		-webkit-font-smoothing: antialiased;
 		-webkit-touch-callout: none;
 		-webkit-user-select: none;
@@ -44,7 +46,7 @@
 
 <div class="cmd_console">
 	<span class="console-title">Console></span>
-	<span class="console-field"></span>
+	<input type="text" id="console-field" value="test">
 </div>
 
 <script>
@@ -54,9 +56,16 @@
 		var self = ENGINE.menu.self;
 		self.popup = true;
 
+		var inputField = self.select("#console-field");
+
 		self.onOpen = function() {
 			// Do something when the menu opens
 			//ENGINE.console.log("Developer console opened");
+			inputField.val("");
+		};
+
+		self.onOpened = function() {
+			inputField.focus();
 		};
 
 		self.onClose = function() {
@@ -64,8 +73,12 @@
 			//ENGINE.console.log("Developer console closed");
 		};
 
-		self.select("#b_options").click(function() {
-			alert("Nothing yet!");
+		inputField.keyup(function(e) {
+			if (e.keyCode === 13) {
+				// TODO: Parse data and execute commands/set dvars
+				//alert(inputField.val());
+				ENGINE.menu.close(self);
+			}
 		});
 	})();
 </script>

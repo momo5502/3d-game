@@ -188,7 +188,8 @@
   {
     if (!keyDown[event.keyCode])
     {
-      ENGINE.controls.runKeySinglePersistent(event.keyCode)
+      ENGINE.console.log("Key pressed: " + event.keyCode);
+      ENGINE.controls.runKeySinglePersistent(event.keyCode);
     }
 
     if (activated)
