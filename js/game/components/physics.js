@@ -23,9 +23,15 @@
     GAME.DATA.world.solver.iterations = 10;
   }
 
+  var step = 1/60;
   GAME.physics.update = function()
   {
-    GAME.DATA.world.step(/*GAME.var.frameDelta / 1000*/ 1 / 60);
+    var step = parseFloat(GAME.var.frameDelta) / 1000;
+
+    if((Date.now() - GAME.var.startTime) <= 5000) step = 1 / 60;
+    if(step > 0.1) step = 0.1; // Slows physics, but otherwise you can trespass the ground
+
+    GAME.DATA.world.step(step);
     GAME.camera.syncCollider();
   };
 

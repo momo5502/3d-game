@@ -21,4 +21,6 @@
   GAME.var.frameOldTime = Date.now();
   GAME.var.frameNewTime = Date.now();
   GAME.var.frameDelta = 0;
+
+  GAME.var.startTime = Date.now();
 })();
