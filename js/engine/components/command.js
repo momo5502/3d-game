@@ -16,15 +16,15 @@
   // Dvars have higher priority
   ENGINE.command.execute = function(commandline)
   {
-    if(commandline[0] != "/")
+    if (commandline.trim()[0] != "/" && commandline.trim()[0] != "\\")
     {
       ENGINE.chat.sendMessage(commandline);
       return;
     }
 
-    commandline = commandline.substring(1);
+    commandline = commandline.trim().substring(1);
 
-    var commands = commandline.split(";");
+    var commands = commandline.trim().split(";");
 
     for (var i = 0; i < commands.length; i++)
     {

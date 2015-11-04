@@ -76,12 +76,16 @@
 		ENGINE.controls.assignSinglePersistent(9, function(event) {
 			if (self.isOpen()) {
 				event.preventDefault();
-				if (inputField.val()[0] == "\\") {
-					var text = inputField.val();
-					text[0] = "/";
-					inputField.val(text);
-				} else if (inputField.val()[0] != "/") {
-					inputField.val("/" + inputField.val());
+
+				if (inputField.val().trim()[0] == "\\") {
+
+					inputField.val("/" + inputField.val().trim().substring(1));
+				} else if (inputField.val().trim()[0] != "/") {
+
+					inputField.val("/" + inputField.val().trim());
+				} else {
+
+					inputField.val(inputField.val().trim());
 				}
 			}
 		});
