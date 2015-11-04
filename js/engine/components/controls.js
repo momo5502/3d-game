@@ -8,23 +8,29 @@
   ENGINE.controls.pointer = {};
 
   ENGINE.controls.key = {
+    // Left-hand movement
     UP: 38,
     DOWN: 40,
     LEFT: 37,
     RIGHT: 39,
 
+    // Right-hand movement
     W: 87,
     A: 65,
     S: 83,
     D: 68,
 
+    // Chat
     T: 84,
 
+    // Reload
     F5: 116,
 
+    // Jumping
     Space: 32,
     Num5: 12,
 
+    // Console toggle
     Tilde: 192,
     Circonflex: 220,
   };
@@ -126,7 +132,7 @@
     {
       if (ENGINE.controls.pointer.isLockedTo(element))
       {
-        ENGINE.controls.pointer.dispatchMovement(event.originalEvent);
+        if(activated) ENGINE.controls.pointer.dispatchMovement(event.originalEvent);
       }
     });
 

@@ -21,6 +21,7 @@
     "network",
     "storage",
     "dvar",
+    "command",
     "menu",
     "stats",
     "animate",

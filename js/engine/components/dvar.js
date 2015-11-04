@@ -92,4 +92,9 @@
       dvar.value.reset();
     }
   };
+
+  ENGINE.dvars.exists = function(name)
+  {
+    return (ENGINE.dvars.find(name) !== undefined);
+  }
 })();

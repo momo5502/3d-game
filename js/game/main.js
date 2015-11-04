@@ -68,6 +68,7 @@ ENGINE.init(function()
   ENGINE.components.load("js/game/components/", [
     "constant",
     "variable",
+    "commands",
     "network",
     "controls",
     "players",

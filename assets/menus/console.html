@@ -75,8 +75,7 @@
 
 		inputField.keyup(function(e) {
 			if (e.keyCode === 13) {
-				// TODO: Parse data and execute commands/set dvars
-				//alert(inputField.val());
+				ENGINE.command.execute(inputField.val());
 				ENGINE.menu.close(self);
 			}
 		});
