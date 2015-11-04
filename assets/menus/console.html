@@ -73,10 +73,24 @@
 			//ENGINE.console.log("Developer console closed");
 		};
 
+		ENGINE.controls.assignSinglePersistent(9, function(event) {
+			if (self.isOpen()) {
+				event.preventDefault();
+				if (inputField.val()[0] == "\\") {
+					var text = inputField.val();
+					text[0] = "/";
+					inputField.val(text);
+				} else if (inputField.val()[0] != "/") {
+					inputField.val("/" + inputField.val());
+				}
+			}
+		});
+
 		inputField.keyup(function(e) {
+			// On Enter
 			if (e.keyCode === 13) {
 				ENGINE.command.execute(inputField.val());
-				ENGINE.menu.close(self);
+				self.dismiss();
 			}
 		});
 	})();

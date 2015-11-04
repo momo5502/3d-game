@@ -44,7 +44,7 @@
 
     ENGINE.controls.assign(ENGINE.controls.key.T, function()
     {
-      ENGINE.chat.sendMessage(GAME.DATA.username, prompt("Enter a message"));
+      ENGINE.chat.sendMessage(prompt("Enter a message"));
     });
 
     // Player jump

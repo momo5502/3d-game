@@ -52,27 +52,27 @@
     activated = false;
   };
 
-  ENGINE.controls.runKey = function(key)
+  ENGINE.controls.runKey = function(key, event)
   {
     if (actions[key] != undefined)
     {
-      actions[key].run();
+      actions[key].run(event);
     }
   }
 
-  ENGINE.controls.runKeySinglePersistent = function(key)
+  ENGINE.controls.runKeySinglePersistent = function(key, event)
   {
     if (actionsSinglePersistent[key] != undefined)
     {
-      actionsSinglePersistent[key].run();
+      actionsSinglePersistent[key].run(event);
     }
   }
 
-  ENGINE.controls.runKeySingle = function(key)
+  ENGINE.controls.runKeySingle = function(key, event)
   {
     if (actionsSingle[key] != undefined)
     {
-      actionsSingle[key].run();
+      actionsSingle[key].run(event);
     }
   }
 
@@ -197,7 +197,7 @@
     if (!keyDown[event.keyCode])
     {
       //ENGINE.console.log("Key pressed: " + event.keyCode);
-      ENGINE.controls.runKeySinglePersistent(event.keyCode);
+      ENGINE.controls.runKeySinglePersistent(event.keyCode, event);
     }
 
     if (activated)
@@ -206,11 +206,11 @@
 
       if (!keyDown[event.keyCode])
       {
-        ENGINE.controls.runKeySingle(event.keyCode)
+        ENGINE.controls.runKeySingle(event.keyCode, event);
       }
 
       //console.log(event);
-      ENGINE.controls.runKey(event.keyCode);
+      ENGINE.controls.runKey(event.keyCode, event);
     }
 
     keyDown[event.keyCode] = true;

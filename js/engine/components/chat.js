@@ -6,12 +6,19 @@
 
   ENGINE.chat = {};
 
-  ENGINE.chat.sendMessage = function(username, message)
+  var _username = "You";
+
+  ENGINE.chat.setUsername = function(username)
+  {
+    _username = username;
+  };
+
+  ENGINE.chat.sendMessage = function(message)
   {
     if (message === undefined || message == null) return;
 
     ENGINE.network.send("chatmessage", message);
-    pushMessage(username, message);
+    pushMessage(_username, message);
   };
 
   ENGINE.network.on("chatmessage", function(data, socket)

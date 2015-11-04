@@ -34,6 +34,8 @@
       GAME.DATA.username = ENGINE.storage.loadLocal("username");
     }
 
+    ENGINE.chat.setUsername(GAME.DATA.username);
+
     GAME.network.authenticate(GAME.DATA.username);
 
     // Display the container

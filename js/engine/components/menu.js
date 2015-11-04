@@ -96,11 +96,16 @@
     }
   }
 
-  ENGINE.menu.isOpen = function(name)
+  ENGINE.menu.isOpen = function(menu)
   {
+    if (typeof menu != 'string')
+    {
+      menu = menu.name;
+    }
+
     for (var i = 0; i < stack.length; i++)
     {
-      if (stack[i].name == name)
+      if (stack[i].name == menu)
       {
         return true;
       }
@@ -191,6 +196,22 @@
       {
         this.element.fadeIn(time, callback);
       }
+    };
+
+    menu.isOpen = function()
+    {
+      return ENGINE.menu.isOpen(menu);
+    };
+
+    menu.open = function(time, callback)
+    {
+      ENGINE.menu.open(menu, time, callback);
+    };
+
+    // close would override ticket.close
+    menu.dismiss = function(time, callback)
+    {
+      ENGINE.menu.close(menu, time, callback);
     };
 
     menu.onOpen = function() {};
