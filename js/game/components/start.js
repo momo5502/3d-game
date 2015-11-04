@@ -6,6 +6,8 @@
 
   GAME.start = function()
   {
+    GAME.var.startTime = Date.now();
+
     ENGINE.menu.open("main");
 
     GAME.network.init();
