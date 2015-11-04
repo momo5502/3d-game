@@ -25,7 +25,8 @@
     Space: 32,
     Num5: 12,
 
-    Tilde: 220,
+    Tilde: 192,
+    Circonflex: 220,
   };
 
   var activated = false;
@@ -188,7 +189,7 @@
   {
     if (!keyDown[event.keyCode])
     {
-      ENGINE.console.log("Key pressed: " + event.keyCode);
+      //ENGINE.console.log("Key pressed: " + event.keyCode);
       ENGINE.controls.runKeySinglePersistent(event.keyCode);
     }
 

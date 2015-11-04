@@ -51,9 +51,12 @@
     ENGINE.controls.assignSingle(ENGINE.controls.key.Space, GAME.camera.jump);
     ENGINE.controls.assignSingle(ENGINE.controls.key.Num5, GAME.camera.jump);
 
-    // This is not tilde actually, but ^
-    // TODO: Add tilde handler
     ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.Tilde, function()
+    {
+      ENGINE.menu.toggle("console");
+    });
+
+    ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.Circonflex, function()
     {
       ENGINE.menu.toggle("console");
     });
