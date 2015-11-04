@@ -30,7 +30,6 @@
   GAME.const.gravity = -100;
 
   GAME.const.cameraHeightOffset = 60;
-  GAME.const.cameraFov = 65;
   GAME.const.playerMass = 30;
 
   GAME.const.snaps = 60;

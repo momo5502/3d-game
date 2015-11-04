@@ -27,7 +27,7 @@
 
   ENGINE.animate = function(callback)
   {
-    lockFrames(maxFps.value.get());
+    lockFrames(maxFps.get());
 
     window.requestAnimationFrame(function(e)
     {
@@ -42,7 +42,7 @@
 
   function lockFrames(frames)
   {
-    if(frames == 0) return;
+    if (frames == 0) return;
 
     if (time != 0)
     {

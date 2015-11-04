@@ -33,28 +33,38 @@
     var dvar = ENGINE.dvars.find(name);
     if (dvar !== undefined)
     {
-      dvar.value.set(value);
+      dvar.set(value);
       return dvar;
     }
 
     this.name = name;
     this.value = new dvarValue(value);
 
+    this.get = function()
+    {
+      return this.value.get();
+    };
+
+    this.set = function(value)
+    {
+      return this.value.set(value);
+    };
+
     dvarPool.push(this);
-  }
+  };
 
   ENGINE.dvars.find = function(name)
   {
     for (var i = 0; i < dvarPool.length; i++)
     {
-      if (dvarPool[i].toLowerCase() == name.toLowerCase())
+      if (dvarPool[i].name.toLowerCase() == name.toLowerCase())
       {
         return dvarPool[i];
       }
     }
 
     return undefined;
-  }
+  };
 
   // Maybe only set the value if the dvar exists?
   // Automatically convert types

@@ -35,13 +35,37 @@
 		user-select: none;
 	}
 
-	.menu {
+	#menu_console {
 		z-index: 10;
 		margin-top: 9px;
 		margin-left: 9px;
 	}
 </style>
+
 <div class="cmd_console">
 	<span class="console-title">Console></span>
-	<span class="console-field">Test</span>
+	<span class="console-field"></span>
 </div>
+
+<script>
+	(function() {
+		// Store a reference to the menu.
+		// ENGINE.menu.self won't be accessible anymore, once the menu is loaded
+		var self = ENGINE.menu.self;
+		self.popup = true;
+
+		self.onOpen = function() {
+			// Do something when the menu opens
+			//ENGINE.console.log("Developer console opened");
+		};
+
+		self.onClose = function() {
+			// Do something when the menu closes
+			//ENGINE.console.log("Developer console closed");
+		};
+
+		self.select("#b_options").click(function() {
+			alert("Nothing yet!");
+		});
+	})();
+</script>

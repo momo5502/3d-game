@@ -23,6 +23,7 @@
     var ticket = new ENGINE.ticket(name);
     ticket.type = dbType;
     ticket.failed = false;
+    ticket.popup = false;
 
     $.ajax(
     {
@@ -78,10 +79,36 @@
     });
   };
 
+  ENGINE.menu.toggle = function(name, time, callback)
+  {
+    if (ENGINE.menu.isOpen(name))
+    {
+      ENGINE.menu.close(name, time, callback);
+    }
+    else
+    {
+      ENGINE.menu.open(name, time, callback);
+    }
+  }
+
+  ENGINE.menu.isOpen = function(name)
+  {
+    for (var i = 0; i < stack.length; i++)
+    {
+      if (stack[i].name == name)
+      {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   /****************************/
   /*      Misc functions      */
   /****************************/
 
+  // TODO: Hide all menus below, if this is not a popmenu
   function stackPush(menu)
   {
     ENGINE.controls.deactivate();
@@ -91,7 +118,7 @@
       stack.splice(menuindex, 1);
     }
 
-    if (stack.length)
+    if (stack.length && !menu.popup)
     {
       stack[stack.length - 1].hide();
     }
@@ -99,6 +126,7 @@
     stack.push(menu);
   }
 
+  // TODO: Show all necessary menus when removing a popmenu/normal menus
   function stackPop(menu)
   {
     var menuindex = stack.indexOf(menu);

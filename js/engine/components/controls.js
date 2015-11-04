@@ -24,11 +24,14 @@
 
     Space: 32,
     Num5: 12,
+
+    Tilde: 220,
   };
 
   var activated = false;
   var actions = [];
   var actionsSingle = [];
+  var actionsSinglePersistent = [];
   var keyDown = [];
 
   ENGINE.controls.activate = function()
@@ -49,6 +52,14 @@
     }
   }
 
+  ENGINE.controls.runKeySinglePersistent = function(key)
+  {
+    if (actionsSinglePersistent[key] != undefined)
+    {
+      actionsSinglePersistent[key].run();
+    }
+  }
+
   ENGINE.controls.runKeySingle = function(key)
   {
     if (actionsSingle[key] != undefined)
@@ -59,7 +70,7 @@
 
   ENGINE.controls.isKeyDown = function(key)
   {
-    return (keyDown[key] != undefined && keyDown[key]);
+    return (activated && keyDown[key] != undefined && keyDown[key]);
   }
 
   ENGINE.controls.pointer.callbacks = new ENGINE.callbackHandler();
@@ -163,26 +174,46 @@
     actionsSingle[key].add(callback);
   };
 
-  $(window).keydown(function(event)
+  ENGINE.controls.assignSinglePersistent = function(key, callback)
   {
-    if (!activated) return;
-    event.preventDefault();
-
-    if (!keyDown[event.keyCode])
+    if (actionsSinglePersistent[key] == undefined)
     {
-      ENGINE.controls.runKeySingle(event.keyCode)
+      actionsSinglePersistent[key] = new ENGINE.callbackHandler();
     }
 
-    //console.log(event);
-    ENGINE.controls.runKey(event.keyCode);
+    actionsSinglePersistent[key].add(callback);
+  };
+
+  $(window).keydown(function(event)
+  {
+    if (!keyDown[event.keyCode])
+    {
+      ENGINE.controls.runKeySinglePersistent(event.keyCode)
+    }
+
+    if (activated)
+    {
+      event.preventDefault();
+
+      if (!keyDown[event.keyCode])
+      {
+        ENGINE.controls.runKeySingle(event.keyCode)
+      }
+
+      //console.log(event);
+      ENGINE.controls.runKey(event.keyCode);
+    }
 
     keyDown[event.keyCode] = true;
   });
 
   $(window).keyup(function(event)
   {
-    if (!activated) return;
-    event.preventDefault();
+    if (activated)
+    {
+      event.preventDefault();
+    }
+
     keyDown[event.keyCode] = false;
   });
 

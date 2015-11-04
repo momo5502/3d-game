@@ -7,7 +7,6 @@
   GAME.start = function()
   {
     ENGINE.menu.open("main");
-    //ENGINE.menu.open("console");
 
     GAME.network.init();
     GAME.physics.init();

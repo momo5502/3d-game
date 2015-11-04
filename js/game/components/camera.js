@@ -10,10 +10,11 @@
   GAME.camera = {};
 
   GAME.camera.fov = new ENGINE.dvar("cg_fov", 65);
+  GAME.camera.jumpHeight = new ENGINE.dvar("jump_height", 50);
 
   GAME.camera.init = function()
   {
-    GAME.DATA.camera = new THREE.PerspectiveCamera(GAME.camera.fov.value.get(), ENGINE.NULL, 1, 20000);
+    GAME.DATA.camera = new THREE.PerspectiveCamera(GAME.camera.fov.get(), ENGINE.NULL, 1, 20000);
     GAME.DATA.camera.position.z = 0;
     GAME.DATA.camera.position.y = GAME.const.cameraHeightOffset;
     GAME.DATA.scene.add(GAME.DATA.camera);
@@ -113,9 +114,9 @@
     GAME.camera.moveCameraToCollider();
 
     // Update fov
-    if (GAME.camera.camera.fov != GAME.camera.fov.value.get())
+    if (GAME.camera.camera.fov != GAME.camera.fov.get())
     {
-      GAME.camera.camera.fov = GAME.camera.fov.value.get();
+      GAME.camera.camera.fov = GAME.camera.fov.get();
       GAME.camera.camera.updateProjectionMatrix();
     }
   };
@@ -126,7 +127,7 @@
 
     if (vel.y < 1 && vel.y > -1)
     {
-      vel.y += 50;
+      vel.y += GAME.camera.jumpHeight.get();
     }
   };
 
