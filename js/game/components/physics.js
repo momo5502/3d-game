@@ -23,7 +23,6 @@
     GAME.DATA.world.solver.iterations = 10;
   }
 
-  var step = 1/60;
   GAME.physics.update = function()
   {
     var step = parseFloat(GAME.var.frameDelta) / 1000;
