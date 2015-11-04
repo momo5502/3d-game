@@ -33,6 +33,7 @@
     // Console toggle
     Tilde: 192,
     Circonflex: 220,
+    Circonflex2: 160, // Firefox doesn't recognize the one above
   };
 
   var activated = false;

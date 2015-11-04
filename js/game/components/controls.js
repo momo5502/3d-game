@@ -51,14 +51,13 @@
     ENGINE.controls.assignSingle(ENGINE.controls.key.Space, GAME.camera.jump);
     ENGINE.controls.assignSingle(ENGINE.controls.key.Num5, GAME.camera.jump);
 
-    ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.Tilde, function()
+    var toggleConsole = function()
     {
       ENGINE.menu.toggle("console");
-    });
+    };
 
-    ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.Circonflex, function()
-    {
-      ENGINE.menu.toggle("console");
-    });
+    ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.Tilde, toggleConsole);
+    ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.Circonflex, toggleConsole);
+    ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.Circonflex2, toggleConsole);
   };
 })();
