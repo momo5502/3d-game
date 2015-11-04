@@ -6,7 +6,8 @@
   assert(window.THREE, "three.js");
   assert(window.io, "socket.io");
   assert(window.Stats, "stats.js");
-  assert(window.Cookies, "js-cookie");
+  assert(window.store, "store.js");
+  assert(window.LZString, "LZ-String");
 
   window.ENGINE = window.ENGINE ||
   {};
