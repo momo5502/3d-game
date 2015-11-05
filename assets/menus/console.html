@@ -78,6 +78,22 @@
 			//ENGINE.console.log("Developer console closed");
 		};
 
+		function selectPosition(elem, pos) {
+			if (elem.createTextRange) {
+				var textRange = el.createTextRange();
+				textRange.move("character", pos);
+				textRange.select();
+			} else if (elem.selectionStart) {
+				elem.focus();
+				elem.setSelectionRange(pos, pos);
+			}
+		}
+
+		function moveCarret() {
+			inputField.focus();
+			selectPosition(inputField[0], inputField.val().length);
+		}
+
 		function scrollBack() {
 			scrollPos--;
 			if (scrollPos < 0) {
@@ -87,6 +103,8 @@
 			if (scrollPos < scrollHistory.length && scrollHistory.length > 0) {
 				inputField.val(scrollHistory[scrollPos]);
 			}
+
+			moveCarret();
 		}
 
 		function scrollForth() {
@@ -97,12 +115,14 @@
 			} else {
 				inputField.val(scrollHistory[scrollPos]);
 			}
+
+			moveCarret();
 		}
 
 		function scrollPush(data) {
 			// Remove if already exists
 			var i = scrollHistory.indexOf(data);
-			if(i != -1) scrollHistory.splice(i, 1);
+			if (i != -1) scrollHistory.splice(i, 1);
 
 			// Push data
 			scrollHistory.push(data);
