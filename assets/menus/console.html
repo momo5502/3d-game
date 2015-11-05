@@ -56,12 +56,17 @@
 		var self = ENGINE.menu.self;
 		self.popup = true;
 
+		var scrollPos = 0;
+		var scrollHistory = [];
+
 		var inputField = self.select("#console-field");
 
 		self.onOpen = function() {
 			// Do something when the menu opens
 			//ENGINE.console.log("Developer console opened");
 			inputField.val("");
+
+			scrollPos = scrollHistory.length;
 		};
 
 		self.onOpened = function() {
@@ -72,6 +77,36 @@
 			// Do something when the menu closes
 			//ENGINE.console.log("Developer console closed");
 		};
+
+		function scrollBack() {
+			scrollPos--;
+			if (scrollPos < 0) {
+				scrollPos = 0;
+			}
+
+			if (scrollPos < scrollHistory.length && scrollHistory.length > 0) {
+				inputField.val(scrollHistory[scrollPos]);
+			}
+		}
+
+		function scrollForth() {
+			scrollPos++;
+			if (scrollPos >= scrollHistory.length) {
+				scrollPos = scrollHistory.length;
+				inputField.val("");
+			} else {
+				inputField.val(scrollHistory[scrollPos]);
+			}
+		}
+
+		function scrollPush(data) {
+			// Remove if already exists
+			var i = scrollHistory.indexOf(data);
+			if(i != -1) scrollHistory.splice(i, 1);
+
+			// Push data
+			scrollHistory.push(data);
+		}
 
 		ENGINE.controls.assignSinglePersistent(9, function(event) {
 			if (self.isOpen()) {
@@ -90,9 +125,21 @@
 			}
 		});
 
+		ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.DOWN, function() {
+			if (self.isOpen()) {
+				scrollForth();
+			}
+		});
+		ENGINE.controls.assignSinglePersistent(ENGINE.controls.key.UP, function() {
+			if (self.isOpen()) {
+				scrollBack();
+			}
+		});
+
 		inputField.keyup(function(e) {
 			// On Enter
 			if (e.keyCode === 13) {
+				scrollPush(inputField.val());
 				ENGINE.command.execute(inputField.val());
 				self.dismiss();
 			}
