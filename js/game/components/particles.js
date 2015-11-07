@@ -51,6 +51,12 @@
       },
     };
 
+    var ent = new ENGINE.map.dynent(GAME.DATA.uniformsParticles);
+    ent.update = function(delta)
+    {
+      this.object.globalTime.value += delta * 0.0012;
+    };
+
     var shaderMaterial = new THREE.ShaderMaterial(
     {
       uniforms: GAME.DATA.uniformsParticles,
@@ -84,13 +90,5 @@
     }
 
     GAME.DATA.scene.add(particles);
-  };
-
-  GAME.particles.update = function()
-  {
-    if (GAME.DATA.uniformsParticles)
-    {
-      GAME.DATA.uniformsParticles.globalTime.value += GAME.var.frameDelta * 0.0012;
-    }
   };
 })();

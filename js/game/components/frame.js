@@ -11,16 +11,11 @@
     GAME.var.frameOldTime = GAME.var.frameNewTime;
 
     GAME.controls.update();
-    GAME.particles.update();
-    GAME.butterfly.update();
-    GAME.trees.update();
-    GAME.grass.update();
-    GAME.rays.update();
+
+    ENGINE.map.dynents.update(GAME.var.frameDelta);
 
     GAME.camera.update();
-
     GAME.players.update();
-
     GAME.physics.update();
 
     GAME.DATA.renderer.render(GAME.DATA.scene, GAME.DATA.camera);

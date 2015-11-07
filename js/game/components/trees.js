@@ -152,6 +152,11 @@
     var c = new THREE.Color().setHSL(0.0, 0.9, 1.0);
     GAME.DATA.treeBark2.uniforms.uDiffuseColor.value = c;
 
+    var ent = new ENGINE.map.dynent(GAME.DATA.treeBark2);
+    ent.update = function(delta)
+    {
+      this.object.uniforms.uGlobalTime.value += delta * 0.0012;
+    };
 
     for (var i = 0; i < GAME.const.treeThinCount; i++)
     {
@@ -229,6 +234,12 @@
     GAME.DATA.treeBark3.uniforms.tDiffuse.value.wrapT = THREE.RepeatWrapping;
     GAME.DATA.treeBark3.uniforms.tNormal.value.wrapS = THREE.RepeatWrapping;
     GAME.DATA.treeBark3.uniforms.tNormal.value.wrapT = THREE.RepeatWrapping;
+
+    var ent = new ENGINE.map.dynent(GAME.DATA.treeBark3);
+    ent.update = function(delta)
+    {
+      this.object.uniforms.uGlobalTime.value += delta * 0.0012;
+    };
 
     for (var i = 0; i < GAME.const.treeBirchCount; i++)
     {
@@ -346,6 +357,13 @@
     GAME.DATA.treeBark.uniforms.tNormal.value.wrapS = THREE.RepeatWrapping;
     GAME.DATA.treeBark.uniforms.tNormal.value.wrapT = THREE.RepeatWrapping;
 
+
+    var ent = new ENGINE.map.dynent(GAME.DATA.treeBark);
+    ent.update = function(delta)
+    {
+      this.object.uniforms.uGlobalTime.value += delta * 0.0012;
+    };
+
     /*
 
     bark
@@ -413,19 +431,13 @@
       GAME.DATA.scene.add(tree);
       GAME.DATA.trees.push(tree);
 
+      var treeEnt = new ENGINE.map.dynent(tree);
+      treeEnt.update = function(delta)
+      {
+        this.object.material.materials[2].uniforms.globalTime.value += delta * 0.001;
+      };
+
       GAME.physics.addCollisionMesh(tree);
     }
-
-    GAME.trees.update = function()
-    {
-      for (var i = 0; i < GAME.DATA.trees.length; i++)
-      {
-        GAME.DATA.trees[i].material.materials[2].uniforms.globalTime.value += GAME.var.frameDelta * 0.001;
-      }
-
-      GAME.DATA.treeBark.uniforms.uGlobalTime.value += GAME.var.frameDelta * 0.0012;
-      GAME.DATA.treeBark2.uniforms.uGlobalTime.value += GAME.var.frameDelta * 0.0012;
-      GAME.DATA.treeBark3.uniforms.uGlobalTime.value += GAME.var.frameDelta * 0.0012;
-    };
   };
 })();

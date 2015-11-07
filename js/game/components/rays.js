@@ -43,6 +43,12 @@
       },
     };
 
+    var ent = new ENGINE.map.dynent(GAME.DATA.uniformsRays);
+    ent.update = function(delta)
+    {
+      this.object.globalTime.value += delta * 0.0012;
+    };
+
     var material = new THREE.ShaderMaterial(
     {
 
@@ -56,7 +62,6 @@
       transparent: true,
 
     });
-
 
     var geometry = new THREE.Geometry();
 
@@ -94,13 +99,5 @@
 
     var planes = new THREE.Mesh(geometry, material, 0);
     GAME.DATA.scene.add(planes);
-  };
-
-  GAME.rays.update = function()
-  {
-    if (GAME.DATA.uniformsRays)
-    {
-      GAME.DATA.uniformsRays.globalTime.value += GAME.var.frameDelta * 0.0012;
-    }
   };
 })();

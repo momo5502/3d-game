@@ -66,6 +66,12 @@
       },
     };
 
+    var ent = new ENGINE.map.dynent(GAME.DATA.uniformsFlower);
+    ent.update = function(delta)
+    {
+      this.object.globalTime.value += delta * 0.0012;
+    };
+
     var material = new THREE.ShaderMaterial(
     {
       uniforms: GAME.DATA.uniformsFlower,
@@ -186,6 +192,12 @@
         type: "v2",
         value: new THREE.Vector2(1200.0, 2400.0)
       },
+    };
+
+    var ent = new ENGINE.map.dynent(GAME.DATA.uniformsGrass);
+    ent.update = function(delta)
+    {
+      this.object.globalTime.value += delta * 0.0012;
     };
 
     var material = new THREE.ShaderMaterial(
@@ -315,19 +327,6 @@
       GAME.DATA.scene.add(mesh);
 
       GAME.physics.addCollisionMesh(mesh);
-    }
-  };
-
-  GAME.grass.update = function()
-  {
-    if (GAME.DATA.uniformsGrass)
-    {
-      GAME.DATA.uniformsGrass.globalTime.value += GAME.var.frameDelta * 0.0012;
-    }
-
-    if (GAME.DATA.uniformsFlower)
-    {
-      GAME.DATA.uniformsFlower.globalTime.value += GAME.var.frameDelta * 0.0012;
     }
   };
 })();
