@@ -23,7 +23,7 @@
     ENGINE.network.on('reconnect', function(data)
     {
       GAME.players.clear(); // Maybe do that on disconnect?
-      GAME.network.authenticate(GAME.DATA.username);
+      GAME.authentication.request(GAME.DATA.username);
     });
 
     ENGINE.network.on("playerstates", function(data)
@@ -37,13 +37,6 @@
   GAME.network.loop = function()
   {
     GAME.network.transmitPlayerState(GAME.camera.collider.matrix);
-  };
-
-  GAME.network.authenticate = function(username)
-  {
-    ENGINE.network.authenticationName = username;
-    ENGINE.console.log("Authenticating as " + username);
-    ENGINE.network.send("authenticate", username);
   };
 
   GAME.network.transmitPlayerState = function(matrix)

@@ -38,7 +38,7 @@
 
     ENGINE.chat.setUsername(GAME.DATA.username);
 
-    GAME.network.authenticate(GAME.DATA.username);
+    GAME.authentication.request(GAME.DATA.username);
 
     // Display the container
     ENGINE.console.log("Game initialized.");

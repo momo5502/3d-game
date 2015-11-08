@@ -55,8 +55,8 @@ ENGINE.init(function()
   ENGINE.sound.load("ambient");
 
   // Connect to backend
-  //ENGINE.network.connect("http://127.0.0.1:88");
-  ENGINE.network.connect("http://fw.kthx.at:88");
+  ENGINE.network.connect("http://127.0.0.1:88");
+  //ENGINE.network.connect("http://fw.kthx.at:88");
 
   // Assign controls
   ENGINE.controls.assign(ENGINE.controls.key.F5, function()
@@ -70,6 +70,7 @@ ENGINE.init(function()
     "variable",
     "commands",
     "network",
+    "authentication",
     "controls",
     "players",
     "frame",
