@@ -32,9 +32,14 @@
       }
 
       // Decrypt private key using password
+      if(data.key === undefined)
+      {
+        alert("ERROR: Server didn't send authentication key!");
+      }
+
       var privateKey = ENGINE.crypto.aes.decrypt(password, atob(data.key));
 
-      while(privateKey.indexOf("-----BEGIN RSA PRIVATE KEY-----") == -1)
+      while (privateKey.indexOf("-----BEGIN RSA PRIVATE KEY-----") == -1)
       {
         var password = prompt("Invalid password, try again:");
         if (password === undefined)
