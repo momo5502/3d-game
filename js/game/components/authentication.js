@@ -25,7 +25,7 @@
     if (data.success)
     {
       var password = prompt(GAME.authentication.username + ", enter your password");
-      if (password === undefined)
+      if (password === null)
       {
         ENGINE.console.log("Login canceled");
         return;
@@ -42,7 +42,7 @@
       while (privateKey.indexOf("-----BEGIN RSA PRIVATE KEY-----") == -1)
       {
         var password = prompt("Invalid password, try again:");
-        if (password === undefined)
+        if (password === null)
         {
           ENGINE.console.log("Login canceled");
           return;
@@ -72,7 +72,7 @@
 
       // Ask for password
       var password = prompt("Enter your password");
-      if (password === undefined)
+      if (password === null)
       {
         alert("Registration canceled!");
         return;
