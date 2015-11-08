@@ -21,6 +21,7 @@
     "database",
     "network",
     "storage",
+    "crypto",
     "dvar",
     "command",
     "menu",
