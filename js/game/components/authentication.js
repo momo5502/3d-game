@@ -87,8 +87,6 @@
         response.signature = ENGINE.crypto.rsa.sign(key, data.token);
         response.userKey = btoa(ENGINE.crypto.aes.encrypt(password, key.private));
 
-        console.log(response);
-
         ENGINE.network.send("registration", response);
       });
     }
