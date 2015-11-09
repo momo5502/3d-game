@@ -13,11 +13,11 @@
       this.callbacks.push(callback);
     };
 
-    this.run = function(param1, param2, param3, param4, param5)
+    this.run = function()
     {
       for (var i = 0; i < this.callbacks.length; i++)
       {
-        this.callbacks[i](param1, param2, param3, param4, param5);
+        this.callbacks[i].apply(this, arguments);
       }
     };
 
