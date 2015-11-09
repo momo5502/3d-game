@@ -22,3 +22,4 @@ Live preview: http://momo5502.github.io/3d-game/
 | store.js              | https://github.com/marcuswestin/store.js/            |
 | JSEncrypt             | http://travistidwell.com/jsencrypt/                  |
 | jsrsasign             | https://kjur.github.io/jsrsasign/                    |
+| jsaes                 | http://point-at-infinity.org/jsaes/                  |
