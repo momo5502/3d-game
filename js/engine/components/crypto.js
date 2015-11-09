@@ -76,7 +76,6 @@
 
   ENGINE.crypto.aes.encrypt = function(key, data)
   {
-    // TODO: Salt the key
     var keyHash = ENGINE.crypto.sha256(key, true);
 
     var keyArray = [];
@@ -126,7 +125,6 @@
 
   ENGINE.crypto.aes.decrypt = function(key, data)
   {
-    // TODO: Salt the key
     var keyHash = ENGINE.crypto.sha256(key, true);
 
     var keyArray = [];

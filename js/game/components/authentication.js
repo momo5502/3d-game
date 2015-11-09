@@ -37,7 +37,7 @@
         alert("ERROR: Server didn't send authentication key!");
       }
 
-      var privateKey = ENGINE.crypto.aes.decrypt(password, atob(data.key));
+      var privateKey = ENGINE.crypto.aes.decrypt(GAME.authentication.username + password + data.salt, atob(data.key));
 
       while (privateKey.indexOf("-----BEGIN RSA PRIVATE KEY-----") == -1)
       {
@@ -48,7 +48,7 @@
           return;
         }
 
-        privateKey = ENGINE.crypto.aes.decrypt(password, atob(data.key));
+        privateKey = ENGINE.crypto.aes.decrypt(GAME.authentication.username + password + data.salt, atob(data.key));
       }
 
       // Generate rsa key
@@ -85,7 +85,7 @@
         var response = {};
         response.key = key.public;
         response.signature = ENGINE.crypto.rsa.sign(key, data.token);
-        response.userKey = btoa(ENGINE.crypto.aes.encrypt(password, key.private));
+        response.userKey = btoa(ENGINE.crypto.aes.encrypt(GAME.authentication.username + password + data.salt, key.private));
 
         ENGINE.network.send("registration", response);
       });
