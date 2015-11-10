@@ -41,6 +41,7 @@
   ENGINE.network.on('authenticate_session', function(data)
   {
     ENGINE.console.log("Authenticated. Session created.");
+    ENGINE.notify.success("Logged in as " + GAME.authentication.username);
     ENGINE.storage.storeLocal("session", data.session);
   });
 
