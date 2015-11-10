@@ -80,7 +80,7 @@
     ENGINE.network.socket.on('disconnect', function(data)
     {
       ENGINE.console.log("Disconnected from server. Reconnecting...");
-      ENGINE.notify.warn("Disconnected from server.");
+      ENGINE.notify.error("Lost connection to server");
       runCallbacks('disconnect', data);
     });
 

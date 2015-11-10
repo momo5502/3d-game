@@ -50,7 +50,7 @@
     var password = prompt(GAME.authentication.username + ", enter your password");
     if (password === null)
     {
-      ENGINE.console.log("Login canceled");
+      ENGINE.notify.warn("Login canceled");
       return;
     }
 
@@ -67,7 +67,7 @@
       var password = prompt("Invalid password, try again:");
       if (password === null)
       {
-        ENGINE.console.log("Login canceled");
+        ENGINE.notify.warn("Login canceled");
         return;
       }
 
@@ -97,7 +97,7 @@
     var password = prompt("Enter your password");
     if (password === null)
     {
-      alert("Registration canceled!");
+      ENGINE.notify.warn("Registration canceled!");
       return;
     }
 
