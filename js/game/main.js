@@ -89,4 +89,8 @@ ENGINE.init(function()
 ENGINE.ready(function()
 {
   GAME.start();
+  ENGINE.notify.info("Test info");
+  setTimeout(ENGINE.notify.success.bind(undefined, "Test success"), 1000);
+  setTimeout(ENGINE.notify.warn.bind(undefined, "Test warning"), 2000);
+  setTimeout(ENGINE.notify.error.bind(undefined, "Test error"), 3000);
 });

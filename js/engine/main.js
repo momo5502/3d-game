@@ -24,6 +24,7 @@
     "crypto",
     "dvar",
     "command",
+    "notify",
     "menu",
     "stats",
     "animate",
