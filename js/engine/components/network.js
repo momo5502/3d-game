@@ -71,6 +71,7 @@
     ENGINE.network.socket.on('reconnect', function(data)
     {
       ENGINE.console.log("Reconnected to server.");
+      ENGINE.notify.info("Reconnected to server.");
       ticket.close();
 
       runCallbacks('reconnect', data);
@@ -79,6 +80,7 @@
     ENGINE.network.socket.on('disconnect', function(data)
     {
       ENGINE.console.log("Disconnected from server. Reconnecting...");
+      ENGINE.notify.warn("Disconnected from server.");
       runCallbacks('disconnect', data);
     });
 
