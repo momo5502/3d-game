@@ -70,10 +70,7 @@
   {
     setTimeout(function()
     {
-      object.fadeTo(300, 0, function()
-      {
-        object.remove();
-      });
+      object.fadeTo(300, 0, object.remove.bind(object));
     }, time);
   }
 })();
