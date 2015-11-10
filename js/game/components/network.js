@@ -11,14 +11,14 @@
     ENGINE.network.on('user_connect', function(data)
     {
       ENGINE.console.log("User connected: " + data.name);
-      ENGINE.notify.info("User connected: " + data.name);
+      ENGINE.notify.info(data.name + " connected");
       GAME.players.add(data.name, data.id);
     });
 
     ENGINE.network.on('user_disconnect', function(data)
     {
       ENGINE.console.log("User disconnected: " + data.name);
-      ENGINE.notify.info("User disconnected: " + data.name);
+      ENGINE.notify.info(data.name + " disconnected");
       GAME.players.remove(data.id);
     });
 
