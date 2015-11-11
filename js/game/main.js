@@ -88,7 +88,7 @@ ENGINE.init(function()
 
 ENGINE.ready(function()
 {
-  if(ENGINE.hasWebGL)
+  if (ENGINE.hasWebGL)
   {
     GAME.start();
   }

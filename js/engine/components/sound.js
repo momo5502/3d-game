@@ -9,7 +9,7 @@
   ENGINE.sound = {};
 
   ENGINE.sound.path = "assets/sounds/";
-  ENGINE.sound.extension = ".ogg";
+  ENGINE.sound.extension = ((new Audio()).canPlayType("audio/mp3") ? ".mp3" : ".ogg");
 
   var dbType = "sound";
 
