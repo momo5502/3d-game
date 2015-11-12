@@ -44,6 +44,8 @@ body {
 
 /* Progress bar ontop */
 
+
+/*
 #loader > #progress {
   margin-top: 0;
   position: fixed;
@@ -55,6 +57,7 @@ body {
 #loader {
   color: rgba(0, 0, 0, 0);
 }
+*/
 
 #console {
   position: fixed;
