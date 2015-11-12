@@ -41,6 +41,21 @@ body {
   transition: 0.3s;
 }
 
+
+/* Progress bar ontop */
+
+#loader > #progress {
+  margin-top: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 173, 34);
+}
+
+#loader {
+  color: rgba(0, 0, 0, 0);
+}
+
 #console {
   position: fixed;
   top: 10px;
