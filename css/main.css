@@ -117,11 +117,11 @@ body {
 }
 
 .notify-success > i {
-  background-color: #86c100 !important;
+  background-color: rgb(134, 193, 0) !important;
 }
 
 .notify-success {
-  background-color: #e8ffb2 !important;
+  background-color: rgb(232, 255, 179) !important;
 }
 
 .notify-info > i {

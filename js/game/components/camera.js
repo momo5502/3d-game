@@ -9,8 +9,10 @@
 
   GAME.camera = {};
 
-  GAME.camera.fov = new ENGINE.dvar("cg_fov", 65);
+  GAME.camera.fov = new ENGINE.dvar("cg_fov", 65, true);
   GAME.camera.jumpHeight = new ENGINE.dvar("jump_height", 50);
+
+  GAME.camera.clipping = true;
 
   GAME.camera.init = function()
   {
@@ -38,6 +40,7 @@
 
   GAME.camera.syncCollider = function()
   {
+    if (!GAME.camera.clipping) return;
     GAME.camera.collider.position.copy(GAME.camera.pCollider.position);
     GAME.camera.pCollider.quaternion.copy(GAME.camera.collider.quaternion);
     //GAME.camera.collider.quaternion.copy(GAME.camera.pCollider.quaternion);
@@ -45,6 +48,7 @@
 
   GAME.camera.syncBody = function()
   {
+    if (!GAME.camera.clipping) return;
     GAME.camera.pCollider.position.copy(GAME.camera.collider.position);
     GAME.camera.pCollider.quaternion.copy(GAME.camera.collider.quaternion);
   };
@@ -71,7 +75,14 @@
     GAME.DATA.camera.lookAt(normalizeTarget(target, GAME.DATA.camera));
 
     // Then copy the rotation to the collider
-    GAME.camera.collider.rotation = GAME.DATA.camera.rotation;
+    if (GAME.camera.clipping)
+    {
+      GAME.camera.collider.rotation = GAME.DATA.camera.rotation;
+    }
+    else
+    {
+      GAME.camera.collider.lookAt(target);
+    }
 
     // Then rotate the camera
     GAME.DATA.camera.lookAt(target);
@@ -123,6 +134,8 @@
 
   GAME.camera.jump = function()
   {
+    if (!GAME.camera.clipping) return;
+
     var vel = GAME.camera.pCollider.velocity;
 
     if (vel.y < 1 && vel.y > -1)
@@ -146,6 +159,11 @@
 
     var value = translateMovementToFrame(scale * GAME.const.cameraSpeed);
 
+    if (!GAME.camera.clipping)
+    {
+      value *= -1;
+    }
+
     switch (direction)
     {
       case "X":
@@ -161,7 +179,7 @@
         break;
     }
 
-    if (GAME.physics.collides(pos, GAME.camera.collider.position)
+    if (GAME.camera.clipping && GAME.physics.collides(pos, GAME.camera.collider.position)
       /* ||
             GAME.physics.collides(pos.clone().setY(pos.y - (GAME.const.cameraHeightOffset / 2)), GAME.camera.collider.position) ||
             GAME.physics.collides(pos.clone().setY(pos.y + (GAME.const.cameraHeightOffset / 2)), GAME.camera.collider.position)*/
@@ -177,4 +195,10 @@
   {
     return (new THREE.Vector3()).copy(target).setY(targetObject.position.y);
   }
+
+  ENGINE.command.add("noclip", function()
+  {
+    GAME.camera.clipping = !GAME.camera.clipping;
+    ENGINE.console.log("Clipping " + (GAME.camera.clipping ? "enabled" : "disabled"));
+  })
 })();

@@ -5,16 +5,26 @@
   {};
 
   var dvarPool = [];
+  var dvarValuePool = {};
+  var restored = false;
+
   ENGINE.dvars = {};
 
-  var dvarValue = function(value)
+  var dvarValue = function(value, dvar)
   {
     this._value = value;
     this._default = value;
+    this._dvar = dvar;
 
     this.set = function(val)
     {
       this._value = val;
+
+      if (this._dvar.save)
+      {
+        dvarValuePool[this._dvar.name] = this._value;
+        _store();
+      }
     }
 
     this.get = function()
@@ -26,9 +36,27 @@
     {
       this.set(this._default);
     }
-  }
 
-  ENGINE.dvar = function(name, value)
+    if (this._dvar.save)
+    {
+      if (!restored)
+      {
+        _restore();
+      }
+
+      var val = dvarValuePool[this._dvar.name];
+      if (val !== undefined)
+      {
+        this.set(val);
+      }
+    }
+    else
+    {
+      this.set(value);
+    }
+  };
+
+  ENGINE.dvar = function(name, value, save)
   {
     var dvar = ENGINE.dvars.find(name);
     if (dvar !== undefined)
@@ -37,8 +65,9 @@
       return dvar;
     }
 
+    this.save = save || false;
     this.name = name;
-    this.value = new dvarValue(value);
+    this.value = new dvarValue(value, this);
 
     this.get = function()
     {
@@ -97,4 +126,16 @@
   {
     return (ENGINE.dvars.find(name) !== undefined);
   }
+
+  function _store()
+  {
+    ENGINE.storage.storeLocal("dvars", dvarValuePool);
+  };
+
+  function _restore()
+  {
+    restored = true;
+    dvarValuePool = ENGINE.storage.loadLocal("dvars") ||
+    {};
+  };
 })();

@@ -4,7 +4,7 @@
   window.ENGINE = window.ENGINE ||
   {};
 
-  var maxFps = new ENGINE.dvar("com_maxfps", 0);
+  var maxFps = new ENGINE.dvar("com_maxfps", 0, true);
 
   /**
    * Provides requestAnimationFrame in a cross browser way.
