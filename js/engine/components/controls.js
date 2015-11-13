@@ -133,7 +133,7 @@
     {
       if (ENGINE.controls.pointer.isLockedTo(element))
       {
-        if(activated) ENGINE.controls.pointer.dispatchMovement(event.originalEvent);
+        if (activated) ENGINE.controls.pointer.dispatchMovement(event.originalEvent);
       }
     });
 

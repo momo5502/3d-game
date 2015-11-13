@@ -29,7 +29,7 @@
       ticket.geometry = geometry;
       ticket.material = material;
       ticket.close();
-    });
+    }); 
 
     storeDB(name, ticket);
     return ticket;

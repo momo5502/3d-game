@@ -61,7 +61,7 @@
     menu.show(time, function()
     {
       menu.onOpened();
-      if(callback !== undefined) callback();
+      if (callback !== undefined) callback();
     });
   };
 
