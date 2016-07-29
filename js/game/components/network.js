@@ -1,48 +1,48 @@
 (function()
 {
-  'use strict';
-  window.GAME = window.GAME ||
-  {};
+    'use strict';
+    window.GAME = window.GAME ||
+    {};
 
-  GAME.network = {};
+    GAME.network = {};
 
-  GAME.network.init = function()
-  {
-    ENGINE.network.on('user_connect', function(data)
+    GAME.network.init = function()
     {
-      ENGINE.console.log("User connected: " + data.name);
-      ENGINE.notify.info(data.name + " connected");
-      GAME.players.add(data.name, data.id);
-    });
+        ENGINE.network.on('user_connect', function(data)
+        {
+            ENGINE.console.log("User connected: " + data.name);
+            ENGINE.notify.info(data.name + " connected");
+            GAME.players.add(data.name, data.id);
+        });
 
-    ENGINE.network.on('user_disconnect', function(data)
+        ENGINE.network.on('user_disconnect', function(data)
+        {
+            ENGINE.console.log("User disconnected: " + data.name);
+            ENGINE.notify.info(data.name + " disconnected");
+            GAME.players.remove(data.id);
+        });
+
+        ENGINE.network.on('reconnect', function(data)
+        {
+            GAME.players.clear(); // Maybe do that on disconnect?
+            GAME.authentication.request(GAME.DATA.username);
+        });
+
+        ENGINE.network.on("playerstates", function(data)
+        {
+            GAME.players.parseStates(data);
+        });
+
+        GAME.DATA.networkLoop = setInterval(GAME.network.loop, 1000 / GAME.const.snaps);
+    };
+
+    GAME.network.loop = function()
     {
-      ENGINE.console.log("User disconnected: " + data.name);
-      ENGINE.notify.info(data.name + " disconnected");
-      GAME.players.remove(data.id);
-    });
+        GAME.network.transmitPlayerState(GAME.camera.collider.matrix);
+    };
 
-    ENGINE.network.on('reconnect', function(data)
+    GAME.network.transmitPlayerState = function(matrix)
     {
-      GAME.players.clear(); // Maybe do that on disconnect?
-      GAME.authentication.request(GAME.DATA.username);
-    });
-
-    ENGINE.network.on("playerstates", function(data)
-    {
-      GAME.players.parseStates(data);
-    });
-
-    GAME.DATA.networkLoop = setInterval(GAME.network.loop, 1000 / GAME.const.snaps);
-  };
-
-  GAME.network.loop = function()
-  {
-    GAME.network.transmitPlayerState(GAME.camera.collider.matrix);
-  };
-
-  GAME.network.transmitPlayerState = function(matrix)
-  {
-    ENGINE.network.send("playerstate", matrix.toArray());
-  };
+        ENGINE.network.send("playerstate", matrix.toArray());
+    };
 })();

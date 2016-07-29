@@ -1,86 +1,86 @@
 (function()
 {
-  'use strict';
-  window.ENGINE = window.ENGINE ||
-  {};
+    'use strict';
+    window.ENGINE = window.ENGINE ||
+    {};
 
-  ENGINE.map = {};
+    ENGINE.map = {};
 
-  ENGINE.map.load = function(mapname) {
+    ENGINE.map.load = function(mapname) {
 
-  };
-
-  ENGINE.map.spawn = function(mapname) {
-
-  };
-
-  // Dynents
-  ENGINE.map.dynents = new Array();
-
-  ENGINE.map.dynent = function(object)
-  {
-    var ent = getDynEntByObject(object);
-    if (ent !== undefined)
-    {
-      return ent;
-    }
-
-    this.object = object;
-
-    this.destroy = function()
-    {
-      ENGINE.map.dynents.splice(ENGINE.map.dynents.indexOf(this), 1);
     };
 
-    // Templates
-    this.init = function() {}; // Unused
-    this.update = function(delta) {};
+    ENGINE.map.spawn = function(mapname) {
 
-    ENGINE.map.dynents.push(this);
-  };
+    };
 
-  // Unused
-  ENGINE.map.dynents.init = function()
-  {
-    this.forEach(function(entry)
+    // Dynents
+    ENGINE.map.dynents = new Array();
+
+    ENGINE.map.dynent = function(object)
     {
-      entry.init();
-    });
-  };
+        var ent = getDynEntByObject(object);
+        if (ent !== undefined)
+        {
+            return ent;
+        }
 
-  ENGINE.map.dynents.update = function(delta)
-  {
-    this.forEach(function(entry)
+        this.object = object;
+
+        this.destroy = function()
+        {
+            ENGINE.map.dynents.splice(ENGINE.map.dynents.indexOf(this), 1);
+        };
+
+        // Templates
+        this.init = function() {}; // Unused
+        this.update = function(delta) {};
+
+        ENGINE.map.dynents.push(this);
+    };
+
+    // Unused
+    ENGINE.map.dynents.init = function()
     {
-      entry.update(delta);
-    });
-  };
+        this.forEach(function(entry)
+        {
+            entry.init();
+        });
+    };
 
-  /****************************/
-  /*      Misc functions      */
-  /****************************/
-
-  function loadObjects(objects)
-  {
-
-  }
-
-  function loadScripts(scripts)
-  {
-
-  }
-
-  function getDynEntByObject(object)
-  {
-    var entity = undefined;
-    ENGINE.map.dynents.forEach(function(entry)
+    ENGINE.map.dynents.update = function(delta)
     {
-      if (entry.object == object)
-      {
-        entity = entry;
-      }
-    });
+        this.forEach(function(entry)
+        {
+            entry.update(delta);
+        });
+    };
 
-    return entity;
-  }
+    /****************************/
+    /*      Misc functions      */
+    /****************************/
+
+    function loadObjects(objects)
+    {
+
+    }
+
+    function loadScripts(scripts)
+    {
+
+    }
+
+    function getDynEntByObject(object)
+    {
+        var entity = undefined;
+        ENGINE.map.dynents.forEach(function(entry)
+        {
+            if (entry.object == object)
+            {
+                entity = entry;
+            }
+        });
+
+        return entity;
+    }
 })();

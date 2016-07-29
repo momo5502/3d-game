@@ -1,44 +1,44 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
 * {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  cursor: url("../assets/textures/2d/cursor.png"), pointer !important;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: url("../assets/textures/2d/cursor.png"), pointer !important;
 }
 
 html,
 body {
-  margin: 0;
-  height: 100%;
-  overflow: hidden;
-  background-color: black;
-  font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: black;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #container {
-  width: 100%;
-  height: 100%;
-  opacity: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
 }
 
 #loader {
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
-  color: white;
-  font-size: 20px;
-  width: calc(100% - 60px);
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    color: white;
+    font-size: 20px;
+    width: calc(100% - 60px);
 }
 
-#loader > #progress {
-  margin-top: 10px;
-  width: 0;
-  height: 3px;
-  display: block;
-  background-color: white;
-  transition: 0.3s;
+#loader> #progress {
+    margin-top: 10px;
+    width: 0;
+    height: 3px;
+    display: block;
+    background-color: white;
+    transition: 0.3s;
 }
 
 
@@ -60,183 +60,183 @@ body {
 */
 
 #console {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  background: transparent;
-  color: white;
-  border: 0;
-  opacity: 1 !important;
-  display: inline !important;
-  resize: none;
-  z-index: 4;
-  font-family: 'Open Sans', sans-serif;
-  cursor: default;
-  font-size: 12px;
-  outline: 0;
-  width: 500px;
-  height: 150px;
-  overflow: hidden;
-  pointer-events: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: transparent;
+    color: white;
+    border: 0;
+    opacity: 1 !important;
+    display: inline !important;
+    resize: none;
+    z-index: 4;
+    font-family: 'Open Sans', sans-serif;
+    cursor: default;
+    font-size: 12px;
+    outline: 0;
+    width: 500px;
+    height: 150px;
+    overflow: hidden;
+    pointer-events: none;
 }
 
 .menu {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
 }
 
 #notifications {
-  overflow: hidden;
-  max-height: 100%;
-  pointer-events: none;
-  z-index: 6;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 12px;
-  padding-top: 0;
+    overflow: hidden;
+    max-height: 100%;
+    pointer-events: none;
+    z-index: 6;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 12px;
+    padding-top: 0;
 }
 
-#notifications > div {
-  background-color: white;
-  min-width: 300px;
-  margin-top: 12px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.3);
-  /* Changed when faded*/
-  opacity: 0;
-  display: none;
-  color: #555;
+#notifications> div {
+    background-color: white;
+    min-width: 300px;
+    margin-top: 12px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.3);
+    /* Changed when faded*/
+    opacity: 0;
+    display: none;
+    color: #555;
 }
 
-#notifications > div > i {
-  background-color: rgba(0, 0, 0, 0.1);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  width: 20px;
-  text-align: center;
-  color: rgba(85, 85, 85, 0.6);
+#notifications> div> i {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    width: 20px;
+    text-align: center;
+    color: rgba(85, 85, 85, 0.6);
 }
 
-#notifications > div > span {
-  text-align: center;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+#notifications> div> span {
+    text-align: center;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.notify-success > i {
-  background-color: rgb(134, 193, 0) !important;
+.notify-success> i {
+    background-color: rgb(134, 193, 0) !important;
 }
 
 .notify-success {
-  background-color: rgb(232, 255, 179) !important;
+    background-color: rgb(232, 255, 179) !important;
 }
 
-.notify-info > i {
-  background-color: rgb(32, 197, 255) !important;
+.notify-info> i {
+    background-color: rgb(32, 197, 255) !important;
 }
 
 .notify-info {
-  background-color: rgb(161, 230, 255) !important;
+    background-color: rgb(161, 230, 255) !important;
 }
 
-.notify-warn > i {
-  background-color: rgb(255, 173, 34) !important;
+.notify-warn> i {
+    background-color: rgb(255, 173, 34) !important;
 }
 
 .notify-warn {
-  background-color: rgb(255, 220, 161) !important;
+    background-color: rgb(255, 220, 161) !important;
 }
 
-.notify-error > i {
-  background-color: rgb(255, 49, 49) !important;
+.notify-error> i {
+    background-color: rgb(255, 49, 49) !important;
 }
 
 .notify-error {
-  background-color: rgb(255, 176, 176) !important;
+    background-color: rgb(255, 176, 176) !important;
 }
 
 
 /* Chat window stuff */
 
 #chatlog {
-  position: fixed;
-  height: 154px;
-  top: calc(40% - 72px);
-  left: 10px;
-  z-index: 4;
-  width: calc(90% - 31px);
-  pointer-events: none;
-  color: white;
-  transition: 0.3s;
+    position: fixed;
+    height: 154px;
+    top: calc(40% - 72px);
+    left: 10px;
+    z-index: 4;
+    width: calc(90% - 31px);
+    pointer-events: none;
+    color: white;
+    transition: 0.3s;
 }
 
-#chatlog > .message {
-  display: block;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-  height: 22px;
+#chatlog> .message {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    height: 22px;
 }
 
-#chatlog > .message > .user {
-  font-weight: 300;
+#chatlog> .message> .user {
+    font-weight: 300;
 }
 
-#chatlog > .message > .user::after {
-  content: ": ";
+#chatlog> .message> .user::after {
+    content: ": ";
 }
 
-#chatlog > .message > .content {
-  font-weight: 400;
+#chatlog> .message> .content {
+    font-weight: 400;
 }
 
-#chatlog > .message > .content > .color_0 {
-  color: rgb(000, 000, 000);
+#chatlog> .message> .content> .color_0 {
+    color: rgb(000, 000, 000);
 }
 
-#chatlog > .message > .content > .color_1 {
-  color: rgb(255, 049, 049);
+#chatlog> .message> .content> .color_1 {
+    color: rgb(255, 049, 049);
 }
 
-#chatlog > .message > .content > .color_2 {
-  color: rgb(134, 192, 000);
+#chatlog> .message> .content> .color_2 {
+    color: rgb(134, 192, 000);
 }
 
-#chatlog > .message > .content > .color_3 {
-  color: rgb(255, 173, 034);
+#chatlog> .message> .content> .color_3 {
+    color: rgb(255, 173, 034);
 }
 
-#chatlog > .message > .content > .color_4 {
-  color: rgb(000, 135, 193);
+#chatlog> .message> .content> .color_4 {
+    color: rgb(000, 135, 193);
 }
 
-#chatlog > .message > .content > .color_5 {
-  color: rgb(032, 197, 255);
+#chatlog> .message> .content> .color_5 {
+    color: rgb(032, 197, 255);
 }
 
-#chatlog > .message > .content > .color_6 {
-  color: rgb(151, 080, 221);
+#chatlog> .message> .content> .color_6 {
+    color: rgb(151, 080, 221);
 }
 
-#chatlog > .message > .content > .color_7 {
-  color: rgb(255, 255, 255);
+#chatlog> .message> .content> .color_7 {
+    color: rgb(255, 255, 255);
 }
 
-#chatlog > .message > .content > .color_8 {
-  color: rgb(153, 163, 176);
+#chatlog> .message> .content> .color_8 {
+    color: rgb(153, 163, 176);
 }
 
-#chatlog > .message > .content > .color_9 {
-  color: rgb(166, 145, 105);
+#chatlog> .message> .content> .color_9 {
+    color: rgb(166, 145, 105);
 }

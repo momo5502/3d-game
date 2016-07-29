@@ -1,51 +1,51 @@
 (function()
 {
-  'use strict';
-  window.ENGINE = window.ENGINE ||
-  {};
+    'use strict';
+    window.ENGINE = window.ENGINE ||
+    {};
 
-  ENGINE.model = {};
+    ENGINE.model = {};
 
-  ENGINE.model.path = "assets/models/";
-  ENGINE.model.extension = ".json";
+    ENGINE.model.path = "assets/models/";
+    ENGINE.model.extension = ".json";
 
-  ENGINE.model.loader = new THREE.JSONLoader();
+    ENGINE.model.loader = new THREE.JSONLoader();
 
-  var dbType = "model";
+    var dbType = "model";
 
-  ENGINE.model.load = function(name)
-  {
-    var loaded = loadFromDB(name);
-    if (loaded != undefined)
+    ENGINE.model.load = function(name)
     {
-      return loaded;
+        var loaded = loadFromDB(name);
+        if (loaded != undefined)
+        {
+            return loaded;
+        }
+
+        var ticket = new ENGINE.ticket(name);
+        ticket.type = dbType;
+
+        ENGINE.model.loader.load(ENGINE.model.path + name + ENGINE.model.extension, function(geometry, material)
+        {
+            ticket.geometry = geometry;
+            ticket.material = material;
+            ticket.close();
+        });
+
+        storeDB(name, ticket);
+        return ticket;
+    };
+
+    /****************************/
+    /*      Misc functions      */
+    /****************************/
+
+    function loadFromDB(name)
+    {
+        return ENGINE.database.load(dbType, name);
     }
 
-    var ticket = new ENGINE.ticket(name);
-    ticket.type = dbType;
-
-    ENGINE.model.loader.load(ENGINE.model.path + name + ENGINE.model.extension, function(geometry, material)
+    function storeDB(name, object)
     {
-      ticket.geometry = geometry;
-      ticket.material = material;
-      ticket.close();
-    }); 
-
-    storeDB(name, ticket);
-    return ticket;
-  };
-
-  /****************************/
-  /*      Misc functions      */
-  /****************************/
-
-  function loadFromDB(name)
-  {
-    return ENGINE.database.load(dbType, name);
-  }
-
-  function storeDB(name, object)
-  {
-    return ENGINE.database.add(dbType, name, object);
-  }
+        return ENGINE.database.add(dbType, name, object);
+    }
 })();

@@ -4,49 +4,49 @@
 
 (function()
 {
-  'use strict';
-  window.ENGINE = window.ENGINE ||
-  {};
+    'use strict';
+    window.ENGINE = window.ENGINE ||
+    {};
 
-  ENGINE.binding = {};
+    ENGINE.binding = {};
 
-  ENGINE.binding.bind = function(element)
-  {
-    ENGINE.binding.element = $(element);
-  };
-
-  ENGINE.binding.bindRenderer = function(renderer, camera)
-  {
-    ENGINE.binding.element.resize(function()
+    ENGINE.binding.bind = function(element)
     {
-      adjust(renderer, camera, ENGINE.binding.element);
-    });
+        ENGINE.binding.element = $(element);
+    };
 
-    $(window).resize(function()
+    ENGINE.binding.bindRenderer = function(renderer, camera)
     {
-      adjust(renderer, camera, ENGINE.binding.element);
-    });
+        ENGINE.binding.element.resize(function()
+        {
+            adjust(renderer, camera, ENGINE.binding.element);
+        });
 
-    ENGINE.binding.element.append(renderer.domElement);
-    ENGINE.binding.element.resize();
+        $(window).resize(function()
+        {
+            adjust(renderer, camera, ENGINE.binding.element);
+        });
 
-    ENGINE.stats.bind(ENGINE.binding.element);
+        ENGINE.binding.element.append(renderer.domElement);
+        ENGINE.binding.element.resize();
 
-    ENGINE.controls.pointer.lock(renderer.domElement);
-  };
+        ENGINE.stats.bind(ENGINE.binding.element);
 
-  /****************************/
-  /*      Misc functions      */
-  /****************************/
+        ENGINE.controls.pointer.lock(renderer.domElement);
+    };
 
-  function adjust(renderer, camera, element)
-  {
-    var width = element.innerWidth(),
-      height = element.innerHeight();
+    /****************************/
+    /*      Misc functions      */
+    /****************************/
 
-    renderer.setSize(width, height);
+    function adjust(renderer, camera, element)
+    {
+        var width = element.innerWidth(),
+            height = element.innerHeight();
 
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-  }
+        renderer.setSize(width, height);
+
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    }
 })();
